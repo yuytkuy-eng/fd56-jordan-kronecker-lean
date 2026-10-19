@@ -1,4 +1,8 @@
-import FD56.PolynomialMatrix
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import Mathlib.Tactic
 import Mathlib.LinearAlgebra.Dual.Lemmas
 
 /-! Restricting an alternating form to a hyperplane containing its radical

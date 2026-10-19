@@ -1,4 +1,8 @@
-import FD56.LowDegree
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import FD56.Stabilizer.LowDegree
 
 /-! The Kirillov form of the matrix semidirect product and its restriction
 to traceless matrices. The definition includes the entire SL radical. -/

@@ -1,4 +1,8 @@
-import FD56.HilbertArithmetic
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import Mathlib.Tactic
 
 /-! A finite nonnegative minimal-index list is uniquely determined by its
 Hilbert function. The second finite difference recovers each multiplicity. -/

@@ -1,4 +1,8 @@
-import FD56.SpectrumArithmetic
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import Mathlib.Tactic
 
 /-! The two-case numerical deduction from the claimed geometric Hilbert maximum.
 The geometric maximum itself is not an assumption hidden in these lemmas. -/

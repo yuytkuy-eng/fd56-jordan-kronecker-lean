@@ -1,7 +1,7 @@
 FD56 Jordan-Kronecker Lean formalization
 Copyright 2026 Shifan Yu
 
-Licensed under the Apache License, Version 2.0.
+SPDX-License-Identifier: Apache-2.0
 
-This project depends on Lean and mathlib. Dependencies retain their own
-copyright notices and licenses and are not included in this repository.
+Lean and mathlib are external dependencies. Their copyright notices and
+license terms remain with their respective distributions.

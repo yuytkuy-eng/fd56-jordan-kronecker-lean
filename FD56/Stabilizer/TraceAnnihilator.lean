@@ -1,4 +1,8 @@
-import FD56.Kirillov
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import FD56.Stabilizer.Kirillov
 
 /-! The trace pairing is nondegenerate, and the annihilator of traceless
 matrices consists exactly of scalar matrices. These statements hold over

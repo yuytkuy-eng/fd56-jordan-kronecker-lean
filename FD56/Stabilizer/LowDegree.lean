@@ -1,4 +1,8 @@
-import FD56.RankOne
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import FD56.Stabilizer.RankOne
 
 /-! A degree-five special-linear stabilizer for every affine full-row-rank
 pair of sizes (11k, 8k). This is the direct argument in Section 6.3. -/

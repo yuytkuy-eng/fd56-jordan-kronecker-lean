@@ -1,4 +1,8 @@
-import FD56.Kirillov
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import FD56.Stabilizer.Kirillov
 
 /-! A contradiction to the balanced Hilbert-profile prediction. The Hilbert
 function below is defined using the actual polynomial stabilizer equations. -/

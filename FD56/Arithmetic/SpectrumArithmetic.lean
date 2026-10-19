@@ -1,4 +1,8 @@
-import FD56.HilbertObstruction
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import Mathlib.Tactic
 
 /-! Arithmetic of the classification formulas. These definitions are candidates;
 this file does not identify them with the generic geometric spectrum. -/

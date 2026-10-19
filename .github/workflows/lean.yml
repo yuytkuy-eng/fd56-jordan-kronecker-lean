@@ -27,14 +27,5 @@ jobs:
           echo "$RUNNER_TEMP/${release}/bin" >> "$GITHUB_PATH"
       - name: Download dependency compilation cache
         run: lake exe cache get
-      - name: Reject incomplete proofs and custom axioms
-        shell: bash
-        run: |
-          if grep -En '\b(sorry|admit|axiom|native_decide)\b' FD56.lean Audit.lean FD56/*.lean; then
-            echo 'A prohibited proof escape was found.'
-            exit 1
-          fi
-      - name: Build every imported proof
-        run: lake build
-      - name: Print axiom dependencies
-        run: lake env lean -j1 -s65536 Audit.lean
+      - name: Build and audit every theorem
+        run: python3 scripts/check.py

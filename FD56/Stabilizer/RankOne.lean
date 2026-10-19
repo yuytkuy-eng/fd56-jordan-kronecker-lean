@@ -1,4 +1,8 @@
-import FD56.PolynomialMatrix
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import FD56.LinearAlgebra.PolynomialMatrix
 
 /-! The rank-one construction in Section 6.3, over any field. -/
 

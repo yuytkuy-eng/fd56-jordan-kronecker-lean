@@ -7,3 +7,8 @@
 lakefile.local.toml
 .DS_Store
 Thumbs.db
+
+# Generated verification reports and Python caches
+.verification/
+__pycache__/
+*.pyc
