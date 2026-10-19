@@ -24,6 +24,14 @@ For the family list with k² copies of 5, 6k² + 8 copies of 6, and 8k² − 7 c
 
 The Hilbert arithmetic module proves the two numerical branches of the maximum formula and the Hilbert function identity for balanced lists. The geometric derivation of that maximum formula remains open in this formalization.
 
+## Additional algebraic bridges
+
+`slRadical_iff_equations` proves that membership in the full SL radical is equivalent to trace X = 0, P X = 0, and M X - X M = U P + c I for some polynomial c. This equivalence is derived from the trace pairing; it is not an additional hypothesis.
+
+`hyperplane_radical_finrank` proves that restricting an alternating form on a finite-dimensional vector space to the kernel of a nonzero functional increases the radical dimension by one, provided the original radical lies in that hyperplane. The theorem is abstract linear algebra; applying it to the generic matrix family requires further work.
+
+`listHilbert_determines_indices` proves that equality of the functions sum max(0, d + 1 - e) at all nonnegative degrees determines the finite index lists up to permutation. This does not yet identify the actual polynomial radical with such a profile.
+
 ## Remaining work
 
 1. Jordan–Kronecker decomposition and its full relationship with polynomial minimal bases and Hilbert functions.

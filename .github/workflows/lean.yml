@@ -1,0 +1,40 @@
+name: Lean proofs
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the pinned Lean release
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(sed 's|leanprover/lean4:||' lean-toolchain | tr -d '\r\n')"
+          release="lean-${version#v}-linux"
+          curl --fail --location --retry 3 \
+            "https://github.com/leanprover/lean4/releases/download/${version}/${release}.tar.zst" \
+            --output "$RUNNER_TEMP/lean.tar.zst"
+          tar --zstd -xf "$RUNNER_TEMP/lean.tar.zst" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/${release}/bin" >> "$GITHUB_PATH"
+      - name: Download dependency compilation cache
+        run: lake exe cache get
+      - name: Reject incomplete proofs and custom axioms
+        shell: bash
+        run: |
+          if grep -En '\b(sorry|admit|axiom|native_decide)\b' FD56.lean Audit.lean FD56/*.lean; then
+            echo 'A prohibited proof escape was found.'
+            exit 1
+          fi
+      - name: Build every imported proof
+        run: lake build
+      - name: Print axiom dependencies
+        run: lake env lean -j1 -s65536 Audit.lean

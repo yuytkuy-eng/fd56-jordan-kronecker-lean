@@ -10,3 +10,7 @@
 'FD56.family_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FD56.family_not_balanced' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FD56.table_64_28' does not depend on any axioms
+'FD56.trace_zero_annihilator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.slRadical_iff_equations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.hyperplane_radical_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.listHilbert_determines_indices' depends on axioms: [propext, Classical.choice, Quot.sound]

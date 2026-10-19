@@ -12,3 +12,8 @@ import FD56
 #print axioms FD56.family_sum
 #print axioms FD56.family_not_balanced
 #print axioms FD56.table_64_28
+
+#print axioms FD56.trace_zero_annihilator
+#print axioms FD56.slRadical_iff_equations
+#print axioms FD56.hyperplane_radical_finrank
+#print axioms FD56.listHilbert_determines_indices
