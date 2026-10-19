@@ -116,4 +116,44 @@ theorem structured_kernel_injective [DecidableEq r] [DecidableEq s]
       Matrix.mul_assoc, hB, Matrix.mul_one]
   simpa only [cancel] using hh
 
+omit [Fintype r] [Fintype s] in
+theorem structured_diagonal_vanishes
+    (M : Matrix n n R) (P : Matrix m n R) (V : Matrix n r R)
+    (H : ℕ → Matrix s n R) (D : ℕ → Matrix s m R) (T : Matrix s m R) (q : ℕ)
+    (hstep : ∀ i < q, H (i + 1) * M = H i + D (i + 1) * P)
+    (hend : H q = T * P) (hobs : ∀ i < q + 1, P * M ^ i * V = 0)
+    (i : ℕ) (hi : i ≤ q) : H i * M ^ i * V = 0 := by
+  induction hi using Nat.decreasingInduction with
+  | self =>
+    rw [hend]
+    calc
+      _ = T * (P * M ^ q * V) := by simp only [Matrix.mul_assoc]
+      _ = 0 := by rw [hobs q (Nat.lt_succ_self q), Matrix.mul_zero]
+  | of_succ k hk ih =>
+    have heq : H (k + 1) * M ^ (k + 1) * V = H k * M ^ k * V := by
+      calc
+        _ = (H (k + 1) * M) * M ^ k * V := by
+          simp only [pow_succ', Matrix.mul_assoc]
+        _ = (H k + D (k + 1) * P) * M ^ k * V := by rw [hstep k hk]
+        _ = H k * M ^ k * V + D (k + 1) * (P * M ^ k * V) := by
+          simp only [Matrix.add_mul, Matrix.mul_assoc]
+        _ = _ := by rw [hobs k (by omega), Matrix.mul_zero, add_zero]
+    exact heq.symm.trans ih
+
+theorem structured_kernel_trace_zero
+    (M : Matrix n n R) (P : Matrix m n R) (V : Matrix n r R) (C : Matrix r s R)
+    (H : ℕ → Matrix s n R) (D : ℕ → Matrix s m R) (T : Matrix s m R) (q : ℕ)
+    (hstep : ∀ i < q, H (i + 1) * M = H i + D (i + 1) * P)
+    (hend : H q = T * P) (hobs : ∀ i < q + 1, P * M ^ i * V = 0) :
+    Matrix.trace (∑ i ∈ Finset.range (q + 1), M ^ i * V * C * H i) = 0 := by
+  rw [Matrix.trace_sum]
+  apply Finset.sum_eq_zero
+  intro i hi
+  rw [Matrix.trace_mul_comm]
+  have hz := structured_diagonal_vanishes M P V H D T q hstep hend hobs i
+    (by have := Finset.mem_range.mp hi; omega)
+  have heq : H i * (M ^ i * V * C) = (H i * M ^ i * V) * C := by
+    simp only [Matrix.mul_assoc]
+  rw [heq, hz, Matrix.zero_mul, Matrix.trace_zero]
+
 end FD56

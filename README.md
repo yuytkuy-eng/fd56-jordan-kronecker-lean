@@ -4,7 +4,7 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The main result rules out a balanced Hilbert profile for the `(11k, 8k)` family. The library also derives Hilbert functions from polynomial kernel bases, proves GL block reduction, and constructs matrix pairs with GL and SL radical dimensions `rs` and `rs + 1`. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
+The library rules out a balanced Hilbert profile for the `(11k, 8k)` family and proves generic GL/SL radical dimensions over the field of rational functions in matrix entries. It also derives Hilbert functions from polynomial kernel bases. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
 
 ## Check the proofs
 

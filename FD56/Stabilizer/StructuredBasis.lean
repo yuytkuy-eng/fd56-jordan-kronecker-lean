@@ -4,6 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 -/
 import FD56.Stabilizer.Telescoping
 import FD56.Stabilizer.GLBase
+import FD56.Stabilizer.FieldRadical
 
 /-! The structured construction spans the entire field stabilizer once its
 one-sided inverse conditions and the matching dimension are established. -/
@@ -77,5 +78,35 @@ theorem structuredStabilizerMap_bijective (M : Matrix n n K) (P : Matrix m n K)
   have h := f.finrank_range_add_finrank_ker
   rw [LinearMap.ker_eq_bot.mpr hinj] at h
   simpa [hdim, Module.finrank_matrix] using h
+
+theorem structured_stabilizer_trace_zero (M : Matrix n n K) (P : Matrix m n K)
+    (V : Matrix n r K) (H : ℕ → Matrix s n K) (D : ℕ → Matrix s m K)
+    (T : Matrix s m K) (q : ℕ)
+    (hzero : H 0 * M = D 0 * P)
+    (hstep : ∀ i < q, H (i + 1) * M = H i + D (i + 1) * P)
+    (hend : H q = T * P)
+    (hobs : ∀ i < q + 1, P * M ^ i * V = 0)
+    (L : Matrix r m K) (B : Matrix n s K)
+    (hL : L * (P * M ^ (q + 1) * V) = 1) (hB : (T * P) * B = 1)
+    (hdim : Module.finrank K (glStabilizerSpace M P) = Fintype.card r * Fintype.card s)
+    (z : glStabilizerSpace M P) : Matrix.trace z.val.1 = 0 := by
+  obtain ⟨C, rfl⟩ :=
+    (structuredStabilizerMap_bijective M P V H D T q hzero hstep hend hobs L B hL hB hdim).2 z
+  exact structured_kernel_trace_zero M P V C H D T q hstep hend hobs
+
+theorem structured_sl_radical_finrank [DecidableEq m] [Nonempty n]
+    (M : Matrix n n K) (P : Matrix m n K)
+    (V : Matrix n r K) (H : ℕ → Matrix s n K) (D : ℕ → Matrix s m K)
+    (T : Matrix s m K) (q : ℕ)
+    (hzero : H 0 * M = D 0 * P)
+    (hstep : ∀ i < q, H (i + 1) * M = H i + D (i + 1) * P)
+    (hend : H q = T * P)
+    (hobs : ∀ i < q + 1, P * M ^ i * V = 0)
+    (L : Matrix r m K) (B : Matrix n s K)
+    (hL : L * (P * M ^ (q + 1) * V) = 1) (hB : (T * P) * B = 1)
+    (hdim : Module.finrank K (glStabilizerSpace M P) = Fintype.card r * Fintype.card s) :
+    Module.finrank K (fieldSLRadical M P) = Fintype.card r * Fintype.card s + 1 := by
+  rw [fieldSLRadical_finrank M P
+    (structured_stabilizer_trace_zero M P V H D T q hzero hstep hend hobs L B hL hB hdim), hdim]
 
 end FD56
