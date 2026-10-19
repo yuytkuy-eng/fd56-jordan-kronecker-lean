@@ -23,9 +23,9 @@ For a build without the audit, run `lake build`. To use the library, write `impo
 
 | Directory | Content |
 | --- | --- |
-| [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial degree bounds and hyperplane radicals |
-| [Stabilizer](FD56/Stabilizer/) | Kernel constructions, Kirillov pairing, full SL equations |
-| [Hilbert](FD56/Hilbert/) | Balanced-profile obstruction and index recovery |
+| [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial degree bounds, kernel descent, and hyperplane radicals |
+| [Stabilizer](FD56/Stabilizer/) | Arbitrary-length kernel constructions, Kirillov pairing, full SL equations |
+| [Hilbert](FD56/Hilbert/) | Balanced-profile obstruction, index recovery, and two-degree criterion |
 | [Arithmetic](FD56/Arithmetic/) | Candidate spectrum and numerical Hilbert identities |
 
 The public theorem namespace remains `FD56`. Module imports now follow the directories above.

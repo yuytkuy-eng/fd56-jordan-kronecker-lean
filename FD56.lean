@@ -12,3 +12,6 @@ import FD56.Hilbert.HilbertObstruction
 import FD56.Hilbert.HilbertRecovery
 import FD56.Arithmetic.SpectrumArithmetic
 import FD56.Arithmetic.HilbertArithmetic
+import FD56.Stabilizer.Telescoping
+import FD56.LinearAlgebra.KernelDescent
+import FD56.Hilbert.TwoDegreeCriterion
