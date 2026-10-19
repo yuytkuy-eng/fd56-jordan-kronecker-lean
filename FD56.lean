@@ -27,3 +27,4 @@ import FD56.Stabilizer.GLSpace
 import FD56.Stabilizer.GLBase
 import FD56.Stabilizer.GLWitness
 import FD56.Stabilizer.FieldRadical
+import FD56.Stabilizer.StructuredBasis
