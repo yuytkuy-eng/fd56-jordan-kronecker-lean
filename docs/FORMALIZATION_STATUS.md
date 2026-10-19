@@ -29,6 +29,8 @@ All theorem names below belong to the `FD56` namespace. The Lean statements are 
 
 ## Boundaries
 
+The canonical-block calculations are proved in [`KroneckerSum`](../FD56/Hilbert/KroneckerSum.lean): a finite direct sum has bounded-kernel dimension ∑ max(0, d + 1 − e), and these dimensions determine its index list up to permutation. [`BlockSum`](../FD56/Hilbert/BlockSum.lean) proves additivity and that square polynomial blocks with nonzero determinant contribute no kernel. [`ConstantEquivalence`](../FD56/Hilbert/ConstantEquivalence.lean) proves invariance under constant invertible coordinate changes satisfying the intertwining equations. These results do not assert existence of a canonical decomposition for an arbitrary pencil or identify the generic GL/SL index lists.
+
 `TraceZeroStabilizer` is a subspace of the full `SLRadical`; they are not equated. The full SL equations include the scalar term cI.
 
 `slHilbert` is the dimension of actual bounded polynomial radical vectors. `slHilbert_of_polynomial_basis` now derives `HasHilbertProfile` from explicit matrix rank and degree hypotheses. Verification of those hypotheses for the proposed generic spectra, and the identification with Jordan–Kronecker blocks, remain open here.
