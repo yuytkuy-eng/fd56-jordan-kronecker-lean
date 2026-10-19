@@ -1,0 +1,12 @@
+'FD56.exists_nonzero_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.rankOne_stabilizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.family_has_degree_five_stabilizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.kirillov_equations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.family_slHilbert_five_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.family_no_balanced_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.hilbert_balanced_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.hilbert_unbalanced_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.balanced_hilbert' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.family_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.family_not_balanced' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FD56.table_64_28' does not depend on any axioms

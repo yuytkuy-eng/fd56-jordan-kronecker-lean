@@ -1,0 +1,9 @@
+.lake/
+*.olean
+*.ilean
+*.c
+*.o
+*.trace
+lakefile.local.toml
+.DS_Store
+Thumbs.db
