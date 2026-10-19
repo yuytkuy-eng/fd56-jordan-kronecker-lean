@@ -4,7 +4,7 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The main result rules out a balanced Hilbert profile for the `(11k, 8k)` family. The library also proves the full SL radical equations, a hyperplane restriction formula, and arithmetic facts about candidate spectra. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
+The main result rules out a balanced Hilbert profile for the `(11k, 8k)` family. The library also derives Hilbert functions from polynomial kernel bases, proves GL block reduction, and constructs matrix pairs with GL and SL radical dimensions `rs` and `rs + 1`. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
 
 ## Check the proofs
 
@@ -24,8 +24,8 @@ For a build without the audit, run `lake build`. To use the library, write `impo
 | Directory | Content |
 | --- | --- |
 | [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial kernel criteria, predictable degrees, and hyperplane radicals |
-| [Stabilizer](FD56/Stabilizer/) | Arbitrary-length kernel constructions, Kirillov pairing, full SL equations |
-| [Hilbert](FD56/Hilbert/) | Balanced-profile obstruction, index recovery, and two-degree criterion |
+| [Stabilizer](FD56/Stabilizer/) | Kernel constructions, block reduction, radical dimensions, full SL equations |
+| [Hilbert](FD56/Hilbert/) | Polynomial kernel dimensions, SL Hilbert profiles, and balancing obstruction |
 | [Arithmetic](FD56/Arithmetic/) | Candidate spectrum and numerical Hilbert identities |
 
 The public theorem namespace remains `FD56`. Module imports now follow the directories above.
