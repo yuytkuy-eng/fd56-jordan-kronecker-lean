@@ -23,7 +23,7 @@ For a build without the audit, run `lake build`. To use the library, write `impo
 
 | Directory | Content |
 | --- | --- |
-| [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial degree bounds, kernel descent, and hyperplane radicals |
+| [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial kernel criteria, predictable degrees, and hyperplane radicals |
 | [Stabilizer](FD56/Stabilizer/) | Arbitrary-length kernel constructions, Kirillov pairing, full SL equations |
 | [Hilbert](FD56/Hilbert/) | Balanced-profile obstruction, index recovery, and two-degree criterion |
 | [Arithmetic](FD56/Arithmetic/) | Candidate spectrum and numerical Hilbert identities |

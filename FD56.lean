@@ -15,3 +15,7 @@ import FD56.Arithmetic.HilbertArithmetic
 import FD56.Stabilizer.Telescoping
 import FD56.LinearAlgebra.KernelDescent
 import FD56.Hilbert.TwoDegreeCriterion
+import FD56.LinearAlgebra.PolynomialBezout
+import FD56.LinearAlgebra.PredictableDegree
+import FD56.LinearAlgebra.PolynomialKernel
+import FD56.Stabilizer.Krylov
