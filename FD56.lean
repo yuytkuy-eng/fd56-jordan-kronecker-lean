@@ -5,17 +5,20 @@ SPDX-License-Identifier: Apache-2.0
 import FD56.Arithmetic.HilbertArithmetic
 import FD56.Arithmetic.SpectrumArithmetic
 import FD56.Hilbert.GenericPencil
+import FD56.Hilbert.GLMatrix
 import FD56.Hilbert.HilbertObstruction
 import FD56.Hilbert.HilbertRecovery
 import FD56.Hilbert.KernelDimension
 import FD56.Hilbert.ScalarSL
 import FD56.Hilbert.SLMatrix
+import FD56.Hilbert.StructuredGL
 import FD56.Hilbert.TwoDegreeCriterion
 import FD56.LinearAlgebra.ClearDenominators
 import FD56.LinearAlgebra.HyperplaneRadical
 import FD56.LinearAlgebra.KernelDescent
 import FD56.LinearAlgebra.PolynomialBezout
 import FD56.LinearAlgebra.PolynomialKernel
+import FD56.LinearAlgebra.PolynomialLeading
 import FD56.LinearAlgebra.PolynomialMatrix
 import FD56.LinearAlgebra.PredictableDegree
 import FD56.LinearAlgebra.RankSpecialization
@@ -26,6 +29,7 @@ import FD56.Stabilizer.ConstraintMap
 import FD56.Stabilizer.FieldRadical
 import FD56.Stabilizer.FieldSLMatrix
 import FD56.Stabilizer.GenericDimension
+import FD56.Stabilizer.GenericLeading
 import FD56.Stabilizer.GenericPencil
 import FD56.Stabilizer.GLBase
 import FD56.Stabilizer.GLSpace
@@ -43,5 +47,6 @@ import FD56.Stabilizer.RegularDimension
 import FD56.Stabilizer.RegularWitness
 import FD56.Stabilizer.SLScalarExtension
 import FD56.Stabilizer.StructuredBasis
+import FD56.Stabilizer.StructuredLeading
 import FD56.Stabilizer.Telescoping
 import FD56.Stabilizer.TraceAnnihilator

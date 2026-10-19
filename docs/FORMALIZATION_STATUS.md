@@ -24,6 +24,8 @@ All theorem names below belong to the `FD56` namespace. The Lean statements are 
 | Generic SL Hilbert criterion | [`generic_slHilbert_of_polynomial_basis`](../FD56/Hilbert/GenericPencil.lean) | Over an algebraically closed extension of the generic coefficient field, the nullity hypothesis is discharged. A proposed basis must still satisfy the equations, degree bounds, pointwise injectivity, and leading-matrix injectivity. |
 | Scalar SL case | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) | When n = 1, every translation belongs to the full radical and its Hilbert profile consists of m zeros, for every polynomial pair. |
 | SL scalar correction | [`exists_fieldSL_scalar_one`](../FD56/Stabilizer/SLScalarExtension.lean), `fieldSL_scalar_decomposition`, [`generic_affine_polynomial_scalar`](../FD56/Stabilizer/GenericPencil.lean) | Traceless GL radicals admit an SL solution with scalar correction one over the field, and every SL solution has a unique scalar coefficient modulo GL. Clearing denominators supplies a polynomial solution with nonzero correction for the generic affine pencil. No degree bound or polynomial splitting is asserted. |
+| Structured GL degrees and Hilbert function | [`structuredXColumns_leading_injective`](../FD56/Stabilizer/StructuredLeading.lean), `structuredColumns_predictable_degree`, [`structured_gl_kernel_hilbert`](../FD56/Hilbert/StructuredGL.lean) | The actual structured columns satisfy the GL equations. The recurrence and an independent leading observability matrix give the auxiliary degree bounds. Krylov independence gives a leading-rank test; pointwise rank and the field nullity then give the GL Hilbert function with column degrees aᵢ + bⱼ + q + 1. Existence and balanced degrees of the generic auxiliary bases remain unproved. |
+| Generic behavior at infinity | [`generic_leading_observability`](../FD56/Stabilizer/GenericLeading.lean), `generic_leading_observability_rows` | The linear coefficient pair has the two required observability ranks, and the leading observability rows are independent. This proves the condition at infinity, not avoidance of exceptional finite parameters. |
 
 ## Boundaries
 
@@ -35,7 +37,7 @@ All theorem names below belong to the `FD56` namespace. The Lean statements are 
 
 ## Remaining classification proofs
 
-1. Apply the polynomial-kernel criterion to the structured GL construction; establish its pointwise ranks and leading matrix. Generic nullity and its transfer to the pencil coefficient field are proved. The abstract Hilbert-function step is proved; its application and the identification with Jordan–Kronecker blocks remain.
+1. Construct the generic auxiliary polynomial bases with the required ranks and balanced degrees. The structured GL Hilbert formula now follows from explicit recurrence, degree, pointwise-rank, leading-rank, and nullity tests; the auxiliary degree bounds are derived from the recurrence and leading observability rows. The generic nullity and the observability ranks at infinity are proved. Establishing the remaining tests for the generic family and identifying the Jordan–Kronecker blocks remain.
 2. Rank-open loci, codimension estimates, and genericity on projective lines.
 3. The Hirzebruch-surface bundle argument and the required application of the Coskun–Huizenga theorem.
 4. Realization of generic SL extensions and the geometric Hilbert maximum formula.

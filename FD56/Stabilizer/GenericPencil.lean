@@ -164,6 +164,17 @@ theorem generic_pencil_sl_matrix_nullity {K : Type*} {r s : Type} [Field K]
   rw [slEquationMatrix_specialized_finrank]
   exact (generic_pencil_radical_dimensions (K := K) (r := r) (s := s) q).2
 
+theorem generic_affine_gl_radical_finrank_extension {K F : Type*} {r s : Type}
+    [Field K] [Field F] [Fintype r] [Fintype s] [Nonempty (r ⊕ s)] (q : ℕ)
+    (ψ : (AffineCoefficientField K (MatrixParameters (blockIndex (r ⊕ s) r (q + 1))
+      (r ⊕ s)))[X] →+* F) (hψ : Function.Injective ψ) :
+    Module.finrank F (glStabilizerSpace
+      ((genericAffineSquare K (blockIndex (r ⊕ s) r (q + 1)) (r ⊕ s)).map ψ)
+      ((genericAffineRows K (blockIndex (r ⊕ s) r (q + 1)) (r ⊕ s)).map ψ)) =
+        Fintype.card r * Fintype.card s :=
+  (universal_radical_dimensions q (ψ.comp (affineParameterMap K _))
+    (hψ.comp (affineParameterMap_injective K _))).1
+
 theorem generic_affine_sl_matrix_nullity_extension {K F : Type*} {r s : Type}
     [Field K] [Field F] [Fintype r] [Fintype s] [Nonempty (r ⊕ s)] (q : ℕ)
     [DecidableEq (blockIndex (r ⊕ s) r (q + 1))] [DecidableEq (r ⊕ s)]

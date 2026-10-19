@@ -156,4 +156,20 @@ theorem structured_kernel_trace_zero
     simp only [Matrix.mul_assoc]
   rw [heq, hz, Matrix.zero_mul, Matrix.trace_zero]
 
+omit [Fintype r] [Fintype s] in
+theorem backward_recurrence_relation (M : Matrix n n R) (P : Matrix m n R)
+    (H : ℕ → Matrix s n R) (D : ℕ → Matrix s m R) (q : ℕ)
+    (hzero : H 0 * M = D 0 * P)
+    (hstep : ∀ i < q, H (i + 1) * M = H i + D (i + 1) * P) :
+    H q * M ^ (q + 1) = ∑ i ∈ Finset.range (q + 1), D i * P * M ^ i := by
+  induction q with
+  | zero => simpa using hzero
+  | succ q ih =>
+    have hh := ih (fun i hi => hstep i (by omega))
+    calc
+      H (q + 1) * M ^ (q + 1 + 1) = (H (q + 1) * M) * M ^ (q + 1) := by
+        rw [pow_succ', Matrix.mul_assoc]
+      _ = (H q + D (q + 1) * P) * M ^ (q + 1) := by rw [hstep q (by omega)]
+      _ = _ := by simp only [Matrix.add_mul, hh, Finset.sum_range_succ]
+
 end FD56

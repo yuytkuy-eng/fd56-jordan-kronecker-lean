@@ -68,4 +68,18 @@ theorem matrix_surjective_of_specialization (ι : K →+* R) (ψ : R →+* K)
   refine ⟨Q *ᵥ v, ?_⟩
   rw [Matrix.mulVec_mulVec, hQ, Matrix.one_mulVec]
 
+theorem matrix_transpose_injective_of_surjective (A : Matrix a b K)
+    (hA : Function.Surjective A.mulVec) : Function.Injective A.transpose.mulVec := by
+  obtain ⟨g, hg⟩ := (Matrix.toLin' A).exists_rightInverse_of_surjective
+    (LinearMap.range_eq_top.mpr hA)
+  let L := LinearMap.toMatrix' g
+  have hL : A * L = 1 := by
+    simpa only [LinearMap.toMatrix'_comp, LinearMap.toMatrix'_toLin',
+      LinearMap.toMatrix'_id] using congrArg LinearMap.toMatrix' hg
+  have ht : L.transpose * A.transpose = 1 := by
+    rw [← Matrix.transpose_mul, hL, Matrix.transpose_one]
+  intro v w h
+  have hh := congrArg (fun z => L.transpose *ᵥ z) h
+  simpa only [Matrix.mulVec_mulVec, ht, Matrix.one_mulVec] using hh
+
 end FD56
