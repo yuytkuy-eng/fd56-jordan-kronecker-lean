@@ -20,6 +20,10 @@ All theorem names below belong to the `FD56` namespace. The Lean statements are 
 | Two-degree balancing criterion | [`two_degree_tests_force_balanced`](../FD56/Hilbert/TwoDegreeCriterion.lean) | Two adjacent Hilbert values and the index sum force all indices into two adjacent degrees. Geometric realization of those values remains separate. |
 | Candidate spectrum arithmetic | [`SpectrumArithmetic`](../FD56/Arithmetic/SpectrumArithmetic.lean) | List lengths, sums, block dimensions, and explicit evaluations. These are not identifications of generic spectra. |
 | Numerical Hilbert branches | [`HilbertArithmetic`](../FD56/Arithmetic/HilbertArithmetic.lean) | Numerical deductions from a maximum expression. Its geometric interpretation is not established. |
+| Generic affine pencils | [`generic_pencil_radical_dimensions`](../FD56/Stabilizer/GenericPencil.lean), `generic_pencil_sl_matrix_nullity` | Independent constant and linear coefficients give affine pencils with the proved GL/SL nullities. The actual SL constraint matrix has the same nullity, including after injective coefficient extension. |
+| Generic SL Hilbert criterion | [`generic_slHilbert_of_polynomial_basis`](../FD56/Hilbert/GenericPencil.lean) | Over an algebraically closed extension of the generic coefficient field, the nullity hypothesis is discharged. A proposed basis must still satisfy the equations, degree bounds, pointwise injectivity, and leading-matrix injectivity. |
+| Scalar SL case | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) | When n = 1, every translation belongs to the full radical and its Hilbert profile consists of m zeros, for every polynomial pair. |
+| SL scalar correction | [`exists_fieldSL_scalar_one`](../FD56/Stabilizer/SLScalarExtension.lean), `fieldSL_scalar_decomposition`, [`generic_affine_polynomial_scalar`](../FD56/Stabilizer/GenericPencil.lean) | Traceless GL radicals admit an SL solution with scalar correction one over the field, and every SL solution has a unique scalar coefficient modulo GL. Clearing denominators supplies a polynomial solution with nonzero correction for the generic affine pencil. No degree bound or polynomial splitting is asserted. |
 
 ## Boundaries
 
@@ -31,7 +35,7 @@ All theorem names below belong to the `FD56` namespace. The Lean statements are 
 
 ## Remaining classification proofs
 
-1. Apply the polynomial-kernel criterion to the structured GL construction; establish its pointwise ranks and leading matrix, and transfer the proved generic nullity to the pencil coefficient field. The abstract Hilbert-function step is proved; its application and the identification with Jordan–Kronecker blocks remain.
+1. Apply the polynomial-kernel criterion to the structured GL construction; establish its pointwise ranks and leading matrix. Generic nullity and its transfer to the pencil coefficient field are proved. The abstract Hilbert-function step is proved; its application and the identification with Jordan–Kronecker blocks remain.
 2. Rank-open loci, codimension estimates, and genericity on projective lines.
 3. The Hirzebruch-surface bundle argument and the required application of the Coskun–Huizenga theorem.
 4. Realization of generic SL extensions and the geometric Hilbert maximum formula.

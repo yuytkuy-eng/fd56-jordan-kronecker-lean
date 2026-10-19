@@ -43,17 +43,19 @@ def constraintOutputEquiv (R n m : Type*) [Semiring R] :
   map_add' z w := by apply _root_.funext; intro i; rcases i with u | ij | ij <;> rfl
   map_smul' c z := by apply _root_.funext; intro i; rcases i with u | ij | ij <;> rfl
 
-variable {K n m : Type*} [Field K] [Fintype n] [Fintype m]
+variable {R n m : Type*} [CommRing R] [Fintype n] [Fintype m]
   [DecidableEq n] [DecidableEq m]
 
-def slEquationLinearMap (M : Matrix n n K[X]) (P : Matrix m n K[X]) (i₀ : n) :
-    (SLInput n m → K[X]) →ₗ[K[X]] (SLOutput n m → K[X]) :=
-  (constraintOutputEquiv K[X] n m).toLinearMap.comp
-    ((slConstraintMap M P i₀).comp (matrixPairEquiv K[X] K[X] n m).toLinearMap)
+def slEquationLinearMap (M : Matrix n n R) (P : Matrix m n R) (i₀ : n) :
+    (SLInput n m → R) →ₗ[R] (SLOutput n m → R) :=
+  (constraintOutputEquiv R n m).toLinearMap.comp
+    ((slConstraintMap M P i₀).comp (matrixPairEquiv R R n m).toLinearMap)
 
-def slEquationMatrix (M : Matrix n n K[X]) (P : Matrix m n K[X]) (i₀ : n) :
-    Matrix (SLOutput n m) (SLInput n m) K[X] :=
+def slEquationMatrix (M : Matrix n n R) (P : Matrix m n R) (i₀ : n) :
+    Matrix (SLOutput n m) (SLInput n m) R :=
   LinearMap.toMatrix' (slEquationLinearMap M P i₀)
+
+variable {K : Type*} [Field K]
 
 theorem slEquationMatrix_kernel_iff (M : Matrix n n K[X]) (P : Matrix m n K[X])
     (i₀ : n) (v : SLInput n m → K[X]) :
