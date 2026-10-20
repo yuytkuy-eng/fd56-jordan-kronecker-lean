@@ -8,6 +8,7 @@ import FD56.Hilbert.Bidiagonal
 import FD56.Hilbert.BlockSum
 import FD56.Hilbert.ConstantEquivalence
 import FD56.Hilbert.GenericPencil
+import FD56.Hilbert.GenericTall
 import FD56.Hilbert.GLMatrix
 import FD56.Hilbert.HilbertObstruction
 import FD56.Hilbert.HilbertRecovery
@@ -17,7 +18,9 @@ import FD56.Hilbert.KroneckerSum
 import FD56.Hilbert.ScalarSL
 import FD56.Hilbert.SLMatrix
 import FD56.Hilbert.StructuredGL
+import FD56.Hilbert.Tall
 import FD56.Hilbert.TwoDegreeCriterion
+import FD56.LinearAlgebra.AffineProduct
 import FD56.LinearAlgebra.BidiagonalPencil
 import FD56.LinearAlgebra.ClearDenominators
 import FD56.LinearAlgebra.CoefficientMatrix
