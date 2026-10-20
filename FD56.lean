@@ -20,6 +20,7 @@ import FD56.Hilbert.StructuredGL
 import FD56.Hilbert.TwoDegreeCriterion
 import FD56.LinearAlgebra.BidiagonalPencil
 import FD56.LinearAlgebra.ClearDenominators
+import FD56.LinearAlgebra.CoefficientMatrix
 import FD56.LinearAlgebra.HyperplaneRadical
 import FD56.LinearAlgebra.KernelDescent
 import FD56.LinearAlgebra.PolynomialBezout
@@ -37,6 +38,7 @@ import FD56.Stabilizer.FieldSLMatrix
 import FD56.Stabilizer.GenericDimension
 import FD56.Stabilizer.GenericLeading
 import FD56.Stabilizer.GenericPencil
+import FD56.Stabilizer.GenericRows
 import FD56.Stabilizer.GLBase
 import FD56.Stabilizer.GLSpace
 import FD56.Stabilizer.GLWitness

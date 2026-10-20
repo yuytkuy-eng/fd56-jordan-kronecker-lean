@@ -17,6 +17,12 @@ variable {K : Type*} [Field K]
 def bidiagonalPencil (m : ℕ) : Matrix (Fin m) (Fin (m + 1)) K[X] :=
   fun i j => (if j = i.castSucc then Polynomial.X else 0) + (if j = i.succ then 1 else 0)
 
+theorem bidiagonalPencil_degree (m : ℕ) : DegreeBound (bidiagonalPencil (K := K) m) 1 := by
+  intro i j
+  apply Polynomial.natDegree_add_le_of_degree_le
+  · split_ifs <;> simp
+  · split_ifs <;> simp
+
 theorem bidiagonalPencil_mulVec (m : ℕ) (v : Fin (m + 1) → K[X]) (i : Fin m) :
     (bidiagonalPencil m *ᵥ v) i = Polynomial.X * v i.castSucc + v i.succ := by
   simp [bidiagonalPencil, Matrix.mulVec, dotProduct, add_mul, Finset.sum_add_distrib, ite_mul]
