@@ -43,6 +43,12 @@ def universalAffineRows (K n m : Type*) [CommRing K] :
     (fun i j => MvPolynomial.X (Sum.inl (Sum.inr (i, j))))
     (fun i j => MvPolynomial.X (Sum.inr (Sum.inr (i, j))))
 
+def universalAffineSquare (K n m : Type*) [CommRing K] :
+    Matrix n n (MvPolynomial (MatrixParameters n m ⊕ MatrixParameters n m) K)[X] :=
+  affineMatrixPencil
+    (fun i j => MvPolynomial.X (Sum.inl (Sum.inl (i, j))))
+    (fun i j => MvPolynomial.X (Sum.inr (Sum.inl (i, j))))
+
 def affineRowsSpecialization (A B : Matrix a b K) :
     MvPolynomial (MatrixParameters b a ⊕ MatrixParameters b a) K →+* K :=
   MvPolynomial.eval₂Hom (RingHom.id K)
@@ -61,6 +67,14 @@ theorem universalAffineRows_generic (K n m : Type*) [Field K] :
         (AffineCoefficientField K (MatrixParameters n m)))) = genericAffineRows K n m := by
   funext i j
   simp [universalAffineRows, affineMatrixPencil, genericAffineRows, universalRows,
+    affineParameterMap]
+
+theorem universalAffineSquare_generic (K n m : Type*) [Field K] :
+    (universalAffineSquare K n m).map (Polynomial.mapRingHom
+      (algebraMap (MvPolynomial (MatrixParameters n m ⊕ MatrixParameters n m) K)
+        (AffineCoefficientField K (MatrixParameters n m)))) = genericAffineSquare K n m := by
+  funext i j
+  simp [universalAffineSquare, affineMatrixPencil, genericAffineSquare, universalSquare,
     affineParameterMap]
 
 theorem universal_affine_rows_coefficient_of_witness {F : Type*} [Field F]
@@ -150,6 +164,50 @@ theorem universal_rows_surjective_of_sizes {F : Type*} [Field F]
     (fun c => by simp [matrixSpecialization]) φ hφ
   rw [he.2]
   exact hs
+
+theorem universal_rows_injective_of_sizes {F : Type*} [Field F]
+    [Fintype a] [Fintype b] [DecidableEq a] [DecidableEq b]
+    (hab : Fintype.card b ≤ Fintype.card a)
+    (φ : MvPolynomial (MatrixParameters b a) K →+* F) (hφ : Function.Injective φ) :
+    Function.Injective ((universalRows K b a).map φ).mulVec := by
+  classical
+  let e : b ↪ a := Classical.choice (Function.Embedding.nonempty_of_card_le hab)
+  let E : Matrix b a K := fun i j => if j = e i then 1 else 0
+  have hs : Function.Surjective E.mulVec := by
+    intro y
+    refine ⟨Function.extend e y 0, ?_⟩
+    funext i
+    simpa [E, Matrix.mulVec, dotProduct] using e.injective.extend_apply y 0 i
+  have he := universal_pair_specialization (0 : Matrix b b K) E.transpose
+  apply matrix_injective_of_specialization MvPolynomial.C (matrixSpecialization 0 E.transpose)
+    (fun c => by simp [matrixSpecialization]) φ hφ
+  rw [he.2]
+  exact matrix_transpose_injective_of_surjective E hs
+
+theorem generic_affine_rows_zero_injective (K n m : Type*) [Field K]
+    [Fintype n] [Fintype m] [DecidableEq n] [DecidableEq m]
+    (hnm : Fintype.card n ≤ Fintype.card m) :
+    Function.Injective ((genericAffineRows K n m).map (Polynomial.evalRingHom 0)).mulVec := by
+  let φ := (Polynomial.evalRingHom (0 : AffineCoefficientField K (MatrixParameters n m))).comp
+    (affineParameterMap K (MatrixParameters n m))
+  have hφ : Function.Injective φ := by
+    dsimp only [φ]
+    rw [affineParameterMap_zero]
+    exact (IsFractionRing.injective
+      (MvPolynomial (MatrixParameters n m ⊕ MatrixParameters n m) K)
+      (AffineCoefficientField K (MatrixParameters n m))).comp
+      (MvPolynomial.rename_injective (R := K)
+        (Sum.inl : MatrixParameters n m → MatrixParameters n m ⊕ MatrixParameters n m) Sum.inl_injective)
+  change Function.Injective
+    (((universalRows K n m).map (affineParameterMap K _)).map (Polynomial.evalRingHom 0)).mulVec
+  rw [Matrix.map_map]
+  exact universal_rows_injective_of_sizes hnm φ hφ
+
+theorem generic_affine_rows_polynomial_injective (K n m : Type*) [Field K]
+    [Fintype n] [Fintype m] [DecidableEq n] [DecidableEq m]
+    (hnm : Fintype.card n ≤ Fintype.card m) :
+    Function.Injective (genericAffineRows K n m).mulVec :=
+  polynomial_matrix_injective_of_zero _ (generic_affine_rows_zero_injective K n m hnm)
 
 theorem generic_affine_rows_leading_surjective (K a b : Type*) [Field K]
     [Fintype a] [Fintype b] [DecidableEq a] [DecidableEq b]

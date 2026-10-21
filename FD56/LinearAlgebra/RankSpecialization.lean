@@ -3,13 +3,14 @@ Copyright 2026 Shifan Yu
 SPDX-License-Identifier: Apache-2.0
 -/
 import FD56.LinearAlgebra.PolynomialBezout
+import Mathlib.RingTheory.Localization.FractionRing
 
 /-! Full rank at one specialization implies full rank over any field
 containing the coefficient ring. -/
 
 noncomputable section
 namespace FD56
-open Matrix
+open Matrix Polynomial
 variable {R K F a b : Type*} [CommRing R] [Field K] [Field F]
   [Fintype a] [Fintype b] [DecidableEq a] [DecidableEq b]
 
@@ -81,5 +82,27 @@ theorem matrix_transpose_injective_of_surjective (A : Matrix a b K)
   intro v w h
   have hh := congrArg (fun z => L.transpose *ᵥ z) h
   simpa only [Matrix.mulVec_mulVec, ht, Matrix.one_mulVec] using hh
+
+omit [Fintype a] [DecidableEq a] [DecidableEq b] in
+theorem matrix_mulVec_injective_of_map (φ : R →+* K) (hφ : Function.Injective φ)
+    (A : Matrix a b R) (hA : Function.Injective (A.map φ).mulVec) :
+    Function.Injective A.mulVec := by
+  intro v w hvw
+  have hm : A.map φ *ᵥ (fun j => φ (v j)) = A.map φ *ᵥ (fun j => φ (w j)) := by
+    funext i
+    have hh := congrArg φ (congrFun hvw i)
+    simpa only [Matrix.mulVec, dotProduct, map_sum, map_mul, Matrix.map_apply] using hh
+  have hh := hA hm
+  funext j
+  exact hφ (congrFun hh j)
+
+theorem polynomial_matrix_injective_of_zero (A : Matrix a b K[X])
+    (hA : Function.Injective (A.map (Polynomial.evalRingHom 0)).mulVec) :
+    Function.Injective A.mulVec := by
+  let F := FractionRing K[X]
+  apply matrix_mulVec_injective_of_map (algebraMap K[X] F) (IsFractionRing.injective _ _)
+  apply matrix_injective_of_specialization Polynomial.C (Polynomial.evalRingHom 0)
+    (fun c => by simp) (algebraMap K[X] F) (IsFractionRing.injective _ _)
+  exact hA
 
 end FD56

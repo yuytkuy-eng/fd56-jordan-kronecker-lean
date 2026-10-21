@@ -30,6 +30,36 @@ theorem tall_sl_hilbert_arithmetic (n m d : ℕ) (hn : 0 < n) (h : 2 * n ≤ m) 
 variable {K n m : Type*} [Field K] [Fintype n] [Fintype m]
   [DecidableEq n] [DecidableEq m]
 
+theorem generic_affine_zero_gl_nullity
+    (hnm : Fintype.card n ≤ Fintype.card m) :
+    Module.finrank (AffineCoefficientField K (MatrixParameters n m))
+      (LinearMap.ker (Matrix.toLin' ((glEquationMatrix
+        (genericAffineSquare K n m) (genericAffineRows K n m)).map
+          (Polynomial.evalRingHom 0)))) =
+      Fintype.card n * (Fintype.card m - Fintype.card n) := by
+  rw [glEquationMatrix_map, glEquationMatrix_field_finrank]
+  exact gl_base_finrank_of_injective _ _ (generic_affine_rows_zero_injective K n m hnm)
+
+theorem generic_affine_zero_sl_nullity (i₀ : n)
+    (hnm : Fintype.card n ≤ Fintype.card m) :
+    Module.finrank (AffineCoefficientField K (MatrixParameters n m))
+      (LinearMap.ker (Matrix.toLin' ((slEquationMatrix
+        (genericAffineSquare K n m) (genericAffineRows K n m) i₀).map
+          (Polynomial.evalRingHom 0)))) =
+      Fintype.card n * (Fintype.card m - Fintype.card n) + 1 := by
+  letI : Nonempty n := ⟨i₀⟩
+  rw [slEquationMatrix_map, slEquationMatrix_field_finrank]
+  let M := (genericAffineSquare K n m).map (Polynomial.evalRingHom 0)
+  let P := (genericAffineRows K n m).map (Polynomial.evalRingHom 0)
+  have hp : Function.Injective P.mulVec := generic_affine_rows_zero_injective K n m hnm
+  have hk : unobservableSpace M P 1 = ⊥ := by
+    simp only [unobservableSpace, Submodule.comap_top, inf_top_eq]
+    exact LinearMap.ker_eq_bot.mpr hp
+  have hz : Module.finrank (AffineCoefficientField K (MatrixParameters n m))
+      (unobservableSpace M P 1) = 0 := by rw [hk, finrank_bot]
+  change Module.finrank _ (fieldSLRadical M P) = _
+  rw [observable_sl_radical_finrank M P 1 hz, gl_base_finrank_of_injective M P hp]
+
 theorem generic_tall_gl_kernel_hilbert
     (hnm : 2 * Fintype.card n ≤ Fintype.card m) (d : ℕ) :
     Module.finrank (AffineCoefficientField K (MatrixParameters n m))

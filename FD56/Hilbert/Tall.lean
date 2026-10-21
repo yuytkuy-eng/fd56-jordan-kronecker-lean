@@ -116,6 +116,95 @@ theorem tall_slHilbert (M : Matrix n n K[X]) (P : Matrix m n K[X])
     boundedRightProduct_kernel_finrank P hP R₀ R₁ hR₀ hR₁,
     boundedScalarSpace_finrank i₀]
 
+def boundedTranslationSLMap (M : Matrix n n K[X]) (P : Matrix m n K[X])
+    (hP : DegreeBound P 1) (i₀ : n) (d : ℕ) :
+    (boundedScalarSpace (K := K) (n := n) (d + 1)).comap
+      (boundedRightProduct P hP d) →ₗ[K] boundedSLKernel M P d where
+  toFun U := ⟨(0, U.val), by
+    letI : Nonempty n := ⟨i₀⟩
+    apply (slRadical_iff_equations M P 0 (entries U.val)).mpr
+    obtain ⟨c, hc⟩ := (mem_boundedScalarSpace_iff i₀ (d + 1) _).mp U.property
+    change entries U.val * P = c • (1 : Matrix n n K[X]) at hc
+    exact ⟨by simp, by simp, -c, by simp [hc]⟩⟩
+  map_add' U V := by apply Subtype.ext; change (0, (U + V).val) = (0, U.val) + (0, V.val); simp
+  map_smul' c U := by apply Subtype.ext; change (0, (c • U).val) = c • (0, U.val); simp
+
+theorem slHilbert_dimension_lower (M : Matrix n n K[X]) (P : Matrix m n K[X])
+    (hP : DegreeBound P 1) (i₀ : n) (d : ℕ) :
+    Fintype.card n * Fintype.card m * (d + 1) + (d + 2) ≤
+      slHilbert M P d + Fintype.card n * Fintype.card n * (d + 2) := by
+  let S := boundedScalarSpace (K := K) (n := n) (d + 1)
+  let f := boundedRightProduct (l := n) P hP d
+  let g := S.mkQ.comp f
+  have hi : Function.Injective (boundedTranslationSLMap M P hP i₀ d) := by
+    intro U V h
+    apply Subtype.ext
+    have hh := congrArg (fun z : boundedSLKernel M P d => z.val.2) h
+    simpa only [boundedTranslationSLMap, LinearMap.coe_mk, AddHom.coe_mk] using hh
+  have hb := LinearMap.finrank_le_finrank_of_injective hi
+  have hk : LinearMap.ker g = S.comap f := by ext x; simp [g]
+  have hd := g.finrank_range_add_finrank_ker
+  rw [hk, boundedMatrix_finrank] at hd
+  have hr := (LinearMap.range g).finrank_le
+  have hq := S.finrank_quotient_add_finrank
+  rw [boundedMatrix_finrank, boundedScalarSpace_finrank i₀] at hq
+  change Module.finrank K (S.comap f) ≤ slHilbert M P d at hb
+  norm_num only [Nat.add_assoc] at hq
+  omega
+
+def boundedTranslationGLMap (M : Matrix n n K[X]) (P : Matrix m n K[X])
+    (hP : DegreeBound P 1) (d : ℕ) :
+    LinearMap.ker (boundedRightProduct (l := n) P hP d) →ₗ[K]
+      polynomialKernelAtDegree (glEquationMatrix M P) d where
+  toFun U := ⟨Sum.elim (fun _ => 0) (fun ij => U.val ij.1 ij.2), by
+    apply (glEquationMatrix_kernel_iff M P _).mpr
+    have hh : entries U.val * P = 0 := congrArg entries U.property
+    constructor
+    · exact Matrix.mul_zero _
+    · change M * (0 : Matrix n n K[X]) - 0 * M - entries U.val * P = 0
+      simp [hh]⟩
+  map_add' U V := by apply Subtype.ext; funext ij; cases ij <;> simp
+  map_smul' c U := by apply Subtype.ext; funext ij; cases ij <;> simp
+
+theorem gl_kernel_dimension_lower (M : Matrix n n K[X]) (P : Matrix m n K[X])
+    (hP : DegreeBound P 1) (d : ℕ) :
+    Fintype.card n * Fintype.card m * (d + 1) ≤
+      Module.finrank K (polynomialKernelAtDegree (glEquationMatrix M P) d) +
+        Fintype.card n * Fintype.card n * (d + 2) := by
+  have hi : Function.Injective (boundedTranslationGLMap M P hP d) := by
+    intro U V h
+    apply Subtype.ext
+    funext i j
+    exact congrArg (fun z : polynomialKernelAtDegree (glEquationMatrix M P) d => z.val (.inr (i, j))) h
+  have hb := LinearMap.finrank_le_finrank_of_injective hi
+  have hd := (boundedRightProduct (l := n) P hP d).finrank_range_add_finrank_ker
+  have hr := (LinearMap.range (boundedRightProduct (l := n) P hP d)).finrank_le
+  rw [boundedMatrix_finrank] at hd hr
+  norm_num only [Nat.add_assoc] at hr
+  omega
+
+theorem gl_kernel_equations_of_injective (M : Matrix n n K[X]) (P : Matrix m n K[X])
+    (hP : Function.Injective P.mulVec) (v : SLInput n m → K[X]) :
+    glEquationMatrix M P *ᵥ v = 0 ↔
+      (fun i j => v (.inl (i, j))) = 0 ∧
+        (show Matrix n m K[X] from fun i j => v (.inr (i, j))) * P = 0 := by
+  rw [glEquationMatrix_kernel_iff]
+  constructor
+  · rintro ⟨hPX, hM⟩
+    have hX : (matrixPairEquiv K[X] K[X] n m v).1 = 0 := by
+      funext i j
+      have hz : P *ᵥ (fun k => (matrixPairEquiv K[X] K[X] n m v).1 k j) = 0 := by
+        funext k
+        exact congrArg (fun A : Matrix m n K[X] => A k j) hPX
+      have hh := hP (hz.trans (Matrix.mulVec_zero P).symm)
+      exact congrFun hh i
+    refine ⟨hX, ?_⟩
+    simpa [stabilizerResidual, hX] using hM
+  · rintro ⟨hX, hU⟩
+    change (matrixPairEquiv K[X] K[X] n m v).1 = 0 at hX
+    change (matrixPairEquiv K[X] K[X] n m v).2 * P = 0 at hU
+    simp [stabilizerResidual, hX, hU]
+
 theorem tall_gl_kernel_equations (M : Matrix n n K[X]) (P : Matrix m n K[X])
     (R : Matrix n m K[X]) (hR : R * P = 1) (v : SLInput n m → K[X]) :
     glEquationMatrix M P *ᵥ v = 0 ↔

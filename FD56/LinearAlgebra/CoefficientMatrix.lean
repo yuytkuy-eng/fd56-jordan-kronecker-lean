@@ -79,6 +79,40 @@ theorem coefficient_matrix_kernel_zero [Fintype b] [DecidableEq K]
       (polynomial_mulVec_degree P _ d hP (coefficientVectorPolynomial_degree d v) i)
       (by omega))
 
+theorem coefficient_matrix_injective_of_bounded_kernel_zero [Fintype b]
+    (P : Matrix a b K[X]) (d : ℕ) (hP : DegreeBound P 1)
+    (hz : ∀ v : b → K[X], P *ᵥ v = 0 → (∀ j, (v j).natDegree ≤ d) → v = 0) :
+    Function.Injective (polynomialCoefficientMatrix P d).mulVec := by
+  classical
+  change Function.Injective (Matrix.toLin' (polynomialCoefficientMatrix P d))
+  apply LinearMap.ker_eq_bot.mp
+  apply LinearMap.ker_eq_bot'.mpr
+  intro v hv
+  have hh := hz (coefficientVectorPolynomial d v)
+    (coefficient_matrix_kernel_zero P d hP v hv) (coefficientVectorPolynomial_degree d v)
+  funext jl
+  have he := congrArg (fun p : K[X] => p.coeff jl.2.val) (congrFun hh jl.1)
+  simpa [coefficientVectorPolynomial] using he
+
+theorem bounded_kernel_zero_of_coefficient_matrix_injective [Fintype b]
+    (P : Matrix a b K[X]) (d : ℕ)
+    (hi : Function.Injective (polynomialCoefficientMatrix P d).mulVec)
+    (v : b → K[X]) (hv : P *ᵥ v = 0) (hdeg : ∀ j, (v j).natDegree ≤ d) : v = 0 := by
+  classical
+  let c : b × Fin (d + 1) → K := fun jl => (v jl.1).coeff jl.2.val
+  have hc : coefficientVectorPolynomial d c = v := by
+    funext j
+    exact Polynomial.ofFn_comp_toFn_eq_id_of_natDegree_lt (p := v j) (n := d + 1)
+      (by have := hdeg j; omega)
+  have hh : polynomialCoefficientMatrix P d *ᵥ c = 0 := by
+    funext ik
+    rw [polynomialCoefficientMatrix_mulVec, hc, hv]
+    rfl
+  have hz : c = 0 := hi (hh.trans (Matrix.mulVec_zero _).symm)
+  rw [← hc, hz]
+  funext j
+  exact map_zero (Polynomial.ofFn (d + 1))
+
 theorem bidiagonal_coefficient_matrix_injective [DecidableEq K] (d : ℕ) :
     Function.Injective (polynomialCoefficientMatrix (bidiagonalPencil (K := K) (d + 1)) d).mulVec := by
   change Function.Injective (Matrix.toLin' (polynomialCoefficientMatrix
