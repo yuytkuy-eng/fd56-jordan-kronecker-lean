@@ -71,6 +71,11 @@ import FD56.Hilbert.SquareLow
 import FD56.Hilbert.StructuredGL
 import FD56.Hilbert.Tall
 import FD56.Hilbert.TwoDegreeCriterion
+import FD56.Hilbert.UniformGL
+import FD56.Hilbert.UniformSL
+import FD56.Hilbert.UniformSLClassification
+import FD56.Hilbert.UniformSLRealization
+import FD56.Hilbert.UniformSLWitness
 import FD56.Hilbert.WeightedCoefficients
 import FD56.Hilbert.WeightedSurjectivity
 import FD56.LinearAlgebra.AffineProduct
