@@ -4,7 +4,7 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The library rules out a balanced Hilbert profile for the `(11k, 8k)` family and proves generic GL/SL radical dimensions for affine pencils. It determines the actual reduced polynomial kernel-basis degrees throughout m ≥ n (SL: n > 0), and for GL when m < n < 2m. The latter degrees are shifted pairwise sums of two balanced auxiliary degree lists, whose generic realization is proved. General results establish reduced kernel-basis existence, uniqueness of the degree multiset, and dual bases with prescribed degrees. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
+The library determines actual reduced polynomial kernel-basis degrees throughout m ≥ n (SL: n > 0), for GL when m < n < 2m, and for SL when n = m + 1 with m > 0. For the `(11k, 8k)` family it proves both complete minimal-degree lists: GL has degrees 5, 6, 7 with multiplicities k², 6k², 8k²; SL has the same degrees with multiplicities k², 6k² + 8, 8k² − 7. These hold over every field for k > 0. The library also proves generic radical dimensions, kernel-basis existence, and uniqueness of the degree multiset. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
 
 ## Check the proofs
 
