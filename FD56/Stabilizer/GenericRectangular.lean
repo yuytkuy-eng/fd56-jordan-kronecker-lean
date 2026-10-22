@@ -96,4 +96,55 @@ theorem generic_transpose_kernel_hilbert
       (generic_transpose_coefficient_injective hnm d (by omega))]
     exact (Nat.sub_eq_zero_of_le (by omega)).symm
 
+theorem generic_rows_coefficient_injective_of_witness
+    (P : Matrix m n K[X]) (d : ℕ) (hP : DegreeBound P 1)
+    (hi : Function.Injective (polynomialCoefficientMatrix P d).mulVec) :
+    Function.Injective (polynomialCoefficientMatrix (genericAffineRows K n m) d).mulVec := by
+  let ψ := affineRowsSpecialization (fun i j => (P i j).coeff 0)
+    (fun i j => (P i j).coeff 1)
+  let φ := algebraMap (MvPolynomial (MatrixParameters n m ⊕ MatrixParameters n m) K)
+    (AffineCoefficientField K (MatrixParameters n m))
+  have he : (universalAffineRows K n m).map (Polynomial.mapRingHom ψ) = P := by
+    rw [universalAffineRows_specialization]
+    exact affineMatrixPencil_coefficients P hP
+  rw [← universalAffineRows_generic, polynomialCoefficientMatrix_map]
+  apply matrix_injective_of_specialization MvPolynomial.C ψ
+    (fun c => by simp [ψ, affineRowsSpecialization]) φ (IsFractionRing.injective _ _)
+  rw [← polynomialCoefficientMatrix_map, he]
+  exact hi
+
+theorem generic_rows_coefficient_injective
+    (hmn : Fintype.card m < Fintype.card n) (d : ℕ)
+    (hd : (Fintype.card n - Fintype.card m) * (d + 1) ≤ Fintype.card m) :
+    Function.Injective (polynomialCoefficientMatrix (genericAffineRows K n m) d).mulVec :=
+  generic_rows_coefficient_injective_of_witness (balancedRectangularWitness hmn) d
+    (balancedRectangularWitness_degree hmn)
+    (balancedRectangularWitness_coefficient_injective hmn d hd)
+
+theorem generic_rows_coefficient_surjective
+    (hmn : Fintype.card m < Fintype.card n) (d : ℕ)
+    (hd : Fintype.card m ≤ (Fintype.card n - Fintype.card m) * (d + 1)) :
+    Function.Surjective (polynomialCoefficientMatrix (genericAffineRows K n m) d).mulVec := by
+  rw [← universalAffineRows_generic]
+  apply universal_affine_rows_coefficient_of_witness (balancedRectangularWitness hmn) d
+    (balancedRectangularWitness_degree hmn)
+    (balancedRectangularWitness_coefficient_surjective hmn d hd)
+    (algebraMap _ _) (IsFractionRing.injective _ _)
+
+theorem generic_rows_kernel_hilbert
+    (hmn : Fintype.card m < Fintype.card n) (d : ℕ) :
+    Module.finrank (AffineCoefficientField K (MatrixParameters n m))
+      (polynomialKernelAtDegree (genericAffineRows K n m) d) =
+        (Fintype.card n - Fintype.card m) * (d + 1) - Fintype.card m := by
+  by_cases hd : Fintype.card m ≤ (Fintype.card n - Fintype.card m) * (d + 1)
+  · rw [polynomial_kernel_hilbert_of_coefficient_surjective (genericAffineRows K n m) d
+      (genericAffineRows_degree K n m) (generic_rows_coefficient_surjective hmn d hd)]
+    have hn : Fintype.card n = Fintype.card m + (Fintype.card n - Fintype.card m) := by omega
+    rw [hn]
+    simp only [Nat.add_sub_cancel_left]
+    exact rectangular_coefficient_difference _ _ d
+  · rw [polynomial_kernel_hilbert_of_coefficient_injective (genericAffineRows K n m) d
+      (generic_rows_coefficient_injective hmn d (by omega))]
+    exact (Nat.sub_eq_zero_of_le (by omega)).symm
+
 end FD56

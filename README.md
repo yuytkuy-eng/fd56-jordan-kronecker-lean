@@ -4,7 +4,7 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The library rules out a balanced Hilbert profile for the `(11k, 8k)` family and proves generic GL/SL radical dimensions for affine pencils. It determines their actual Hilbert functions throughout m > n, including a balanced SL profile, and the full SL profile when n = 1. It also proves structured GL Hilbert formulas under explicit matrix conditions and polynomial right inverses for generic rectangular matrices. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
+The library rules out a balanced Hilbert profile for the `(11k, 8k)` family and proves generic GL/SL radical dimensions for affine pencils. It determines the actual reduced polynomial kernel-basis degrees throughout m ≥ n, with n > 0 for SL. These results include proofs that reduced kernel bases exist and that their degree multisets are uniquely determined by the Hilbert function. It also proves structured GL Hilbert formulas under explicit matrix conditions and polynomial right inverses for generic rectangular matrices. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
 
 ## Check the proofs
 
@@ -23,9 +23,9 @@ For a build without the audit, run `lake build`. To use the library, write `impo
 
 | Directory | Content |
 | --- | --- |
-| [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial kernel criteria, predictable degrees, and hyperplane radicals |
+| [LinearAlgebra](FD56/LinearAlgebra/) | Polynomial kernel bases, degree reduction, and hyperplane radicals |
 | [Stabilizer](FD56/Stabilizer/) | Kernel constructions, block reduction, radical dimensions, full SL equations |
-| [Hilbert](FD56/Hilbert/) | Polynomial kernel dimensions, SL Hilbert profiles, and balancing obstruction |
+| [Hilbert](FD56/Hilbert/) | Kernel dimensions, minimal degrees, SL profiles, and balancing obstruction |
 | [Arithmetic](FD56/Arithmetic/) | Candidate spectrum and numerical Hilbert identities |
 
 The public theorem namespace remains `FD56`. Module imports now follow the directories above.
