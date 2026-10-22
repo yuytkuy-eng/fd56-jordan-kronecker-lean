@@ -3,14 +3,19 @@ Copyright 2026 Shifan Yu
 SPDX-License-Identifier: Apache-2.0
 -/
 import FD56.Arithmetic.HilbertArithmetic
+import FD56.Arithmetic.RectangularArithmetic
 import FD56.Arithmetic.SpectrumArithmetic
+import FD56.Hilbert.BalancedRectangular
 import FD56.Hilbert.Bidiagonal
 import FD56.Hilbert.BlockSum
+import FD56.Hilbert.Coefficients
 import FD56.Hilbert.ConstantEquivalence
 import FD56.Hilbert.EquationDegree
+import FD56.Hilbert.GenericAbove
 import FD56.Hilbert.GenericPencil
 import FD56.Hilbert.GenericTall
 import FD56.Hilbert.GLMatrix
+import FD56.Hilbert.GLRows
 import FD56.Hilbert.HilbertObstruction
 import FD56.Hilbert.HilbertRecovery
 import FD56.Hilbert.KernelDimension
@@ -19,8 +24,10 @@ import FD56.Hilbert.KroneckerBlock
 import FD56.Hilbert.KroneckerSum
 import FD56.Hilbert.OneExtra
 import FD56.Hilbert.OneExtraLow
+import FD56.Hilbert.RectangularBlocks
 import FD56.Hilbert.ScalarSL
 import FD56.Hilbert.SLMatrix
+import FD56.Hilbert.SLRows
 import FD56.Hilbert.StructuredGL
 import FD56.Hilbert.Tall
 import FD56.Hilbert.TwoDegreeCriterion
@@ -46,7 +53,9 @@ import FD56.Stabilizer.FieldSLMatrix
 import FD56.Stabilizer.GenericDimension
 import FD56.Stabilizer.GenericLeading
 import FD56.Stabilizer.GenericPencil
+import FD56.Stabilizer.GenericRectangular
 import FD56.Stabilizer.GenericRows
+import FD56.Stabilizer.GenericSLWitness
 import FD56.Stabilizer.GLBase
 import FD56.Stabilizer.GLSpace
 import FD56.Stabilizer.GLWitness
@@ -58,6 +67,7 @@ import FD56.Stabilizer.ObservabilityMatrix
 import FD56.Stabilizer.ObservableRadical
 import FD56.Stabilizer.PolynomialSLScalar
 import FD56.Stabilizer.RankOne
+import FD56.Stabilizer.RectangularSL
 import FD56.Stabilizer.Reduction
 import FD56.Stabilizer.RegularDimension
 import FD56.Stabilizer.RegularWitness
