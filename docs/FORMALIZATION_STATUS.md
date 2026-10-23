@@ -18,9 +18,12 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | n = 11k, m = 8k, k > 0 | GL: degrees 5, 6, 7 with multiplicities k², 6k², 8k². SL: the same degrees with multiplicities k², 6k² + 8, 8k² − 7. | [`generic_family_gl_minimal_degrees`](../FD56/Hilbert/FamilyGL.lean), [`generic_family_sl_minimal_degrees`](../FD56/Hilbert/FamilySLClassification.lean) |
 | n = (a + 1)r, m = ar, a ≥ 2, r > 0 | SL: B((a² + a + 1)r² − 1, (a − 1)r² + 1). GL is covered by the middle-range theorem above. | [`generic_uniform_middle_sl_balanced`](../FD56/Hilbert/UniformBalancedSL.lean) |
 | n = 2m, m > 0 | SL: one minimal degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
+| m = a(u+v)+v, n = m+u+v, a ≥ 4, u,v > 0 | Complete GL and SL lists supported in three consecutive degrees, as displayed below. | [`generic_mixed_gl_minimal_degrees`](../FD56/Hilbert/MixedGL.lean), [`generic_mixed_sl_minimal_degrees`](../FD56/Hilbert/MixedSLClassification.lean) |
 | n = 1 | The full SL radical has m degree-zero generators for every polynomial pair. | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) |
 
 `HasMinimalKernelDegrees` contains an actual polynomial kernel basis with independent leading columns. [`hasMinimalKernelDegrees_iff_hilbert`](../FD56/Hilbert/MinimalProfile.lean) identifies its degree list with all bounded-kernel dimensions.
+
+For the nonuniform a ≥ 4 family, put r = u+v, g = (a−4)r+v, A = ug, B = 3ur+vg, C = 3vr, and t = max(a+4−C,0). The GL degrees a+2, a+3, a+4 have multiplicities A, B, C. The SL multiplicities at those degrees are A+t, B+a+5−2t, max(C−a−4,0). [MixedGenericWitness](../FD56/Hilbert/MixedGenericWitness.lean) proves the required auxiliary kernel dimensions and scalar constraint simultaneously over one coefficient field. [MixedSLRealization](../FD56/Hilbert/MixedSLRealization.lean) realizes that matrix as an actual affine pair. The final theorem has no auxiliary witness assumption.
 
 ## Further Hilbert results
 

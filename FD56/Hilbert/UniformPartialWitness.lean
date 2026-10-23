@@ -206,7 +206,7 @@ theorem exists_uniform_partial_sl_witness (a r : ℕ) (ha : 0 < a) (hr : 0 < r) 
   let N := 3 * (r ^ 2 - 1)
   let s := min a N
   have hcard : s ≤ Fintype.card (UniformWitnessSlots b) := by
-    simpa [uniformWitnessSlots_card, pow_two, s, N] using (min_le_right a N)
+    simp [uniformWitnessSlots_card, pow_two, s, N]
   let f : Fin s ↪ UniformWitnessSlots b :=
     { toFun := fun i => (Fintype.equivFin _).symm ⟨i.val, lt_of_lt_of_le i.isLt hcard⟩
       inj' := by
