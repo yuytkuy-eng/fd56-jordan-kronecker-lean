@@ -18,6 +18,10 @@ import FD56.Hilbert.Coefficients
 import FD56.Hilbert.ColumnSurjectivity
 import FD56.Hilbert.ConstantEquivalence
 import FD56.Hilbert.ConvolutionDegrees
+import FD56.Hilbert.DepthThreeAlphaWitness
+import FD56.Hilbert.DepthThreeDeformation
+import FD56.Hilbert.DepthThreeGenericStack
+import FD56.Hilbert.DepthThreeStackChange
 import FD56.Hilbert.DepthTwoAffineLift
 import FD56.Hilbert.DepthTwoAuxiliaryLift
 import FD56.Hilbert.DepthTwoBetaCoefficients
