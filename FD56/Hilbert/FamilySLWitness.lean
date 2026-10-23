@@ -62,11 +62,12 @@ private theorem familySLWitness_mul_two (E : Matrix (Fin 3) (Fin 8) K[X])
 
 /-- The first two affine rows already exclude every nonzero scalar product.
 The third row and the degree of `c` are unrestricted. -/
-theorem familySLWitness_scalar_obstruction
+theorem familySLWitness_scalar_obstruction_of_rows
     (E : Matrix (Fin 3) (Fin 8) K[X]) (c : K[X])
     (h0 : ∀ j, (E 0 j).natDegree ≤ 1)
     (h1 : ∀ j, (E 1 j).natDegree ≤ 1)
-    (hrel : E * familySLWitness = (-c) • (1 : Matrix (Fin 3) (Fin 3) K[X])) :
+    (hrel0 : ∀ j, (E * familySLWitness (K := K)) 0 j = if (0 : Fin 3) = j then -c else 0)
+    (hrel1 : ∀ j, (E * familySLWitness (K := K)) 1 j = if (1 : Fin 3) = j then -c else 0) :
     c = 0 := by
   have hc0 (j : Fin 8) (k : ℕ) (hk : 1 < k) : (E 0 j).coeff k = 0 :=
     coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt (h0 j) hk)
@@ -74,24 +75,24 @@ theorem familySLWitness_scalar_obstruction
     coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt (h1 j) hk)
   have h00 : E 0 0 + E 0 1 * X ^ 3 + E 0 2 * X ^ 5 = -c := by
     simpa only [familySLWitness_mul_zero, Matrix.smul_apply, Matrix.one_apply,
-      if_true, smul_eq_mul, mul_one] using congrArg (fun A => A 0 0) hrel
+      if_true, smul_eq_mul, mul_one] using hrel0 0
   have h01 : E 0 1 * X ^ 2 + E 0 2 + E 0 3 * X +
       E 0 4 * X ^ 4 + E 0 5 * X ^ 5 = 0 := by
     simpa [familySLWitness_mul_one, Matrix.smul_apply, Matrix.one_apply]
-      using congrArg (fun A => A 0 1) hrel
+      using hrel0 1
   have h02 : E 0 0 + E 0 5 + E 0 6 * X ^ 2 + E 0 7 * X ^ 4 = 0 := by
     simpa [familySLWitness_mul_two, Matrix.smul_apply, Matrix.one_apply]
-      using congrArg (fun A => A 0 2) hrel
+      using hrel0 2
   have h10 : E 1 0 + E 1 1 * X ^ 3 + E 1 2 * X ^ 5 = 0 := by
     simpa [familySLWitness_mul_zero, Matrix.smul_apply, Matrix.one_apply]
-      using congrArg (fun A => A 1 0) hrel
+      using hrel1 0
   have h11 : E 1 1 * X ^ 2 + E 1 2 + E 1 3 * X +
       E 1 4 * X ^ 4 + E 1 5 * X ^ 5 = -c := by
     simpa [familySLWitness_mul_one, Matrix.smul_apply, Matrix.one_apply]
-      using congrArg (fun A => A 1 1) hrel
+      using hrel1 1
   have h12 : E 1 0 + E 1 5 + E 1 6 * X ^ 2 + E 1 7 * X ^ 4 = 0 := by
     simpa [familySLWitness_mul_two, Matrix.smul_apply, Matrix.one_apply]
-      using congrArg (fun A => A 1 2) hrel
+      using hrel1 2
   have ha2 : (E 0 2).coeff 0 = 0 := by
     simpa [coeff_mul_X_pow', coeff_mul_X, coeff_mul_X_zero] using
       congrArg (fun p : K[X] => p.coeff 0) h01
@@ -160,6 +161,17 @@ theorem familySLWitness_scalar_obstruction
     have h := congrArg (fun p : K[X] => p.coeff k) h00
     simpa [coeff_mul_X_pow', hc0 _ _ hk1, hc0 _ _ hk3, hc0 _ _ hk5] using h.symm
 
+theorem familySLWitness_scalar_obstruction
+    (E : Matrix (Fin 3) (Fin 8) K[X]) (c : K[X])
+    (h0 : ∀ j, (E 0 j).natDegree ≤ 1)
+    (h1 : ∀ j, (E 1 j).natDegree ≤ 1)
+    (hrel : E * familySLWitness = (-c) • (1 : Matrix (Fin 3) (Fin 3) K[X])) :
+    c = 0 := by
+  apply familySLWitness_scalar_obstruction_of_rows E c h0 h1
+  · intro j
+    simpa [Matrix.smul_apply,Matrix.one_apply,mul_ite] using congrArg (fun A => A 0 j) hrel
+  · intro j
+    simpa [Matrix.smul_apply,Matrix.one_apply,mul_ite] using congrArg (fun A => A 1 j) hrel
 /-- The degree vector used at the critical truncation of the `(11k,8k)` family. -/
 theorem familySLWitness_weighted_scalar_obstruction
     (E : Matrix (Fin 3) (Fin 8) K[X]) (c : K[X])
@@ -169,6 +181,7 @@ theorem familySLWitness_weighted_scalar_obstruction
   familySLWitness_scalar_obstruction E c (hE 0) (hE 1) hrel
 
 end FD56
+
 
 
 

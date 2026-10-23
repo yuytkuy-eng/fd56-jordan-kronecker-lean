@@ -14,16 +14,23 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | m = n | GL kernel zero. For n > 0, SL has one degree n − 1. | [`generic_square_gl_minimal_degrees`, `generic_square_sl_minimal_degrees`](../FD56/Hilbert/GenericMinimal.lean) |
 | n = (q + 1)m, m > 0 | GL polynomial kernel zero. | [`generic_divisible_gl_kernel_hilbert`](../FD56/Hilbert/DivisibleGL.lean) |
 | m < n < 2m; r = n − m, s = m − r | GL: all αᵢ + βⱼ + 1, where α = B(m,r) and β = B(m + 2r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_middle_gl_minimal_degrees`](../FD56/Hilbert/GenericMiddle.lean) |
-| n = m + 1, m > 0 | SL: m degrees equal to m + 1. | [`generic_one_more_column_sl_minimal_degrees`](../FD56/Hilbert/GenericOneColumnSL.lean) |
-| n = 11k, m = 8k, k > 0 | GL: degrees 5, 6, 7 with multiplicities k², 6k², 8k². SL: the same degrees with multiplicities k², 6k² + 8, 8k² − 7. | [`generic_family_gl_minimal_degrees`](../FD56/Hilbert/FamilyGL.lean), [`generic_family_sl_minimal_degrees`](../FD56/Hilbert/FamilySLClassification.lean) |
-| n = (a + 1)r, m = ar, a ≥ 2, r > 0 | SL: B((a² + a + 1)r² − 1, (a − 1)r² + 1). GL is covered by the middle-range theorem above. | [`generic_uniform_middle_sl_balanced`](../FD56/Hilbert/UniformBalancedSL.lean) |
-| n = 2m, m > 0 | SL: one minimal degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
-| m = a(u+v)+v, n = m+u+v, a ≥ 4, u,v > 0 | Complete GL and SL lists supported in three consecutive degrees, as displayed below. | [`generic_mixed_gl_minimal_degrees`](../FD56/Hilbert/MixedGL.lean), [`generic_mixed_sl_minimal_degrees`](../FD56/Hilbert/MixedSLClassification.lean) |
+| m < n, 2n ≤ 3m | Complete SL degree list, including every uniform and nonuniform case in this range. | [`generic_middle_sl_minimal_degrees_of_twice_le`](../FD56/Hilbert/MiddleSLClassification.lean) |
+| n = 2m − 1, m ≥ 2 | SL: m degrees equal to 3m − 3. | [`generic_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneSingleHighSL.lean) |
+| n = 2m, m > 0 | SL: one degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
 | n = 1 | The full SL radical has m degree-zero generators for every polynomial pair. | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) |
 
 `HasMinimalKernelDegrees` contains an actual polynomial kernel basis with independent leading columns. [`hasMinimalKernelDegrees_iff_hilbert`](../FD56/Hilbert/MinimalProfile.lean) identifies its degree list with all bounded-kernel dimensions.
 
-For the nonuniform a ≥ 4 family, put r = u+v, g = (a−4)r+v, A = ug, B = 3ur+vg, C = 3vr, and t = max(a+4−C,0). The GL degrees a+2, a+3, a+4 have multiplicities A, B, C. The SL multiplicities at those degrees are A+t, B+a+5−2t, max(C−a−4,0). [MixedGenericWitness](../FD56/Hilbert/MixedGenericWitness.lean) proves the required auxiliary kernel dimensions and scalar constraint simultaneously over one coefficient field. [MixedSLRealization](../FD56/Hilbert/MixedSLRealization.lean) realizes that matrix as an actual affine pair. The final theorem has no auxiliary witness assumption.
+For the SL range 2n ≤ 3m, write r = n−m, a = floor(m/r), v = m mod r, and u = r−v. Thus a ≥ 2 and u > 0. If v = 0, the list is B((a²+a+1)r²−1, (a−1)r²+1), proved in [UniformBalancedSL](../FD56/Hilbert/UniformBalancedSL.lean). If v > 0, use the following table.
+
+| Case | D | A | B | C |
+| --- | --- | --- | --- | --- |
+| a ≥ 4; g = (a−4)r+v | a+2 | ug | 3ur+vg | 3vr |
+| a = 3 | 6 | u(u+3v) | u²+uv+3v² | uv |
+| a = 2, u ≤ v | 5 | u(v−u) | 2u²+v² | v(2u+v) |
+| a = 2, v < u | 6 | 3uv | u(u−v)+3v² | v(u−v) |
+
+The GL degrees D, D+1, D+2 have multiplicities A, B, C. Put t = max(D+2−C,0). The SL multiplicities at those degrees are A+t, B+D+3−2t, max(C−D−2,0). [MiddleSLClassification](../FD56/Hilbert/MiddleSLClassification.lean) combines the branches with no witness assumptions. For example, (n,m) = (11k,8k) has GL multiplicities k², 6k², 8k² at degrees 5,6,7, and SL multiplicities k², 6k²+8, 8k²−7.
 
 ## Further Hilbert results
 
@@ -32,9 +39,7 @@ HGL(d) ≤ HSL(d) ≤ HGL(d) + d + 2.
 The upper bound is attained when d ≥ floor(m/r) + floor((m + 2r)/s) + 2.
 These are [`generic_middle_slHilbert_bounds` and `generic_middle_slHilbert_high`](../FD56/Hilbert/GenericMiddleSLHigh.lean). The proof constructs bounded scalar corrections using proved generic coefficient surjectivity.
 
-[UniformClassification](../FD56/Hilbert/UniformClassification.lean) provides one theorem for every positive a,r with m = ar, n = (a + 1)r. The balanced expression above covers a ≥ 2, including all small boundary cases. The proof uses actual bounded SL relation kernels, dimension lower bounds, and explicit coefficient witnesses. [UniformSLRelationDegree](../FD56/Hilbert/UniformSLRelationDegree.lean) proves the relation-kernel equivalence in all degrees. The a = 2 finite cores are verified by exact polynomial coefficient identities over arbitrary fields. [UniformOneWitness](../FD56/Hilbert/UniformOneWitness.lean) treats n = 2m using a nilpotent cubic matrix; [UniformOneAdjugate](../FD56/Hilbert/UniformOneAdjugate.lean) supplies the matching lower bound.
-
-For the nonuniform family (11k,8k), [FamilySLRealization](../FD56/Hilbert/FamilySLRealization.lean) proves HSL(5) = k²; the sharp high-degree formula then determines the displayed degree list. The final family theorems retain no witness or profile assumption.
+The SL proofs use bounded relation kernels, dimension lower bounds, and explicit polynomial coefficient witnesses. [MixedPolynomialWitness](../FD56/Hilbert/MixedPolynomialWitness.lean) transfers bounded scalar obstructions to the same generic auxiliary matrix whose kernel ranks are proved independently. [MixedSLGeneralRealization](../FD56/Hilbert/MixedSLGeneralRealization.lean) realizes it as an actual affine pair. The small cores in dimensions (9,7) and (10,7) are verified by coefficient identities valid over every field. [MixedOneSingleHighWitness](../FD56/Hilbert/MixedOneSingleHighWitness.lean) supplies a polynomial chain for n = 2m−1; [UniformOneWitness](../FD56/Hilbert/UniformOneWitness.lean) and [UniformOneAdjugate](../FD56/Hilbert/UniformOneAdjugate.lean) treat n = 2m.
 
 [GenericDepthTwoAlpha](../FD56/Hilbert/GenericDepthTwoAlpha.lean) proves that the actual observability matrix consisting of P and PM has balanced minimal degrees with length n − 2m and sum 3m whenever n > 2m. [GenericDepthThreeAlpha](../FD56/Hilbert/GenericDepthThreeAlpha.lean) proves the analogous result for P, PM, PM², with length n − 3m and sum 6m, when n > 3m and 2n ≥ 7m. The proof realizes independently prescribed row degrees by one affine M using a surjective prefix coefficient map. These results settle the first auxiliary list in these ranges; the second list and full GL classification there remain open in this library.
 
@@ -53,7 +58,7 @@ The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.le
 ## Remaining work
 
 1. The second generic auxiliary list at block depth two and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 2m.
-2. The full SL Hilbert formula in the remaining parameter regimes.
+2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m.
 3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
 4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
