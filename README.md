@@ -4,7 +4,7 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0). It determines every GL list with m < n < 3m, and every SL list with m < n and 2n ≤ 3m. It also determines the SL lists for n = 2m − 1 and n = 2m, and proves that the GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
+The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0). It determines every GL list with m < n < 3m, and every SL list with m < n and 2n ≤ 3m. It also determines the SL lists for n = 2m − 1 and n = 2m, and proves that the GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field. In characteristic zero, it also determines the SL lists for n = 2m − 2 and m ≥ 5. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
 
 ## Check the proofs
 

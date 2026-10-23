@@ -27,6 +27,28 @@ def audit_output(output, names):
         require(not unexpected, f"Unexpected axioms in {name}: {sorted(unexpected)}")
 
 
+def theorem_names(source):
+    scopes, names = [], []
+    for line in source.splitlines():
+        opening = re.fullmatch(r"(namespace|(?:noncomputable )?section)(?:\s+(\S+))?", line)
+        closing = re.fullmatch(r"end(?:\s+(\S+))?", line)
+        declaration = re.match(r"^(?:@\[[^\n]*\]\s+)?theorem\s+([\w.]+)", line)
+        if opening:
+            kind, name = opening.groups()
+            require(kind != "namespace" or name, "Unnamed namespace")
+            scopes.append((kind, name))
+        elif closing:
+            require(scopes, "Unmatched scope ending")
+            _, name = scopes.pop()
+            require(not closing[1] or closing[1] == name, "Mismatched scope ending")
+        elif declaration:
+            prefix = [name for kind, name in scopes if kind == "namespace"]
+            require(prefix and prefix[0] == "FD56", "Theorem outside FD56")
+            names.append(".".join([*prefix, declaration[1]]))
+    require(not any(kind == "namespace" for kind, _ in scopes), "Unclosed namespace")
+    return names
+
+
 def main():
     sources = sorted((ROOT / "FD56").rglob("*.lean"))
     entry = (ROOT / "FD56.lean").read_text(encoding="utf-8")
@@ -39,11 +61,7 @@ def main():
         # Intentionally strict: these tokens are disallowed even in comments.
         require(not re.search(r"\b(sorry|admit|axiom|native_decide)\b", source),
                 f"Prohibited proof escape in {path.relative_to(ROOT)}")
-        declarations = re.findall(r"^(?:@\[[^\n]*\]\s+)?theorem\s+(\w+)", source, re.M)
-        if declarations:
-            require(re.findall(r"^namespace\s+(\S+)", source, re.M) == ["FD56"],
-                    f"Update the audit scanner for namespaces in {path.name}")
-        names.extend("FD56." + name for name in declarations)
+        names.extend(theorem_names(source))
     require(names and len(names) == len(set(names)), "Empty or duplicate theorem inventory")
     subprocess.run(["lake", "build"], cwd=ROOT, check=True)
     out = ROOT / ".verification"

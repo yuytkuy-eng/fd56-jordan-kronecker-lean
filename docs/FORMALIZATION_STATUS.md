@@ -2,7 +2,7 @@
 
 The library is a partial formalization. Its final results describe actual reduced polynomial kernel bases. The complete generic Jordan–Kronecker classification remains unfinished.
 
-Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field. They do not assert a generic rational specialization over every field. Lean statements give the exact size and positivity assumptions.
+Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field unless a characteristic-zero assumption is stated. They do not assert a generic rational specialization over every field. Lean statements give the exact size and positivity assumptions.
 
 ## Established minimal degrees
 
@@ -16,6 +16,7 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | m < n < 2m; r = n − m, s = m − r | GL: all αᵢ + βⱼ + 1, where α = B(m,r) and β = B(m + 2r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_middle_gl_minimal_degrees`](../FD56/Hilbert/GenericMiddle.lean) |
 | 2m < n < 3m; r = n − 2m, s = m − r | GL: all αᵢ + βⱼ + 2, where α = B(3m,r) and β = B(3m + 3r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_depth_two_gl_minimal_degrees`](../FD56/Hilbert/GenericDepthTwoGL.lean) |
 | m < n, 2n ≤ 3m | Complete SL degree list, including every uniform and nonuniform case in this range. | [`generic_middle_sl_minimal_degrees_of_twice_le`](../FD56/Hilbert/MiddleSLClassification.lean) |
+| n = 2m − 2, m ≥ 5; characteristic zero | SL: B(3(m−1)², 2m−3). | [`generic_second_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneTwoSLClassification.lean) |
 | n = 2m − 1, m ≥ 2 | SL: m degrees equal to 3m − 3. | [`generic_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneSingleHighSL.lean) |
 | n = 2m, m > 0 | SL: one degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
 | n = 1 | The full SL radical has m degree-zero generators for every polynomial pair. | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) |
@@ -46,6 +47,8 @@ The SL proofs use bounded relation kernels, dimension lower bounds, and explicit
 
 [GenericDepthThreeAlpha](../FD56/Hilbert/GenericDepthThreeAlpha.lean) proves the analogous first auxiliary result for P, PM, PM², with length n − 3m and sum 6m, for every n > 3m. [DepthThreeAlphaWitness](../FD56/Hilbert/DepthThreeAlphaWitness.lean) constructs the affine witness by lifting through the kernel of an independent linear/quadratic prefix and then deforming its action. The proof transfers the third-stack bound from independent rows of degrees 1, 2, and 3. Its second auxiliary list and full GL classification remain open in this library.
 
+[MixedOneTwoSLClassification](../FD56/Hilbert/MixedOneTwoSLClassification.lean) treats the characteristic-zero family n = 2m−2. Explicit completions in sizes (6,4) and (8,5) start a cubic extension that adds two rows at each step. The extension preserves a reduced two-row kernel and propagates the scalar obstruction in the two critical degrees. A bounded affine realization transfers these obstructions to the generic SL equation. Hilbert-function convexity then determines every minimal degree. The smaller cases m = 3,4 already belong to the range 2n ≤ 3m proved over every field.
+
 The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.lean) also applies directly to affine pairs of sizes (11k,8k) with independent rows of P; it is not restricted to the universal pencil.
 
 ## Supporting proofs
@@ -61,7 +64,7 @@ The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.le
 ## Remaining work
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families.
-2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m.
+2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m, and excluding n = 2m−2 in characteristic zero.
 3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
 4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
