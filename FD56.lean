@@ -5,6 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import FD56.Arithmetic.HilbertArithmetic
 import FD56.Arithmetic.RectangularArithmetic
 import FD56.Arithmetic.SpectrumArithmetic
+import FD56.Hilbert.AdjacentDegrees
 import FD56.Hilbert.Adjugate
 import FD56.Hilbert.BalancedDegrees
 import FD56.Hilbert.BalancedRectangular
@@ -75,12 +76,17 @@ import FD56.Hilbert.SquareLow
 import FD56.Hilbert.StructuredGL
 import FD56.Hilbert.Tall
 import FD56.Hilbert.TwoDegreeCriterion
+import FD56.Hilbert.UniformBalancedSL
+import FD56.Hilbert.UniformClassification
 import FD56.Hilbert.UniformGeneralGL
 import FD56.Hilbert.UniformGeneralSLClassification
 import FD56.Hilbert.UniformGeneralSLClosure
 import FD56.Hilbert.UniformGeneralSLRealization
 import FD56.Hilbert.UniformGeneralWitness
 import FD56.Hilbert.UniformGL
+import FD56.Hilbert.UniformOneAdjugate
+import FD56.Hilbert.UniformOneSLClassification
+import FD56.Hilbert.UniformOneWitness
 import FD56.Hilbert.UniformPartialSLRealization
 import FD56.Hilbert.UniformPartialWitness
 import FD56.Hilbert.UniformSL
@@ -96,6 +102,11 @@ import FD56.Hilbert.UniformThreeSLClassification
 import FD56.Hilbert.UniformThreeSLRealization
 import FD56.Hilbert.UniformThreeSmallWitness
 import FD56.Hilbert.UniformThreeWitness
+import FD56.Hilbert.UniformTwoCoreWitness
+import FD56.Hilbert.UniformTwoSLClassification
+import FD56.Hilbert.UniformTwoSLRealization
+import FD56.Hilbert.UniformTwoSmallWitness
+import FD56.Hilbert.UniformWitnessExtension
 import FD56.Hilbert.WeightedCoefficients
 import FD56.Hilbert.WeightedSurjectivity
 import FD56.LinearAlgebra.AffineProduct

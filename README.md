@@ -4,7 +4,7 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The library determines actual reduced polynomial kernel-basis degrees throughout m ≥ n (SL: n > 0), for GL when m < n < 2m, and for SL when n = m + 1 with m > 0. For the `(11k, 8k)` family it proves both complete minimal-degree lists: GL has degrees 5, 6, 7 with multiplicities k², 6k², 8k²; SL has the same degrees with multiplicities k², 6k² + 8, 8k² − 7. It also determines the full SL minimal-degree list for every uniform family `m = ar`, `n = (a + 1)r`, with a ≥ 3 and r > 0. These results hold over every field. The library also proves generic radical dimensions, kernel-basis existence, and uniqueness of the degree multiset. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
+The library determines actual reduced polynomial kernel-basis degrees throughout m ≥ n (SL: n > 0), for GL when m < n < 2m, and for SL when n = m + 1 with m > 0. For the `(11k, 8k)` family it proves both complete minimal-degree lists: GL has degrees 5, 6, 7 with multiplicities k², 6k², 8k²; SL has the same degrees with multiplicities k², 6k² + 8, 8k² − 7. It also determines the full SL minimal-degree list for every uniform family `m = ar`, `n = (a + 1)r`, with a,r > 0. For a ≥ 2 this list is balanced; for n = 2m it is the singleton [3m − 1]. These results hold over every field. The library also proves generic radical dimensions, kernel-basis existence, and uniqueness of the degree multiset. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for assumptions and remaining work.
 
 ## Check the proofs
 
