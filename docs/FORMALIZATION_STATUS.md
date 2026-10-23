@@ -14,6 +14,7 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | m = n | GL kernel zero. For n > 0, SL has one degree n − 1. | [`generic_square_gl_minimal_degrees`, `generic_square_sl_minimal_degrees`](../FD56/Hilbert/GenericMinimal.lean) |
 | n = (q + 1)m, m > 0 | GL polynomial kernel zero. | [`generic_divisible_gl_kernel_hilbert`](../FD56/Hilbert/DivisibleGL.lean) |
 | m < n < 2m; r = n − m, s = m − r | GL: all αᵢ + βⱼ + 1, where α = B(m,r) and β = B(m + 2r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_middle_gl_minimal_degrees`](../FD56/Hilbert/GenericMiddle.lean) |
+| 2m < n < 3m; r = n − 2m, s = m − r | GL: all αᵢ + βⱼ + 2, where α = B(3m,r) and β = B(3m + 3r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_depth_two_gl_minimal_degrees`](../FD56/Hilbert/GenericDepthTwoGL.lean) |
 | m < n, 2n ≤ 3m | Complete SL degree list, including every uniform and nonuniform case in this range. | [`generic_middle_sl_minimal_degrees_of_twice_le`](../FD56/Hilbert/MiddleSLClassification.lean) |
 | n = 2m − 1, m ≥ 2 | SL: m degrees equal to 3m − 3. | [`generic_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneSingleHighSL.lean) |
 | n = 2m, m > 0 | SL: one degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
@@ -41,7 +42,9 @@ These are [`generic_middle_slHilbert_bounds` and `generic_middle_slHilbert_high`
 
 The SL proofs use bounded relation kernels, dimension lower bounds, and explicit polynomial coefficient witnesses. [MixedPolynomialWitness](../FD56/Hilbert/MixedPolynomialWitness.lean) transfers bounded scalar obstructions to the same generic auxiliary matrix whose kernel ranks are proved independently. [MixedSLGeneralRealization](../FD56/Hilbert/MixedSLGeneralRealization.lean) realizes it as an actual affine pair. The small cores in dimensions (9,7) and (10,7) are verified by coefficient identities valid over every field. [MixedOneSingleHighWitness](../FD56/Hilbert/MixedOneSingleHighWitness.lean) supplies a polynomial chain for n = 2m−1; [UniformOneWitness](../FD56/Hilbert/UniformOneWitness.lean) and [UniformOneAdjugate](../FD56/Hilbert/UniformOneAdjugate.lean) treat n = 2m.
 
-[GenericDepthTwoAlpha](../FD56/Hilbert/GenericDepthTwoAlpha.lean) proves that the actual observability matrix consisting of P and PM has balanced minimal degrees with length n − 2m and sum 3m whenever n > 2m. [GenericDepthThreeAlpha](../FD56/Hilbert/GenericDepthThreeAlpha.lean) proves the analogous result for P, PM, PM², with length n − 3m and sum 6m, when n > 3m and 2n ≥ 7m. The proof realizes independently prescribed row degrees by one affine M using a surjective prefix coefficient map. These results settle the first auxiliary list in these ranges; the second list and full GL classification there remain open in this library.
+[GenericDepthTwoAlpha](../FD56/Hilbert/GenericDepthTwoAlpha.lean) proves that the actual stack P, PM has balanced minimal degrees with length n − 2m and sum 3m whenever n > 2m. In the range 2m < n < 3m, [DepthTwoBetaWitness](../FD56/Hilbert/DepthTwoBetaWitness.lean) constructs an actual affine pair attaining the second auxiliary dimension bound. A transcendental deformation preserves the first stack kernel and transfers coefficient ranks from a prescribed terminal matrix. [GenericDepthTwoBeta](../FD56/Hilbert/GenericDepthTwoBeta.lean) then proves the second list without witness assumptions. [DepthTwoGL](../FD56/Hilbert/DepthTwoGL.lean) proves polynomial spanning and leading independence for the resulting GL basis, giving the complete list in the table.
+
+[GenericDepthThreeAlpha](../FD56/Hilbert/GenericDepthThreeAlpha.lean) proves the analogous first auxiliary result for P, PM, PM², with length n − 3m and sum 6m, when n > 3m and 2n ≥ 7m. Its second list and full GL classification remain open in this library.
 
 The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.lean) also applies directly to affine pairs of sizes (11k,8k) with independent rows of P; it is not restricted to the universal pencil.
 
@@ -57,7 +60,7 @@ The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.le
 
 ## Remaining work
 
-1. The second generic auxiliary list at block depth two and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 2m.
+1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families.
 2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m.
 3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
 4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
