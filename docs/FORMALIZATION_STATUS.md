@@ -16,6 +16,7 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | m < n < 2m; r = n − m, s = m − r | GL: all αᵢ + βⱼ + 1, where α = B(m,r) and β = B(m + 2r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_middle_gl_minimal_degrees`](../FD56/Hilbert/GenericMiddle.lean) |
 | 2m < n < 3m; r = n − 2m, s = m − r | GL: all αᵢ + βⱼ + 2, where α = B(3m,r) and β = B(3m + 3r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_depth_two_gl_minimal_degrees`](../FD56/Hilbert/GenericDepthTwoGL.lean) |
 | m < n, 2n ≤ 3m | Complete SL degree list, including every uniform and nonuniform case in this range. | [`generic_middle_sl_minimal_degrees_of_twice_le`](../FD56/Hilbert/MiddleSLClassification.lean) |
+| 3m < 2n, n < 2m | Complete SL Hilbert function and every minimal-degree multiplicity, over every field. | [`generic_mixed_one_slHilbert_closed`](../FD56/Hilbert/MixedOneSLHilbert.lean), [`generic_mixed_one_sl_minimal_multiplicities`](../FD56/Hilbert/MixedOneSLClassification.lean) |
 | n = 2m − 3, m ≥ 4; characteristic zero | SL: B(3(m−2)(m−1)+2, 3m−8). | [`generic_third_near_double_sl_minimal_degrees_all`](../FD56/Hilbert/MixedOneThreeSLClassification.lean) |
 | n = 2m − 2, m ≥ 5; characteristic zero | SL: B(3(m−1)², 2m−3). | [`generic_second_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneTwoSLClassification.lean) |
 | n = 2m − 1, m ≥ 2 | SL: m degrees equal to 3m − 3. | [`generic_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneSingleHighSL.lean) |
@@ -34,6 +35,12 @@ For the SL range 2n ≤ 3m, write r = n−m, a = floor(m/r), v = m mod r, and u 
 | a = 2, v < u | 6 | 3uv | u(u−v)+3v² | v(u−v) |
 
 The GL degrees D, D+1, D+2 have multiplicities A, B, C. Put t = max(D+2−C,0). The SL multiplicities at those degrees are A+t, B+D+3−2t, max(C−D−2,0). [MiddleSLClassification](../FD56/Hilbert/MiddleSLClassification.lean) combines the branches with no witness assumptions. For example, (n,m) = (11k,8k) has GL multiplicities k², 6k², 8k² at degrees 5,6,7, and SL multiplicities k², 6k²+8, 8k²−7.
+
+For the remaining middle range, put u = 2n−3m and v = 2m−n, so m = u+2v and n = 2u+3v with u,v > 0. Write [x]₊ = max(x,0). In every nonnegative degree d the SL Hilbert function is
+
+H(d) = max(u[v(d−1)−(3u+4v)]₊ + v[v(d−2)−(3u+4v)]₊, [((u+v)v+1)d+2−(3u²+8uv+6v²)]₊).
+
+Set H(d)=0 for negative d. The multiplicity of minimal degree k is H(k)−2H(k−1)+H(k−2). `generic_mixed_one_sl_minimal_multiplicities` proves this formula for an actual reduced polynomial kernel basis. This also determines the near-double families over arbitrary characteristic; the earlier dedicated balanced-list theorems in the table retain their original characteristic-zero hypotheses.
 
 ## Further Hilbert results
 
@@ -54,7 +61,7 @@ The SL proofs use bounded relation kernels, dimension lower bounds, and explicit
 
 The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.lean) also applies directly to affine pairs of sizes (11k,8k) with independent rows of P; it is not restricted to the universal pencil.
 
-[MixedOneLowerEnvelope](../FD56/Hilbert/MixedOneLowerEnvelope.lean) gives the maximum of the GL Hilbert function and the dimension-count lower bound as a lower bound for SL when m = u+2v and n = 2u+3v, with u,v > 0. It also excludes balanced SL degrees for the infinite family m = 2v+1, n = 3v+2, v ≥ 4: HGL(6) = v−3 > 0, whereas the proposed balanced list has no generators in degree 6. Equality with the lower bound remains unproved in general.
+[MixedOneLowerEnvelope](../FD56/Hilbert/MixedOneLowerEnvelope.lean) supplies the lower bound used in the quotient-one proof. [MixedOneSLHilbert](../FD56/Hilbert/MixedOneSLHilbert.lean) proves equality in every degree. The infinite family m = 2v+1, n = 3v+2, v ≥ 4 still excludes balanced SL degrees: HGL(6) = v−3 > 0, whereas the proposed balanced list has no generators in degree 6.
 
 [MixedOneThreeSLClassification](../FD56/Hilbert/MixedOneThreeSLClassification.lean) treats the characteristic-zero family n = 2m−3. Three finite completions start the cubic extension in the three residue classes of m; a fourth handles the exceptional initial case (m,n) = (7,11). Explicit coefficient identities establish the scalar obstructions, and [UniformCubicCompletion](../FD56/Hilbert/UniformCubicCompletion.lean) propagates them together with a reduced three-row kernel. This gives the critical Hilbert bounds and hence the complete degree list. The smaller cases m = 4,5,6 already belong to the range 2n ≤ 3m.
 
@@ -66,17 +73,18 @@ The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.le
 - [MiddleSLReduction](../FD56/Stabilizer/MiddleSLReduction.lean) retains the full equation MX − XM = UP + cI. [MiddleSLHilbert](../FD56/Hilbert/MiddleSLHilbert.lean) proves HSL = HGL + dimension of the bounded scalar image. The traceless GL stabilizer is not identified with the full SL radical.
 - [StructuredGL](../FD56/Hilbert/StructuredGL.lean) gives a general-depth criterion with explicit auxiliary-basis, recurrence, rank, and degree hypotheses. [ObservabilityRealization](../FD56/Stabilizer/ObservabilityRealization.lean) realizes matrix families as P, PM, … under an explicit coefficient-surjectivity hypothesis. Their remaining generic hypotheses are not silently discharged.
 - [GenericTerminalObservability](../FD56/Hilbert/GenericTerminalObservability.lean) proves injectivity of the generic terminal stack at every depth q when qm ≤ n ≤ (q+1)m. The next block is therefore injective on the preceding stack's polynomial kernel. This does not determine its minimal degrees or prove polynomial right-invertibility.
-- [StackedHankel](../FD56/LinearAlgebra/StackedHankel.lean) proves maximal rank and the kernel dimension for generic stacked Hankel matrices. [BlockHankel](../FD56/LinearAlgebra/BlockHankel.lean) proves injectivity for square block Hankel matrices with equal total row and column weights. Both use explicit permutation specializations. Identifying these independent coefficients with the scalar obstruction of the generic Lie pencil remains a separate step.
-- [HankelFrame](../FD56/LinearAlgebra/HankelFrame.lean) constructs a polynomial matrix from a supplied block Hankel right inverse and proves its degree bounds, leading independence, and truncated Hankel relations. [BlockHankelShift](../FD56/LinearAlgebra/BlockHankelShift.lean) supplies the coefficient recurrence for the proposed kernel construction. The full polynomial-kernel and bounded-image identifications are not yet proved.
-- [HankelFrameCoordinates](../FD56/LinearAlgebra/HankelFrameCoordinates.lean) recovers the constant frame parameters and reconstructs every polynomial vector satisfying the initial degree bounds and truncated relations, assuming the supplied inverse identities. This does not yet identify the kernel with polynomial coefficients or the images in higher degrees.
-- [HankelFrameKernel](../FD56/LinearAlgebra/HankelFrameKernel.lean) proves the recurrence after division by a linear factor and a unique parameterization of vectors satisfying the initial truncated relations and vanishing at a specified evaluation point. The degree profile of the resulting polynomial kernel basis and the transfer to the SL equation remain to be established.
+- [ObservabilityGLNormalForm](../FD56/Hilbert/ObservabilityGLNormalForm.lean) proves at arbitrary depth that a GL kernel vector annihilates the preceding observability kernel when the terminal stack is injective. A supplied right inverse then gives row factorization and the auxiliary beta relation. The right-inverse hypotheses remain explicit; these lemmas do not supply the missing higher-depth degree lists.
+- [StackedHankel](../FD56/LinearAlgebra/StackedHankel.lean) and [BlockHankel](../FD56/LinearAlgebra/BlockHankel.lean) prove generic ranks by explicit permutation specializations. [GenericHankelFamily](../FD56/LinearAlgebra/GenericHankelFamily.lean) puts both rank statements over the same independent coefficient field.
+- [HankelFrameMinimal](../FD56/Hilbert/HankelFrameMinimal.lean) proves that the inverse Hankel frame has the prescribed minimal kernel degrees. The proof constructs its kernel matrix, proves polynomial spanning and uniqueness over a polynomial coefficient ring, and verifies independent leading columns.
+- [HankelBoundedImage](../FD56/Hilbert/HankelBoundedImage.lean) identifies every bounded frame image with its truncated Hankel relation space and constructs a polynomial right inverse. [HankelScalarObstruction](../FD56/Hilbert/HankelScalarObstruction.lean) turns scalar lifting into stacked Hankel equations.
+- [GenericHankelScalar](../FD56/Hilbert/GenericHankelScalar.lean) proves a coefficient selector for the scalar kernel. [MixedOneHankelWitness](../FD56/Hilbert/MixedOneHankelWitness.lean) realizes the frame by an actual affine pair over a field extension. Specialization transfer and the existing lower bound prove the quotient-one SL formula over every base field.
 - [RankSpecializationExtension](../FD56/LinearAlgebra/RankSpecializationExtension.lean) transfers rank bounds from arbitrary field specializations. [GenericKernelExtension](../FD56/Hilbert/GenericKernelExtension.lean) permits affine witnesses over field extensions without requiring a coefficient-ring section.
 - [KroneckerSum](../FD56/Hilbert/KroneckerSum.lean), [BlockSum](../FD56/Hilbert/BlockSum.lean), and [ConstantEquivalence](../FD56/Hilbert/ConstantEquivalence.lean) prove bounded-kernel formulas for supplied blocks and invariance under supplied constant equivalences.
 
 ## Remaining work
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families.
-2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m, and excluding n = 2m−2 and n = 2m−3 in characteristic zero.
+2. The SL Hilbert formula for n > 2m. The middle range m < n ≤ 2m is now covered over every field.
 3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
 4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
