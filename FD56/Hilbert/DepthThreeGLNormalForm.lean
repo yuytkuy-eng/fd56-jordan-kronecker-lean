@@ -37,27 +37,25 @@ theorem depth_three_observability_right_inverse_block
   change ((P*M^i.val)*(Matrix.of fun a b => R a (j,b))) a b = _ at he
   by_cases h : i=j <;> simpa [h,Matrix.one_apply,Prod.ext_iff] using he
 
-theorem depth_three_gl_terminal_factor
+theorem depth_three_gl_coefficient_equations
     (M : Matrix n n K[X]) (P : Matrix m n K[X])
     (B : Basis r K[X] (LinearMap.ker (Matrix.toLin' (observabilityMatrix M P 3))))
     (R : Matrix n (Fin 3 × m) K[X]) (hR : observabilityMatrix M P 3*R=1)
     (hO : Function.Injective (observabilityMatrix M P 4).mulVec)
     (X : Matrix n n K[X]) (U : Matrix n m K[X])
     (hPX : P*X=0) (hcomm : M*X-X*M=U*P) :
-    ∃ E : Matrix r m K[X],
-      X*(Matrix.of fun a b => R a (2,b))=polynomialKernelBasisMatrix _ B*E := by
-  let Rb (j : Fin 3) : Matrix n m K[X] := Matrix.of fun a b => R a (j,b)
-  let A (j : Fin 3) : Matrix n m K[X] := X*Rb j
-  let D (j : Fin 3) : Matrix m m K[X] := P*M^3*Rb j
+    let Rb (j : Fin 3) : Matrix n m K[X] := Matrix.of fun a b => R a (j,b)
+    let A (j : Fin 3) : Matrix n m K[X] := X*Rb j
+    let D (j : Fin 3) : Matrix m m K[X] := P*M^3*Rb j
+    X=A 0*P+A 1*(P*M)+A 2*(P*M^2) ∧
+      M*A 1=A 0+A 2*D 1 ∧ M*A 2=A 1+A 2*D 2 := by
+  intro Rb A D
   have hb (i j : Fin 3) : (P*M^i.val)*Rb j=if i=j then 1 else 0 :=
     depth_three_observability_right_inverse_block M P R hR i j
   have hX : X=A 0*P+A 1*(P*M)+A 2*(P*M^2) := by
     have he := gl_observability_row_factor M P 3 B R hR hO X U hPX hcomm
     rw [depth_three_observability_row_expansion] at he
     exact he
-  have hPA (j : Fin 3) : P*A j=0 := by
-    dsimp [A]
-    rw [← Matrix.mul_assoc,hPX,Matrix.zero_mul]
   have hshift (j : Fin 3) : X*M*Rb j=
       A 0*((P*M)*Rb j)+A 1*((P*M^2)*Rb j)+A 2*D j := by
     conv_lhs => rw [hX]
@@ -86,6 +84,26 @@ theorem depth_three_gl_terminal_factor
     rw [Matrix.sub_mul,hshift,Matrix.mul_assoc U P,hb0,Matrix.mul_zero,
       hb1,hb2,Matrix.mul_one,Matrix.mul_zero,zero_add] at he
     exact sub_eq_zero.mp (by simpa only [A,Matrix.mul_assoc] using he)
+  exact ⟨hX,h1,h2⟩
+
+theorem depth_three_gl_terminal_factor
+    (M : Matrix n n K[X]) (P : Matrix m n K[X])
+    (B : Basis r K[X] (LinearMap.ker (Matrix.toLin' (observabilityMatrix M P 3))))
+    (R : Matrix n (Fin 3 × m) K[X]) (hR : observabilityMatrix M P 3*R=1)
+    (hO : Function.Injective (observabilityMatrix M P 4).mulVec)
+    (X : Matrix n n K[X]) (U : Matrix n m K[X])
+    (hPX : P*X=0) (hcomm : M*X-X*M=U*P) :
+    ∃ E : Matrix r m K[X],
+      X*(Matrix.of fun a b => R a (2,b))=polynomialKernelBasisMatrix _ B*E := by
+  let Rb (j : Fin 3) : Matrix n m K[X] := Matrix.of fun a b => R a (j,b)
+  let A (j : Fin 3) : Matrix n m K[X] := X*Rb j
+  let D (j : Fin 3) : Matrix m m K[X] := P*M^3*Rb j
+  obtain ⟨hX,h1,h2⟩ := depth_three_gl_coefficient_equations M P B R hR hO X U hPX hcomm
+  change M*A 1=A 0+A 2*D 1 at h1
+  change M*A 2=A 1+A 2*D 2 at h2
+  have hPA (j : Fin 3) : P*A j=0 := by
+    dsimp [A]
+    rw [← Matrix.mul_assoc,hPX,Matrix.zero_mul]
   have hPM1 : P*M*A 1=0 := by
     rw [Matrix.mul_assoc,h1,Matrix.mul_add,← Matrix.mul_assoc P (A 2),hPA,hPA,Matrix.zero_mul,add_zero]
   have hPM2 : P*M*A 2=0 := by

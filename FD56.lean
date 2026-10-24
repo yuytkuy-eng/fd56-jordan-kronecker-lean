@@ -28,7 +28,9 @@ import FD56.Hilbert.CubicTwoRealization
 import FD56.Hilbert.DepthThreeAlphaWitness
 import FD56.Hilbert.DepthThreeDeformation
 import FD56.Hilbert.DepthThreeGenericStack
+import FD56.Hilbert.DepthThreeGLBasis
 import FD56.Hilbert.DepthThreeGLNormalForm
+import FD56.Hilbert.DepthThreeGLReconstruction
 import FD56.Hilbert.DepthThreeStackChange
 import FD56.Hilbert.DepthTwoAffineLift
 import FD56.Hilbert.DepthTwoAuxiliaryLift
