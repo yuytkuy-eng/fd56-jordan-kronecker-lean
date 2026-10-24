@@ -27,6 +27,7 @@ import FD56.Hilbert.CubicTwoParity
 import FD56.Hilbert.CubicTwoRealization
 import FD56.Hilbert.DepthThreeAlphaWitness
 import FD56.Hilbert.DepthThreeBetaCriterion
+import FD56.Hilbert.DepthThreeBetaSingleTest
 import FD56.Hilbert.DepthThreeDeformation
 import FD56.Hilbert.DepthThreeGenericStack
 import FD56.Hilbert.DepthThreeGL
@@ -35,6 +36,10 @@ import FD56.Hilbert.DepthThreeGLDegree
 import FD56.Hilbert.DepthThreeGLLeading
 import FD56.Hilbert.DepthThreeGLNormalForm
 import FD56.Hilbert.DepthThreeGLReconstruction
+import FD56.Hilbert.DepthThreeSevenTwo
+import FD56.Hilbert.DepthThreeSevenTwoData
+import FD56.Hilbert.DepthThreeSevenTwoFamily
+import FD56.Hilbert.DepthThreeSevenTwoWitness
 import FD56.Hilbert.DepthThreeStackChange
 import FD56.Hilbert.DepthTwoAffineLift
 import FD56.Hilbert.DepthTwoAuxiliaryLift
@@ -169,6 +174,7 @@ import FD56.Hilbert.MixedTwoSLFive
 import FD56.Hilbert.MixedTwoSLRealization
 import FD56.Hilbert.MixedTwoSmallWitness
 import FD56.Hilbert.MixedTwoWeightedWitnessExtension
+import FD56.Hilbert.ObservabilityBetaBlocks
 import FD56.Hilbert.ObservabilityBetaCoefficients
 import FD56.Hilbert.ObservabilityBetaGrowth
 import FD56.Hilbert.ObservabilityBetaKernel

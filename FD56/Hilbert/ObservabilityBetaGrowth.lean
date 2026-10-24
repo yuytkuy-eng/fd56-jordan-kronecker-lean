@@ -57,6 +57,24 @@ theorem polynomial_left_kernel_linear_bound (F : Matrix m r K[X])
     (by intro k hk; omega) d
   simpa only [Nat.sub_zero] using hh
 
+theorem polynomial_left_kernel_growth_bound (F : Matrix m r K[X])
+    (hF : Function.Injective (F.map (Polynomial.evalRingHom 0)).mulVec) (d : ℕ) :
+    Module.finrank K (polynomialKernelAtDegree F.transpose (d+1)) ≤
+      Module.finrank K (polynomialKernelAtDegree F.transpose d) +
+        (Fintype.card m-Fintype.card r) := by
+  obtain ⟨L,hL⟩ := matrix_left_inverse_of_injective _ hF
+  have hs : Function.Surjective (F.map (Polynomial.evalRingHom 0)).transpose.mulVec := by
+    intro v
+    refine ⟨L.transpose *ᵥ v,?_⟩
+    rw [Matrix.mulVec_mulVec,← Matrix.transpose_mul,hL,Matrix.transpose_one,Matrix.one_mulVec]
+  have hd := surjective_matrix_kernel_finrank _ hs
+  have hh := polynomial_kernel_growth F.transpose d
+  have hd' : Module.finrank K (LinearMap.ker
+      (Matrix.toLin' (F.transpose.map (Polynomial.evalRingHom 0)))) =
+      Fintype.card m-Fintype.card r := by
+    simpa only [Matrix.transpose_map] using hd
+  rwa [hd'] at hh
+
 theorem generic_observability_beta_linear_bound
     (q : ℕ) (hmn : q*Fintype.card m ≤ Fintype.card n)
     (hnm : Fintype.card n ≤ (q+1)*Fintype.card m)
