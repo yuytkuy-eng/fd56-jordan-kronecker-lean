@@ -29,6 +29,9 @@ import FD56.Hilbert.DepthThreeAlphaWitness
 import FD56.Hilbert.DepthThreeBetaCriterion
 import FD56.Hilbert.DepthThreeBetaSingleTest
 import FD56.Hilbert.DepthThreeDeformation
+import FD56.Hilbert.DepthThreeElevenThreeData
+import FD56.Hilbert.DepthThreeElevenThreeFamily
+import FD56.Hilbert.DepthThreeElevenThreeWitness
 import FD56.Hilbert.DepthThreeGenericStack
 import FD56.Hilbert.DepthThreeGL
 import FD56.Hilbert.DepthThreeGLBasis
@@ -97,6 +100,7 @@ import FD56.Hilbert.HankelFrameMinimal
 import FD56.Hilbert.HankelScalarObstruction
 import FD56.Hilbert.HilbertObstruction
 import FD56.Hilbert.HilbertRecovery
+import FD56.Hilbert.IntegerPolynomial
 import FD56.Hilbert.KernelDimension
 import FD56.Hilbert.KernelGrowth
 import FD56.Hilbert.KroneckerBlock
