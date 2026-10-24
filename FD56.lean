@@ -26,6 +26,7 @@ import FD56.Hilbert.CubicTwoIteration
 import FD56.Hilbert.CubicTwoParity
 import FD56.Hilbert.CubicTwoRealization
 import FD56.Hilbert.DepthThreeAlphaWitness
+import FD56.Hilbert.DepthThreeBetaCriterion
 import FD56.Hilbert.DepthThreeDeformation
 import FD56.Hilbert.DepthThreeGenericStack
 import FD56.Hilbert.DepthThreeGL
@@ -169,6 +170,7 @@ import FD56.Hilbert.MixedTwoSLRealization
 import FD56.Hilbert.MixedTwoSmallWitness
 import FD56.Hilbert.MixedTwoWeightedWitnessExtension
 import FD56.Hilbert.ObservabilityBetaCoefficients
+import FD56.Hilbert.ObservabilityBetaGrowth
 import FD56.Hilbert.ObservabilityBetaKernel
 import FD56.Hilbert.ObservabilityGLNormalForm
 import FD56.Hilbert.ObservabilityGLRecurrence

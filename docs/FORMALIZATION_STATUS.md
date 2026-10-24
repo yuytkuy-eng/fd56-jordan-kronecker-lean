@@ -99,6 +99,8 @@ The second auxiliary kernel now has a finite coefficient formulation. [Observabi
 
 [GenericObservabilityBetaTransfer](../FD56/Hilbert/GenericObservabilityBetaTransfer.lean) transfers upper bounds from actual affine pairs over field extensions to the universal pair. It also discharges the right-inverse and leading-row hypotheses for the actual third auxiliary kernel when 3m < n. A witness attaining the lower bound would therefore determine its bounded Hilbert function. No such general witness is constructed here: the relation blocks must arise from the same M and P, rather than independent matrices. This formulation does not establish the expected balanced second degree list.
 
+[ObservabilityBetaGrowth](../FD56/Hilbert/ObservabilityBetaGrowth.lean) proves that the terminal auxiliary map remains injective at zero and bounds the left-kernel Hilbert function by s(d+1), with s equal to the number of rows minus the number of auxiliary columns. Together with the dimension lower bound, [DepthThreeBetaCriterion](../FD56/Hilbert/DepthThreeBetaCriterion.lean) reduces the third-depth balanced degree claim to two finite coefficient tests. Write r=n−3m, s=m−r, C=6m+4r, D=⌊C/s⌋, b=C mod s, and a=s−b. It suffices to show zero kernel at degree D−1 and kernel dimension at most a at degree D. The two tests may use different actual affine witnesses over a field extension. This is a proved sufficient criterion, not a construction of those witnesses.
+
 ## Remaining work
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families.
