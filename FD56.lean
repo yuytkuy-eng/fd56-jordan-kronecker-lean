@@ -28,6 +28,7 @@ import FD56.Hilbert.CubicTwoRealization
 import FD56.Hilbert.DepthThreeAlphaWitness
 import FD56.Hilbert.DepthThreeDeformation
 import FD56.Hilbert.DepthThreeGenericStack
+import FD56.Hilbert.DepthThreeGLNormalForm
 import FD56.Hilbert.DepthThreeStackChange
 import FD56.Hilbert.DepthTwoAffineLift
 import FD56.Hilbert.DepthTwoAuxiliaryLift
@@ -162,6 +163,8 @@ import FD56.Hilbert.MixedTwoSLRealization
 import FD56.Hilbert.MixedTwoSmallWitness
 import FD56.Hilbert.MixedTwoWeightedWitnessExtension
 import FD56.Hilbert.ObservabilityGLNormalForm
+import FD56.Hilbert.ObservabilityGLRecurrence
+import FD56.Hilbert.ObservabilityGLReduction
 import FD56.Hilbert.OneColumnSL
 import FD56.Hilbert.OneExtra
 import FD56.Hilbert.OneExtraLow
