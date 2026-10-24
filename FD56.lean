@@ -77,6 +77,7 @@ import FD56.Hilbert.GenericMiddle
 import FD56.Hilbert.GenericMiddleSLHigh
 import FD56.Hilbert.GenericMiddleSurjectivity
 import FD56.Hilbert.GenericMinimal
+import FD56.Hilbert.GenericObservabilityBetaTransfer
 import FD56.Hilbert.GenericOneColumnSL
 import FD56.Hilbert.GenericPencil
 import FD56.Hilbert.GenericPrescribedMatrix
@@ -167,6 +168,8 @@ import FD56.Hilbert.MixedTwoSLFive
 import FD56.Hilbert.MixedTwoSLRealization
 import FD56.Hilbert.MixedTwoSmallWitness
 import FD56.Hilbert.MixedTwoWeightedWitnessExtension
+import FD56.Hilbert.ObservabilityBetaCoefficients
+import FD56.Hilbert.ObservabilityBetaKernel
 import FD56.Hilbert.ObservabilityGLNormalForm
 import FD56.Hilbert.ObservabilityGLRecurrence
 import FD56.Hilbert.ObservabilityGLReduction

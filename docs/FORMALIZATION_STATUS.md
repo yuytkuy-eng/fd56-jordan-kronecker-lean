@@ -95,6 +95,10 @@ HGL(d) = ∑ᵢⱼ max(d + 1 − αᵢ − βⱼ − 3, 0).
 
 The first list is already known: α = B(6m,n−3m). This transfer theorem does not determine β, so it does not yet give the complete third-depth generic classification.
 
+The second auxiliary kernel now has a finite coefficient formulation. [ObservabilityBetaKernel](../FD56/Hilbert/ObservabilityBetaKernel.lean) identifies bounded relations with the actual auxiliary kernel at any depth, under explicit right-inverse and leading-row hypotheses. [ObservabilityBetaCoefficients](../FD56/Hilbert/ObservabilityBetaCoefficients.lean) constructs the finite coefficient matrix and proves the identification with its kernel. At depth three its domain has dimension m(4d+10), and its target has dimension n(d+5), giving the lower bound max(m(4d+10)−n(d+5),0).
+
+[GenericObservabilityBetaTransfer](../FD56/Hilbert/GenericObservabilityBetaTransfer.lean) transfers upper bounds from actual affine pairs over field extensions to the universal pair. It also discharges the right-inverse and leading-row hypotheses for the actual third auxiliary kernel when 3m < n. A witness attaining the lower bound would therefore determine its bounded Hilbert function. No such general witness is constructed here: the relation blocks must arise from the same M and P, rather than independent matrices. This formulation does not establish the expected balanced second degree list.
+
 ## Remaining work
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families.
