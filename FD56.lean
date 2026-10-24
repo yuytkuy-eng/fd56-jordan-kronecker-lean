@@ -222,6 +222,7 @@ import FD56.LinearAlgebra.DualPrescribed
 import FD56.LinearAlgebra.DualStepPair
 import FD56.LinearAlgebra.HankelFrame
 import FD56.LinearAlgebra.HankelFrameCoordinates
+import FD56.LinearAlgebra.HankelFrameKernel
 import FD56.LinearAlgebra.HyperplaneRadical
 import FD56.LinearAlgebra.KernelBasis
 import FD56.LinearAlgebra.KernelDescent
