@@ -16,6 +16,7 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | m < n < 2m; r = n − m, s = m − r | GL: all αᵢ + βⱼ + 1, where α = B(m,r) and β = B(m + 2r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_middle_gl_minimal_degrees`](../FD56/Hilbert/GenericMiddle.lean) |
 | 2m < n < 3m; r = n − 2m, s = m − r | GL: all αᵢ + βⱼ + 2, where α = B(3m,r) and β = B(3m + 3r,s). Both auxiliary lists and polynomial spanning are proved. | [`generic_depth_two_gl_minimal_degrees`](../FD56/Hilbert/GenericDepthTwoGL.lean) |
 | m < n, 2n ≤ 3m | Complete SL degree list, including every uniform and nonuniform case in this range. | [`generic_middle_sl_minimal_degrees_of_twice_le`](../FD56/Hilbert/MiddleSLClassification.lean) |
+| n = 2m − 3, m ≥ 4; characteristic zero | SL: B(3(m−2)(m−1)+2, 3m−8). | [`generic_third_near_double_sl_minimal_degrees_all`](../FD56/Hilbert/MixedOneThreeSLClassification.lean) |
 | n = 2m − 2, m ≥ 5; characteristic zero | SL: B(3(m−1)², 2m−3). | [`generic_second_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneTwoSLClassification.lean) |
 | n = 2m − 1, m ≥ 2 | SL: m degrees equal to 3m − 3. | [`generic_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneSingleHighSL.lean) |
 | n = 2m, m > 0 | SL: one degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
@@ -47,9 +48,15 @@ The SL proofs use bounded relation kernels, dimension lower bounds, and explicit
 
 [GenericDepthThreeAlpha](../FD56/Hilbert/GenericDepthThreeAlpha.lean) proves the analogous first auxiliary result for P, PM, PM², with length n − 3m and sum 6m, for every n > 3m. [DepthThreeAlphaWitness](../FD56/Hilbert/DepthThreeAlphaWitness.lean) constructs the affine witness by lifting through the kernel of an independent linear/quadratic prefix and then deforming its action. The proof transfers the third-stack bound from independent rows of degrees 1, 2, and 3. Its second auxiliary list and full GL classification remain open in this library.
 
+[GenericDepthThreeRightInverse](../FD56/Hilbert/GenericDepthThreeRightInverse.lean) also proves coefficient surjectivity, a polynomial right inverse of degree at most 6m, and independent leading rows for this third stack.
+
 [MixedOneTwoSLClassification](../FD56/Hilbert/MixedOneTwoSLClassification.lean) treats the characteristic-zero family n = 2m−2. Explicit completions in sizes (6,4) and (8,5) start a cubic extension that adds two rows at each step. The extension preserves a reduced two-row kernel and propagates the scalar obstruction in the two critical degrees. A bounded affine realization transfers these obstructions to the generic SL equation. Hilbert-function convexity then determines every minimal degree. The smaller cases m = 3,4 already belong to the range 2n ≤ 3m proved over every field.
 
 The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.lean) also applies directly to affine pairs of sizes (11k,8k) with independent rows of P; it is not restricted to the universal pencil.
+
+[MixedOneLowerEnvelope](../FD56/Hilbert/MixedOneLowerEnvelope.lean) gives the maximum of the GL Hilbert function and the dimension-count lower bound as a lower bound for SL when m = u+2v and n = 2u+3v, with u,v > 0. It also excludes balanced SL degrees for the infinite family m = 2v+1, n = 3v+2, v ≥ 4: HGL(6) = v−3 > 0, whereas the proposed balanced list has no generators in degree 6. Equality with the lower bound remains unproved in general.
+
+[MixedOneThreeSLClassification](../FD56/Hilbert/MixedOneThreeSLClassification.lean) treats the characteristic-zero family n = 2m−3. Three finite completions start the cubic extension in the three residue classes of m; a fourth handles the exceptional initial case (m,n) = (7,11). Explicit coefficient identities establish the scalar obstructions, and [UniformCubicCompletion](../FD56/Hilbert/UniformCubicCompletion.lean) propagates them together with a reduced three-row kernel. This gives the critical Hilbert bounds and hence the complete degree list. The smaller cases m = 4,5,6 already belong to the range 2n ≤ 3m.
 
 ## Supporting proofs
 
@@ -58,13 +65,17 @@ The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.le
 - [GenericPencil](../FD56/Stabilizer/GenericPencil.lean) proves generic GL/SL radical dimensions. [GenericRows](../FD56/Stabilizer/GenericRows.lean) supplies polynomial right inverses and leading-rank proofs for generic rectangular pencils.
 - [MiddleSLReduction](../FD56/Stabilizer/MiddleSLReduction.lean) retains the full equation MX − XM = UP + cI. [MiddleSLHilbert](../FD56/Hilbert/MiddleSLHilbert.lean) proves HSL = HGL + dimension of the bounded scalar image. The traceless GL stabilizer is not identified with the full SL radical.
 - [StructuredGL](../FD56/Hilbert/StructuredGL.lean) gives a general-depth criterion with explicit auxiliary-basis, recurrence, rank, and degree hypotheses. [ObservabilityRealization](../FD56/Stabilizer/ObservabilityRealization.lean) realizes matrix families as P, PM, … under an explicit coefficient-surjectivity hypothesis. Their remaining generic hypotheses are not silently discharged.
+- [GenericTerminalObservability](../FD56/Hilbert/GenericTerminalObservability.lean) proves injectivity of the generic terminal stack at every depth q when qm ≤ n ≤ (q+1)m. The next block is therefore injective on the preceding stack's polynomial kernel. This does not determine its minimal degrees or prove polynomial right-invertibility.
+- [StackedHankel](../FD56/LinearAlgebra/StackedHankel.lean) proves maximal rank and the kernel dimension for generic stacked Hankel matrices. [BlockHankel](../FD56/LinearAlgebra/BlockHankel.lean) proves injectivity for square block Hankel matrices with equal total row and column weights. Both use explicit permutation specializations. Identifying these independent coefficients with the scalar obstruction of the generic Lie pencil remains a separate step.
+- [HankelFrame](../FD56/LinearAlgebra/HankelFrame.lean) constructs a polynomial matrix from a supplied block Hankel right inverse and proves its degree bounds, leading independence, and truncated Hankel relations. [BlockHankelShift](../FD56/LinearAlgebra/BlockHankelShift.lean) supplies the coefficient recurrence for the proposed kernel construction. The full polynomial-kernel and bounded-image identifications are not yet proved.
+- [HankelFrameCoordinates](../FD56/LinearAlgebra/HankelFrameCoordinates.lean) recovers the constant frame parameters and reconstructs every polynomial vector satisfying the initial degree bounds and truncated relations, assuming the supplied inverse identities. This does not yet identify the kernel with polynomial coefficients or the images in higher degrees.
 - [RankSpecializationExtension](../FD56/LinearAlgebra/RankSpecializationExtension.lean) transfers rank bounds from arbitrary field specializations. [GenericKernelExtension](../FD56/Hilbert/GenericKernelExtension.lean) permits affine witnesses over field extensions without requiring a coefficient-ring section.
 - [KroneckerSum](../FD56/Hilbert/KroneckerSum.lean), [BlockSum](../FD56/Hilbert/BlockSum.lean), and [ConstantEquivalence](../FD56/Hilbert/ConstantEquivalence.lean) prove bounded-kernel formulas for supplied blocks and invariance under supplied constant equivalences.
 
 ## Remaining work
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families.
-2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m, and excluding n = 2m−2 in characteristic zero.
+2. The SL Hilbert formula for the remaining cases with 3m < 2n, excluding n = 2m−1 and n = 2m, and excluding n = 2m−2 and n = 2m−3 in characteristic zero.
 3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
 4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
