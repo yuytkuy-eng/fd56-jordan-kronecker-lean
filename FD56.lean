@@ -255,6 +255,7 @@ import FD56.LinearAlgebra.DualNormalization
 import FD56.LinearAlgebra.DualPrescribed
 import FD56.LinearAlgebra.DualStepPair
 import FD56.LinearAlgebra.ExactKernelBasis
+import FD56.LinearAlgebra.FiniteGCDCovariance
 import FD56.LinearAlgebra.GenericAffineDivisors
 import FD56.LinearAlgebra.GenericHankelFamily
 import FD56.LinearAlgebra.HankelAction
@@ -269,6 +270,7 @@ import FD56.LinearAlgebra.HankelScalarSelector
 import FD56.LinearAlgebra.HyperplaneRadical
 import FD56.LinearAlgebra.KernelBasis
 import FD56.LinearAlgebra.KernelDescent
+import FD56.LinearAlgebra.MaximalMinorDivisors
 import FD56.LinearAlgebra.MonomialLift
 import FD56.LinearAlgebra.MultivariateCommonDivisors
 import FD56.LinearAlgebra.PolynomialBezout
@@ -307,6 +309,7 @@ import FD56.Stabilizer.LowDegree
 import FD56.Stabilizer.MiddleSLDegrees
 import FD56.Stabilizer.MiddleSLReduction
 import FD56.Stabilizer.Observability
+import FD56.Stabilizer.ObservabilityCovariance
 import FD56.Stabilizer.ObservabilityMatrix
 import FD56.Stabilizer.ObservabilityRealization
 import FD56.Stabilizer.ObservableRadical
