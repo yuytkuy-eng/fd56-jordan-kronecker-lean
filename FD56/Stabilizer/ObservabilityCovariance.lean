@@ -106,7 +106,7 @@ theorem observabilityMinorGCD_output_change [Fintype m] [DecidableEq m]
   intro d
   exact observabilityMatrix_output_change_minor_divisors M P T U hUT q d
 
-theorem observabilityMatrix_minor_map (φ : R →+* R) (M : Matrix n n R)
+theorem observabilityMatrix_minor_map {S : Type*} [CommRing S] (φ : R →+* S) (M : Matrix n n R)
     (P : Matrix m n R) (q : ℕ) (r : n → Fin q × m) :
     φ (((observabilityMatrix M P q).submatrix r id).det) =
       ((observabilityMatrix (M.map φ) (P.map φ) q).submatrix r id).det := by
