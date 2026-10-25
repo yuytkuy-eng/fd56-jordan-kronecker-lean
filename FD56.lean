@@ -273,9 +273,12 @@ import FD56.LinearAlgebra.KernelDescent
 import FD56.LinearAlgebra.MaximalMinorDivisors
 import FD56.LinearAlgebra.MonomialLift
 import FD56.LinearAlgebra.MultivariateCommonDivisors
+import FD56.LinearAlgebra.NonzeroMaximalMinor
 import FD56.LinearAlgebra.PolynomialBezout
 import FD56.LinearAlgebra.PolynomialCommonDivisors
 import FD56.LinearAlgebra.PolynomialDivisorLocalization
+import FD56.LinearAlgebra.PolynomialGCDInvariance
+import FD56.LinearAlgebra.PolynomialHypersurface
 import FD56.LinearAlgebra.PolynomialKernel
 import FD56.LinearAlgebra.PolynomialLeading
 import FD56.LinearAlgebra.PolynomialMatrix
@@ -290,6 +293,7 @@ import FD56.Stabilizer.BidiagonalSL
 import FD56.Stabilizer.BlockReduction
 import FD56.Stabilizer.ChangeBasis
 import FD56.Stabilizer.ConstraintMap
+import FD56.Stabilizer.ElementaryOutputSubstitution
 import FD56.Stabilizer.FieldRadical
 import FD56.Stabilizer.FieldSLMatrix
 import FD56.Stabilizer.GenericBeta
@@ -320,6 +324,7 @@ import FD56.Stabilizer.Reduction
 import FD56.Stabilizer.RegularDimension
 import FD56.Stabilizer.RegularWitness
 import FD56.Stabilizer.SLScalarExtension
+import FD56.Stabilizer.StateCoefficientSubstitution
 import FD56.Stabilizer.StructuredBasis
 import FD56.Stabilizer.StructuredLeading
 import FD56.Stabilizer.Telescoping

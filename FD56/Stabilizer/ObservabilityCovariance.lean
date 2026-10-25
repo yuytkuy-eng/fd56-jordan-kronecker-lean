@@ -106,4 +106,24 @@ theorem observabilityMinorGCD_output_change [Fintype m] [DecidableEq m]
   intro d
   exact observabilityMatrix_output_change_minor_divisors M P T U hUT q d
 
+theorem observabilityMatrix_minor_map (φ : R →+* R) (M : Matrix n n R)
+    (P : Matrix m n R) (q : ℕ) (r : n → Fin q × m) :
+    φ (((observabilityMatrix M P q).submatrix r id).det) =
+      ((observabilityMatrix (M.map φ) (P.map φ) q).submatrix r id).det := by
+  rw [RingHom.map_det]
+  congr 1
+  ext i j
+  exact congrArg (fun A => A (r i) j) (observabilityMatrix_map φ M P q)
+
+theorem observabilityMinorGCD_map_associated [Fintype m]
+    [IsDomain R] [NormalizedGCDMonoid R] (e : R ≃+* R)
+    (M : Matrix n n R) (P : Matrix m n R) (q : ℕ) :
+    Associated (e (observabilityMinorGCD M P q))
+      (observabilityMinorGCD (M.map e.toRingHom) (P.map e.toRingHom) q) := by
+  have h := finite_gcd_map_associated e
+    (fun r : n → Fin q × m => ((observabilityMatrix M P q).submatrix r id).det)
+  change Associated _ (Finset.univ.gcd (fun r =>
+    e.toRingHom (((observabilityMatrix M P q).submatrix r id).det))) at h
+  simpa only [observabilityMatrix_minor_map] using h
+
 end FD56
