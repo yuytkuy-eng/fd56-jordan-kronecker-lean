@@ -4,7 +4,9 @@
 
 Partial Lean formalization by Shifan Yu, concerning general and special linear semidirect products.
 
-The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0). It determines every GL list with m < n < 3m and every SL degree multiplicity with m < n ≤ 2m. It also proves that the GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field. It also determines the GL list for all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, over every field. In particular, (7k,2k) has k² degrees equal to 31, and (11k,3k) has 2k² degrees equal to 38. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
+The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0), every GL list with m < n < 3m, and every SL degree multiplicity with m < n ≤ 2m. The GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field.
+
+At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered over every field. In particular, (7k,2k) has k² degrees equal to 31, and (11k,3k) has 2k² degrees equal to 38. In characteristic zero, (10k,3k) has 2k² degrees equal to 32. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
 
 For every depth q, the maximal minors of the universal observability matrix (P, PM, ..., PM^(q−1)) have only unit common divisors when m ≥ 2 and n < qm. The same theorem holds for the generic affine pair over every base field. A cofactor argument uses this result to determine the corank-one third-depth family. Other higher-depth degree lists remain open.
 
