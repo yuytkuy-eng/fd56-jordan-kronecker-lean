@@ -82,4 +82,3 @@ theorem quotient_no_invariant_output_kernel
     W hW hinv hker
   simp [MatrixParameters, Fintype.card_subtype_compl, pow_two]
 end FD56
-
