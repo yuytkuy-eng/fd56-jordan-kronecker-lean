@@ -6,6 +6,8 @@ Partial Lean formalization by Shifan Yu, concerning general and special linear s
 
 The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0). It determines every GL list with m < n < 3m and every SL degree multiplicity with m < n ≤ 2m. It also proves that the GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field. In characteristic zero, it also proves the families (n,m)=(7k,2k) and (11k,3k), k>0: their GL minimal degrees are respectively k² copies of 31 and 2k² copies of 38. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
 
+For every depth q, the maximal minors of the universal observability matrix (P, PM, ..., PM^(q−1)) have only unit common divisors when m ≥ 2 and n < qm. The same theorem holds for the generic affine pair over every base field. This supplies a coprimality result for the remaining higher-depth work; it does not determine the missing minimal-degree lists.
+
 ## Check the proofs
 
 Install [elan](https://github.com/leanprover/elan), Git, and Python 3. From this repository, run:
