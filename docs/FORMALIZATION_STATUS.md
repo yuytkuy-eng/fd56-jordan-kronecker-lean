@@ -1,6 +1,6 @@
 # Proof coverage
 
-The library is a partial formalization. Its final results describe actual reduced polynomial kernel bases. The complete generic Jordan–Kronecker classification remains unfinished.
+The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. Three GL families also have proved constant-congruence decompositions into standard Kronecker blocks, as detailed below. The complete generic Jordan–Kronecker classification remains unfinished.
 
 Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field unless a characteristic-zero assumption is stated. They do not assert a generic rational specialization over every field. Lean statements give the exact size and positivity assumptions.
 
@@ -89,7 +89,23 @@ The earlier [`family_no_balanced_profile`](../FD56/Hilbert/HilbertObstruction.le
 - [GenericHankelScalar](../FD56/Hilbert/GenericHankelScalar.lean) proves a coefficient selector for the scalar kernel. [MixedOneHankelWitness](../FD56/Hilbert/MixedOneHankelWitness.lean) realizes the frame by an actual affine pair over a field extension. Specialization transfer and the existing lower bound prove the quotient-one SL formula over every base field.
 - [RankSpecializationExtension](../FD56/LinearAlgebra/RankSpecializationExtension.lean) transfers rank bounds from arbitrary field specializations. [GenericKernelExtension](../FD56/Hilbert/GenericKernelExtension.lean) permits affine witnesses over field extensions without requiring a coefficient-ring section.
 - [KroneckerSum](../FD56/Hilbert/KroneckerSum.lean), [BlockSum](../FD56/Hilbert/BlockSum.lean), and [ConstantEquivalence](../FD56/Hilbert/ConstantEquivalence.lean) prove bounded-kernel formulas for supplied blocks and invariance under supplied constant equivalences.
-- [GLKirillovPencil](../FD56/Stabilizer/GLKirillovPencil.lean) identifies the GL equation matrix with the actual Kirillov matrix by a constant row permutation. It proves alternation, including in characteristic two, and preservation of polynomial kernels and minimal degrees. [CorankOneKirillov](../FD56/Hilbert/CorankOneKirillov.lean) and [TenThreeKirillov](../FD56/Hilbert/TenThreeKirillov.lean) transfer the corresponding family lists and prove that the sum of 2e+1 over the listed degrees equals the ambient dimension. A constant congruence to canonical blocks remains to be constructed.
+- [GLKirillovPencil](../FD56/Stabilizer/GLKirillovPencil.lean) identifies the GL equation matrix with the actual Kirillov matrix by a constant row permutation. It proves alternation, including in characteristic two, and preservation of polynomial kernels and minimal degrees. [CorankOneKirillov](../FD56/Hilbert/CorankOneKirillov.lean) and [TenThreeKirillov](../FD56/Hilbert/TenThreeKirillov.lean) transfer the corresponding family lists and prove the dimension budgets. [UniformGLKronecker](../FD56/Hilbert/UniformGLKronecker.lean) uses the general construction below to produce actual canonical congruences for the three uniform families.
+
+## Canonical decompositions
+
+[`exists_uniform_kronecker_canonical`](../FD56/Hilbert/UniformKroneckerCanonical.lean) proves the following general statement. Suppose an alternating affine square pencil has an actual reduced polynomial kernel basis with r minimal degrees, all equal to e, and its ambient dimension is r(2e+1). Then there are constant matrices T and S with TS=ST=I such that Tᵀ(A+XB)T is a block diagonal sum of r standard Kronecker blocks of dimension 2e+1. The theorem works over every field, including characteristic two. Alternation is an explicit hypothesis; skew symmetry alone is insufficient in characteristic two.
+
+The proof constructs the congruence. [AffineKernelCoefficientGap](../FD56/LinearAlgebra/AffineKernelCoefficientGap.lean) splits a kernel vector at a zero coefficient. [UniformKernelCoefficients](../FD56/LinearAlgebra/UniformKernelCoefficients.lean) proves independence of all chain coefficients, and [UniformKernelFunctionals](../FD56/LinearAlgebra/UniformKernelFunctionals.lean) proves independence of their pairing functionals. [KernelCoefficientIsotropy](../FD56/LinearAlgebra/KernelCoefficientIsotropy.lean) proves that the coefficient span is isotropic for both forms. [UniformKroneckerBasis](../FD56/LinearAlgebra/UniformKroneckerBasis.lean) constructs a dual complement using the full dimension equality. [UniformKroneckerCorrection](../FD56/LinearAlgebra/UniformKroneckerCorrection.lean) and [UniformKroneckerCongruence](../FD56/LinearAlgebra/UniformKroneckerCongruence.lean) remove both complement pairings by an invertible constant change of coordinates without division by two. [UniformKroneckerIdentification](../FD56/Hilbert/UniformKroneckerIdentification.lean) identifies the resulting forms with the library's existing standard blocks.
+
+[UniformGLKronecker](../FD56/Hilbert/UniformGLKronecker.lean) discharges all these hypotheses for the actual generic GL Kirillov pencils below. The change of coordinates is constant in the pencil variable X; its entries lie in the rational function field of the independent affine coefficients.
+
+| Parameters | Complete decomposition | Assumptions |
+| --- | --- | --- |
+| (n,m)=(7k,2k) | k² Kronecker blocks of dimension 63 | Every base field; k>0 |
+| (n,m)=(11k,3k) | 2k² Kronecker blocks of dimension 77 | Every base field; k>0 |
+| (n,m)=(10k,3k) | 2k² Kronecker blocks of dimension 65 | Characteristic zero; k>0 |
+
+These congruences cover the full ambient space, so the three pencils have no remaining regular summand. Mixed minimal degrees, other parameter ranges, and the SL canonical decompositions remain outside this result.
 
 ## Third-depth degree transfer
 
@@ -133,7 +149,7 @@ For every m≥2 and n=4m−1, [DepthThreeCorankOne](../FD56/Hilbert/DepthThreeCo
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the proved families. The smallest uncovered strict third-depth pair in characteristic zero is (n,m)=(13,4). The (10k,3k) beta and GL statements remain open in positive characteristic.
 2. The SL Hilbert formula for n > 2m. The middle range m < n ≤ 2m is now covered over every field.
-3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
+3. Canonical decompositions outside the uniform full-dimension theorem and the three GL families above, and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
 4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
 The arithmetic modules contain candidate formulas outside the proved cases. `glFormula` and `slFormula` are intended for positive n,m with 0 < n % m < m; their total Lean values elsewhere carry no classification assertion.

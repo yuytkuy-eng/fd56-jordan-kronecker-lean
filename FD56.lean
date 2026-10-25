@@ -229,6 +229,10 @@ import FD56.Hilbert.UniformGeneralSLClosure
 import FD56.Hilbert.UniformGeneralSLRealization
 import FD56.Hilbert.UniformGeneralWitness
 import FD56.Hilbert.UniformGL
+import FD56.Hilbert.UniformGLKronecker
+import FD56.Hilbert.UniformKroneckerCanonical
+import FD56.Hilbert.UniformKroneckerClassification
+import FD56.Hilbert.UniformKroneckerIdentification
 import FD56.Hilbert.UniformOneAdjugate
 import FD56.Hilbert.UniformOneSLClassification
 import FD56.Hilbert.UniformOneWitness
@@ -254,6 +258,7 @@ import FD56.Hilbert.UniformTwoSmallWitness
 import FD56.Hilbert.UniformWitnessExtension
 import FD56.Hilbert.WeightedCoefficients
 import FD56.Hilbert.WeightedSurjectivity
+import FD56.LinearAlgebra.AffineKernelCoefficientGap
 import FD56.LinearAlgebra.AffineProduct
 import FD56.LinearAlgebra.AffineShear
 import FD56.LinearAlgebra.BidiagonalPencil
@@ -294,6 +299,7 @@ import FD56.LinearAlgebra.InvariantSubspaceCoordinates
 import FD56.LinearAlgebra.InvariantSubspaceGeneratorBound
 import FD56.LinearAlgebra.IrreducibleCommonDivisors
 import FD56.LinearAlgebra.KernelBasis
+import FD56.LinearAlgebra.KernelCoefficientIsotropy
 import FD56.LinearAlgebra.KernelCoordinateReconstruction
 import FD56.LinearAlgebra.KernelDescent
 import FD56.LinearAlgebra.KrylovSpan
@@ -325,6 +331,11 @@ import FD56.LinearAlgebra.RectangularMinorDivisors
 import FD56.LinearAlgebra.ReducedBasis
 import FD56.LinearAlgebra.RowNormalization
 import FD56.LinearAlgebra.StackedHankel
+import FD56.LinearAlgebra.UniformKernelCoefficients
+import FD56.LinearAlgebra.UniformKernelFunctionals
+import FD56.LinearAlgebra.UniformKroneckerBasis
+import FD56.LinearAlgebra.UniformKroneckerCongruence
+import FD56.LinearAlgebra.UniformKroneckerCorrection
 import FD56.LinearAlgebra.WeightedDeterminantDegree
 import FD56.Stabilizer.AffineSpecialization
 import FD56.Stabilizer.BidiagonalSL
