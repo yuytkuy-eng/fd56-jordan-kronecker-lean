@@ -113,6 +113,8 @@ For n=7 and m=2 in characteristic zero, [DepthThreeSevenTwoData](../FD56/Hilbert
 
 ## Remaining work
 
+[GenericAffineDivisors](../FD56/LinearAlgebra/GenericAffineDivisors.lean) proves that a polynomial family with no common nonunit divisor retains this property after substitution along a generic affine line, over the fraction field of its independent intercept and slope coefficients. The proof constructs the substitution automorphism, adjoins independent variables, and descends primitive divisors through coefficient localization. It applies over every field. The required common-divisor statement for the static observability minors is not yet proved, so this transfer theorem does not add a classified GL or SL family.
+
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the divisible families and the two characteristic-zero families above.
 2. The SL Hilbert formula for n > 2m. The middle range m < n ≤ 2m is now covered over every field.
 3. A formal canonical Jordan–Kronecker decomposition and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.

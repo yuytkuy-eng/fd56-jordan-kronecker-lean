@@ -242,6 +242,7 @@ import FD56.Hilbert.UniformWitnessExtension
 import FD56.Hilbert.WeightedCoefficients
 import FD56.Hilbert.WeightedSurjectivity
 import FD56.LinearAlgebra.AffineProduct
+import FD56.LinearAlgebra.AffineShear
 import FD56.LinearAlgebra.BidiagonalPencil
 import FD56.LinearAlgebra.BlockHankel
 import FD56.LinearAlgebra.BlockHankelShift
@@ -254,6 +255,7 @@ import FD56.LinearAlgebra.DualNormalization
 import FD56.LinearAlgebra.DualPrescribed
 import FD56.LinearAlgebra.DualStepPair
 import FD56.LinearAlgebra.ExactKernelBasis
+import FD56.LinearAlgebra.GenericAffineDivisors
 import FD56.LinearAlgebra.GenericHankelFamily
 import FD56.LinearAlgebra.HankelAction
 import FD56.LinearAlgebra.HankelFrame
@@ -268,7 +270,10 @@ import FD56.LinearAlgebra.HyperplaneRadical
 import FD56.LinearAlgebra.KernelBasis
 import FD56.LinearAlgebra.KernelDescent
 import FD56.LinearAlgebra.MonomialLift
+import FD56.LinearAlgebra.MultivariateCommonDivisors
 import FD56.LinearAlgebra.PolynomialBezout
+import FD56.LinearAlgebra.PolynomialCommonDivisors
+import FD56.LinearAlgebra.PolynomialDivisorLocalization
 import FD56.LinearAlgebra.PolynomialKernel
 import FD56.LinearAlgebra.PolynomialLeading
 import FD56.LinearAlgebra.PolynomialMatrix
