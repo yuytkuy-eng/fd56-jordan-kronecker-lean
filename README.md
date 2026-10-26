@@ -10,6 +10,8 @@ At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered ove
 
 All the nondivisible GL ranges above now have actual constant congruences of the full Kirillov pencil to standard Kronecker blocks: m>n, m<n<3m with n≠2m, and the proved third-depth families. A general theorem constructs this decomposition from any actual minimal-degree list and the full dimension equality, including characteristic two. The change of coordinates is constant in the pencil variable, over the rational function field of the generic coefficients.
 
+The same canonical conclusion holds for SL when m>n>0 and when m<n<2m. The actual SL matrix uses traceless coordinates, with a proved equivalence to the full SL equations. For square GL pencils the determinant identity det H=(det P)^(2n) is proved, but the full regular Jordan classification remains open in this formalization.
+
 For every depth q, the maximal minors of the universal observability matrix (P, PM, ..., PM^(q−1)) have only unit common divisors when m ≥ 2 and n < qm. The same theorem holds for the generic affine pair over every base field. A cofactor argument uses this result to determine the corank-one third-depth family. Other higher-depth degree lists remain open.
 
 ## Check the proofs

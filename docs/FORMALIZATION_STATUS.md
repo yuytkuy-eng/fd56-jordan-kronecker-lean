@@ -1,6 +1,6 @@
 # Proof coverage
 
-The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. The proved nondivisible GL ranges also have constant-congruence decompositions into standard Kronecker blocks, as detailed below. The complete generic Jordan–Kronecker classification remains unfinished.
+The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. The proved nondivisible GL ranges, and SL when m>n>0 or m<n<2m, also have constant-congruence decompositions into standard Kronecker blocks. The complete generic Jordan–Kronecker classification remains unfinished.
 
 Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field unless a characteristic-zero assumption is stated. They do not assert a generic rational specialization over every field. Lean statements give the exact size and positivity assumptions.
 
@@ -112,7 +112,19 @@ The proof constructs the congruence. [AffineKernelCoefficientGap](../FD56/Linear
 | (n,m)=(10k,3k) | 2k² Kronecker blocks of dimension 65 | Characteristic zero; k>0 |
 | (n,m)=(13k,4k) | 2k² Kronecker blocks of dimension 73 and k² of dimension 75 | Characteristic zero; k>0 |
 
-These congruences cover the full ambient space, so these pencils have no remaining regular summand. Divisible GL cases, other parameter ranges, and the SL canonical decompositions remain outside this result.
+These congruences cover the full ambient space, so these GL pencils have no remaining regular summand.
+
+[SLTraceChart](../FD56/Stabilizer/SLTraceChart.lean) constructs constant coordinates for traceless matrices by omitting one diagonal coordinate and recovering it from the trace equation. [SLKirillovPencil](../FD56/Stabilizer/SLKirillovPencil.lean) defines the actual square SL matrix as the restriction EᵀH_GL E. It proves alternation and an exact linear equivalence between its bounded polynomial kernel and the full SL equation kernel. This restriction preserves the scalar correction in the SL equations.
+
+[MixedSLKronecker](../FD56/Hilbert/MixedSLKronecker.lean) proves the canonical decomposition for every m>n>0, with one block of dimension 2e+1 for each entry e of B(n²−1,n(m−n)+1). [MiddleSLKronecker](../FD56/Hilbert/MiddleSLKronecker.lean) gives the same conclusion for every actual SL degree list in m<n<2m, including the nonbalanced cases above. Both results hold over every field. [EventualHilbertBudget](../FD56/Hilbert/EventualHilbertBudget.lean) derives the exact middle-range budget from HSL(d)=HGL(d)+d+2 for sufficiently large d: the SL list has one more entry and total degree one less than the GL list. These SL decompositions also cover the entire ambient space. The boundaries n=m and n=2m are not covered by these pure-Kronecker results.
+
+## Regular blocks and general-depth reductions
+
+[SquareKirillovDeterminant](../FD56/Stabilizer/SquareKirillovDeterminant.lean) proves det H_GL=(det P)^(2n) when M and P are both n×n, over every commutative ring. [SquareKirillovMultiplicity](../FD56/Stabilizer/SquareKirillovMultiplicity.lean) consequently determines determinant root multiplicities whenever det P is nonzero. This does not determine the individual elementary divisors. [RegularJordanBlock](../FD56/Hilbert/RegularJordanBlock.lean) supplies constant inverse matrices identifying a specified rank-two coupling with a standard four-dimensional skew Jordan block. Normalization and decomposition of the actual generic square family remain to be proved.
+
+[ObservabilityGLTerminal](../FD56/Hilbert/ObservabilityGLTerminal.lean) derives the coefficient recurrence directly from the GL equations at every positive depth. With a supplied kernel basis, polynomial right inverse, and injective next stack, it constructs the unique terminal parameter E satisfying E(PM^qV)=0. [ObservabilityBackwardRows](../FD56/Hilbert/ObservabilityBackwardRows.lean) constructs the backward row recurrence from such an auxiliary relation and proves terminal recovery. The general reduced-basis degree transfer and its missing generic degree lists are not asserted by these structural lemmas.
+
+[ScalarObservability](../FD56/Stabilizer/ScalarObservability.lean) extends the observability argument to MX−XM=UP+cI. Under injective observability the matrix X is nilpotent; its trace vanishes over reduced commutative rings. [ObservabilitySLReduction](../FD56/Stabilizer/ObservabilitySLReduction.lean) retains the scalar terms in the unique row parameterization, including A(OMV)=−cV. [GenericObservableSLHilbert](../FD56/Hilbert/GenericObservableSLHilbert.lean) discharges observability and trace assumptions for the actual generic pair for every m>0. It proves HSL=HGL+dimension of the bounded scalar image, hence HGL≤HSL≤HGL+d+2 for every n and d. Computing that image for n>2m remains open.
 
 ## Third-depth degree transfer
 
