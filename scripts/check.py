@@ -66,15 +66,21 @@ def main():
     subprocess.run(["lake", "build"], cwd=ROOT, check=True)
     out = ROOT / ".verification"
     out.mkdir(exist_ok=True)
-    audit = out / "Audit.lean"
-    audit.write_text("import FD56\n" + "".join(f"#print axioms {n}\n" for n in names),
-                     encoding="utf-8")
-    result = subprocess.run(["lake", "env", "lean", "-j1", "-s65536", str(audit)],
-                            cwd=ROOT, text=True, encoding="utf-8", capture_output=True)
-    output = result.stdout + result.stderr
-    (out / "axioms.txt").write_text(output, encoding="utf-8")
-    require(result.returncode == 0, output)
-    audit_output(output, names)
+    outputs = []
+    for start in range(0, len(names), 100):
+        batch = names[start:start + 100]
+        audit = out / "Audit.lean"
+        audit.write_text("import FD56\n" + "".join(f"#print axioms {n}\n" for n in batch),
+                         encoding="utf-8")
+        result = subprocess.run(["lake", "env", "lean", "-j1", "-s65536", str(audit)],
+                                cwd=ROOT, text=True, encoding="utf-8", capture_output=True)
+        output = result.stdout + result.stderr
+        outputs.append(output)
+        (out / "axioms.txt").write_text("\n".join(outputs), encoding="utf-8")
+        require(result.returncode == 0,
+                f"Lean audit at theorem {start + 1} exited with code {result.returncode}\n{output}")
+        audit_output(output, batch)
+    audit_output("\n".join(outputs), names)
     print(f"Build passed; all {len(names)} theorems passed the axiom audit.")
 
 
