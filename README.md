@@ -6,13 +6,17 @@ Partial Lean formalization by Shifan Yu, concerning general and special linear s
 
 The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0), every GL list with m < n < 3m, and every SL degree multiplicity with m < n ≤ 2m. The GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field.
 
-At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered over every field. In characteristic zero, (10k,3k) has 2k² degrees equal to 32, and (13k,4k) has 2k² degrees equal to 36 and k² equal to 37. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
+At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered over every field. Characteristic-zero results also cover (10k,3k), (13k,4k), and (16k,5k); the last family has 2k² degrees equal to 41 and 2k² equal to 42. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
 
 All the nondivisible GL ranges above now have actual constant congruences of the full Kirillov pencil to standard Kronecker blocks: m>n, m<n<3m with n≠2m, and the proved third-depth families. A general theorem constructs this decomposition from any actual minimal-degree list and the full dimension equality, including characteristic two. The change of coordinates is constant in the pencil variable, over the rational function field of the generic coefficients.
 
 The same canonical conclusion holds for SL when m>n>0 and when m<n<2m. The actual SL matrix uses traceless coordinates, with a proved equivalence to the full SL equations. For square GL pencils the determinant identity det H=(det P)^(2n) is proved, but the full regular Jordan classification remains open in this formalization.
 
-For every depth q, the maximal minors of the universal observability matrix (P, PM, ..., PM^(q−1)) have only unit common divisors when m ≥ 2 and n < qm. The same theorem holds for the generic affine pair over every base field. A cofactor argument uses this result to determine the corank-one third-depth family. Other higher-depth degree lists remain open.
+At every positive depth q with qm<n≤(q+1)m, the GL kernel has a proved reduced basis with degrees αᵢ+βⱼ+q, given the two actual auxiliary degree profiles. The polynomial right inverse and every generic rank and leading-coefficient condition are proved. The missing higher-depth profiles remain explicit inputs.
+
+For every depth q, the maximal minors of the universal observability matrix (P, PM, ..., PM^(q−1)) have only unit common divisors when m ≥ 2 and n < qm. The same theorem holds for the generic affine pair over every base field. Cofactors determine the corank-one third-depth family and the exact bounded auxiliary relation dimensions in every corank-one depth. Other higher-depth degree lists remain open.
+
+The corresponding universal and generic affine minor-coprimality theorems are also proved for every strictly wide stack qm<n, over every field, together with an actual polynomial right inverse. The proof combines separability and diagonalization with cyclic determinant identities and coefficient-field descent.
 
 ## Check the proofs
 
