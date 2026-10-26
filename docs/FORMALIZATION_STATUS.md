@@ -1,8 +1,8 @@
 # Proof coverage
 
-The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. The proved nondivisible GL ranges, and SL when m>n>0 or m<n<2m, also have constant-congruence decompositions into standard Kronecker blocks. The complete generic Jordan–Kronecker classification remains unfinished.
+The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. The proved nondivisible GL ranges, SL when m>n>0 or m<n<2m, and every SL pair (n,m)=(2q+1,2) also have constant-congruence decompositions into standard Kronecker blocks. The complete generic Jordan–Kronecker classification remains unfinished.
 
-Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field unless a characteristic-zero assumption is stated. They do not assert a generic rational specialization over every field. Lean statements give the exact size and positivity assumptions.
+Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field unless a characteristic-zero assumption is stated. Every proved pure Kronecker decomposition holds on a nonempty principal parameter locus over an infinite base field; no nonempty rational locus is asserted over finite fields. Lean statements give the exact size and positivity assumptions.
 
 ## Established minimal degrees
 
@@ -29,6 +29,8 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | n = 2m − 2, m ≥ 5; characteristic zero | SL: B(3(m−1)², 2m−3). | [`generic_second_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneTwoSLClassification.lean) |
 | n = 2m − 1, m ≥ 2 | SL: m degrees equal to 3m − 3. | [`generic_near_double_sl_minimal_degrees`](../FD56/Hilbert/MixedOneSingleHighSL.lean) |
 | n = 2m, m > 0 | SL: one degree 3m − 1. GL polynomial kernel is zero. | [`generic_uniform_one_sl_minimal_degrees`](../FD56/Hilbert/UniformOneSLClassification.lean) |
+| n = 2q+1, m = 2, q≥0 | SL: two degrees q(q+2), over every field. | [TwoOutputOddSL](../FD56/Hilbert/TwoOutputOddSL.lean) |
+| (n,m) = (5,2) | The q=2 SL corollary: [8,8], with bounded Hilbert function 2 max(d−7,0), over every field. | [FiveTwoSLClassification](../FD56/Hilbert/FiveTwoSLClassification.lean) |
 | n = 1 | The full SL radical has m degree-zero generators for every polynomial pair. | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) |
 
 `HasMinimalKernelDegrees` contains an actual polynomial kernel basis with independent leading columns. [`hasMinimalKernelDegrees_iff_hilbert`](../FD56/Hilbert/MinimalProfile.lean) identifies its degree list with all bounded-kernel dimensions.
@@ -124,9 +126,21 @@ The proof constructs the congruence. [AffineKernelCoefficientGap](../FD56/Linear
 
 ## Regular blocks and general-depth reductions
 
-[SquareKirillovDeterminant](../FD56/Stabilizer/SquareKirillovDeterminant.lean) proves det H_GL=(det P)^(2n) when M and P are both n×n, over every commutative ring. [SquareKirillovMultiplicity](../FD56/Stabilizer/SquareKirillovMultiplicity.lean) consequently determines determinant root multiplicities whenever det P is nonzero. This does not determine the individual elementary divisors. [RegularJordanBlock](../FD56/Hilbert/RegularJordanBlock.lean) supplies constant inverse matrices identifying a specified rank-two coupling with a standard four-dimensional skew Jordan block. Normalization and decomposition of the actual generic square family remain to be proved.
+[TwoOutputOddSL](../FD56/Hilbert/TwoOutputOddSL.lean) proves the full generic SL decomposition for every n=2q+1, m=2, q≥0, over every field. There are two minimal degrees e=q(q+2) and two Kronecker blocks of dimension 2e+1, covering every trace chart and the full ambient space. For q>0, adjugates of two observability minors construct scalar lifts of degree at most e. A sparse specialization proves that their scalar cross combination is nonzero. The known GL kernel vanishing then excludes SL solutions below degree e; nullity two and the skew-pencil dimension bound force the complete list [e,e]. The q=0 case follows from the above-square theorem.
 
-[RegularPoleSeparation](../FD56/Hilbert/RegularPoleSeparation.lean) constructs constant inverse shears for a pencil with diagonal cross-pairing entries X−λᵢ. They eliminate couplings between unequal poles and replace each equal-pole coupling by A₀ᵢⱼ+λᵢA₁ᵢⱼ. The proof allows repeated poles and characteristic two, using a triangular correction rather than division by two. Applying this structure to the generic GL pencil still requires normalization and the ranks of the residual couplings.
+[FiveTwoSLClassification](../FD56/Hilbert/FiveTwoSLClassification.lean) records the q=2 corollaries: the unique degree list [8,8], Hilbert function 2 max(d−7,0), and a constant congruence to two 17-dimensional Kronecker blocks. These results use the general theorem and have no characteristic-zero or numeric-certificate assumption.
+
+[CongruenceSpecialization](../FD56/LinearAlgebra/CongruenceSpecialization.lean) clears one common denominator from a rational simultaneous congruence and its inverse. [KroneckerSpecialization](../FD56/Hilbert/KroneckerSpecialization.lean) applies the resulting polynomial identities to every point where that denominator is nonzero. [GenericKroneckerLocus](../FD56/Hilbert/GenericKroneckerLocus.lean) supplies the actual GL and SL adapters and proves that this principal locus is nonempty over an infinite base field. This establishes specialization of the proved pure Kronecker decompositions; projective-line genericity and the unresolved degree profiles are separate questions.
+
+[SquareKirillovDeterminant](../FD56/Stabilizer/SquareKirillovDeterminant.lean) proves det H_GL=(det P)^(2n) when M and P are both n×n, over every commutative ring. [SquareKirillovMultiplicity](../FD56/Stabilizer/SquareKirillovMultiplicity.lean) consequently determines determinant root multiplicities whenever det P is nonzero. This does not determine the individual elementary divisors. [RegularJordanBlock](../FD56/Hilbert/RegularJordanBlock.lean) supplies constant inverse matrices identifying a specified rank-two coupling with a standard four-dimensional skew Jordan block.
+
+[RegularPoleSeparation](../FD56/Hilbert/RegularPoleSeparation.lean) constructs constant inverse shears for a pencil with diagonal cross-pairing entries X−λᵢ. They eliminate couplings between unequal poles and replace each equal-pole coupling by A₀ᵢⱼ+λᵢA₁ᵢⱼ. The shear theorem allows repeated diagonal poles. [RegularPoleBlocks](../FD56/Hilbert/RegularPoleBlocks.lean) groups the result into a literal block diagonal using distinct labels for the pole classes. Both proofs include characteristic two and use a triangular correction without division by two.
+
+[SquareGLDiagonalJordan](../FD56/Stabilizer/SquareGLDiagonalJordan.lean) gives the full decomposition of the actual square GL pencil with M=A+XB and P=diag(X−λᵢ). If the λᵢ are distinct and, for each i, some j≠i has Aⱼᵢ+λᵢBⱼᵢ≠0, each pole has one Jordan block of dimension 4 and n−2 of dimension 2. The proof identifies the actual resonant coupling and normalizes its rank-two form via [StarCouplingDecomposition](../FD56/Hilbert/StarCouplingDecomposition.lean). It works over every field.
+
+[SquareGLNormalization](../FD56/Stabilizer/SquareGLNormalization.lean) constructs a constant Kirillov congruence taking P₀+XP₁ to that diagonal form from an inverse of P₁ and a simple eigenbasis of −P₁⁻¹P₀. [GenericResonantColumn](../FD56/LinearAlgebra/GenericResonantColumn.lean) proves the required resonance nonvanishing for independent generic state coefficients. [SquareGLCoefficientExtension](../FD56/Stabilizer/SquareGLCoefficientExtension.lean) embeds the original generic coefficient field into the resulting extension. Consequently, [GenericSquareGLJordan](../FD56/Stabilizer/GenericSquareGLJordan.lean) gives the claimed blocks for the original generic square pencil with n≥2, conditional on an injective row-coefficient embedding, an inverse leading matrix, and a simple row-pencil eigenbasis. The theorem constructs the constant congruence and its inverse. The row diagonalization itself remains to be formalized in this batch.
+
+[SquareGLScalarJordan](../FD56/Stabilizer/SquareGLScalarJordan.lean) settles n=m=1 over every field: the actual generic GL pencil has one regular Jordan block of dimension 2. More generally, it constructs the constant congruence for every scalar row pencil a+bX with b≠0, with pole −a/b.
 
 [ObservabilityGLTerminal](../FD56/Hilbert/ObservabilityGLTerminal.lean) derives the coefficient recurrence directly from the GL equations at every positive depth. With a supplied kernel basis, polynomial right inverse, and injective next stack, it constructs the unique terminal parameter E satisfying E(PM^qV)=0. [ObservabilityBackwardRows](../FD56/Hilbert/ObservabilityBackwardRows.lean) constructs the backward row recurrence from such an auxiliary relation and proves terminal recovery.
 
@@ -138,9 +152,9 @@ The proof constructs the congruence. [AffineKernelCoefficientGap](../FD56/Linear
 
 [KroneckerDimensionBound](../FD56/Hilbert/KroneckerDimensionBound.lean) proves sum(2e+1)≤n for every actual minimal-degree list of an n×n skew-symmetric pencil, without assuming the absence of a regular summand. It follows from independent chain coefficients, independent pairing functionals, and their annihilation relation.
 
-[MinimalDegreeNullity](../FD56/Hilbert/MinimalDegreeNullity.lean) identifies the length of an actual minimal-degree list with nullity over the polynomial fraction field. [FiveTwoSLNullity](../FD56/Hilbert/FiveTwoSLNullity.lean) proves that the actual generic SL pencil at (n,m)=(5,2) has nullity two and hence two minimal degrees. This alone does not determine their values.
+[MinimalDegreeNullity](../FD56/Hilbert/MinimalDegreeNullity.lean) identifies the length of an actual minimal-degree list with nullity over the polynomial fraction field. [TwoOutputOddSLClosure](../FD56/Hilbert/TwoOutputOddSLClosure.lean) uses the observability nullity formula to prove generic SL nullity two throughout the positive odd-depth family, supplying the length constraint in its classification.
 
-[ScalarObservability](../FD56/Stabilizer/ScalarObservability.lean) extends the observability argument to MX−XM=UP+cI. Under injective observability the matrix X is nilpotent; its trace vanishes over reduced commutative rings. [ObservabilitySLReduction](../FD56/Stabilizer/ObservabilitySLReduction.lean) retains the scalar terms in the unique row parameterization, including A(OMV)=−cV. [GenericObservableSLHilbert](../FD56/Hilbert/GenericObservableSLHilbert.lean) discharges observability and trace assumptions for the actual generic pair for every m>0. It proves HSL=HGL+dimension of the bounded scalar image, hence HGL≤HSL≤HGL+d+2 for every n and d. Computing that image for n>2m remains open.
+[ScalarObservability](../FD56/Stabilizer/ScalarObservability.lean) extends the observability argument to MX−XM=UP+cI. Under injective observability the matrix X is nilpotent; its trace vanishes over reduced commutative rings. [ObservabilitySLReduction](../FD56/Stabilizer/ObservabilitySLReduction.lean) retains the scalar terms in the unique row parameterization, including A(OMV)=−cV. [GenericObservableSLHilbert](../FD56/Hilbert/GenericObservableSLHilbert.lean) discharges observability and trace assumptions for the actual generic pair for every m>0. It proves HSL=HGL+dimension of the bounded scalar image, hence HGL≤HSL≤HGL+d+2 for every n and d. Computing that image for n>2m outside the odd-state two-output family remains open.
 
 ## Third-depth degree transfer
 
@@ -197,10 +211,10 @@ For every m≥2 and n=4m−1, [DepthThreeCorankOne](../FD56/Hilbert/DepthThreeCo
 ## Remaining work
 
 1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the proved families. The smallest uncovered strict third-depth pair in characteristic zero is (n,m)=(17,5). The (10k,3k), (13k,4k), and (16k,5k) beta and GL statements remain open in positive characteristic.
-2. The SL Hilbert formula for n > 2m. The middle range m < n ≤ 2m is now covered over every field.
-3. Canonical decompositions outside the full-dimension theorem and the GL ranges above, and identification of regular Jordan blocks. Zero polynomial kernel alone does not identify those blocks.
-4. Rank-open loci and genericity on projective lines. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
+2. The SL Hilbert formula for n > 2m outside the odd-state two-output family. That family and the middle range m < n ≤ 2m are covered over every field.
+3. Unconditional generic regular Jordan decompositions for square GL with n≥2 and the other unresolved regular families. The conditional row-diagonalization theorem and the scalar square case are proved; zero polynomial kernel alone does not identify regular blocks.
+4. Genericity on projective lines beyond the proved nonempty principal loci for pure Kronecker decompositions. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
 The arithmetic modules contain candidate formulas outside the proved cases. `glFormula` and `slFormula` are intended for positive n,m with 0 < n % m < m; their total Lean values elsewhere carry no classification assertion.
 
-Every exported theorem is checked for dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Passing the build certifies these Lean statements, not the full manuscript or its novelty.
+All 2,286 exported theorems in 509 modules have passed the dependency audit, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Passing the build certifies these Lean statements, not the full manuscript or its novelty.

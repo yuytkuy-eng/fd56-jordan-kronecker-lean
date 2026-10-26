@@ -12,7 +12,9 @@ At arbitrary depth, the family (n,m)=((2q+1)k,2k), q≥0 and k>0, is classified 
 
 All the nondivisible GL ranges above now have actual constant congruences of the full Kirillov pencil to standard Kronecker blocks: m>n, m<n<3m with n≠2m, and the proved third-depth families. A general theorem constructs this decomposition from any actual minimal-degree list and the full dimension equality, including characteristic two. The change of coordinates is constant in the pencil variable, over the rational function field of the generic coefficients.
 
-The same canonical conclusion holds for SL when m>n>0 and when m<n<2m. The actual SL matrix uses traceless coordinates, with a proved equivalence to the full SL equations. For square GL pencils the determinant identity det H=(det P)^(2n) is proved, but the full regular Jordan classification remains open in this formalization.
+The same canonical conclusion holds for SL when m>n>0, when m<n<2m, and for every (n,m)=(2q+1,2), q≥0. The odd-state family has two minimal degrees q(q+2) and two Kronecker blocks of dimension 2q(q+2)+1, over every field. The case (5,2) is the corollary [8,8], with two 17-dimensional blocks. The actual SL matrix uses traceless coordinates, with a proved equivalence to the full SL equations.
+
+Every proved generic pure Kronecker decomposition persists on a nonempty principal parameter locus over an infinite base field. For square GL with n≥2, a conditional theorem gives one Jordan block of dimension 4 and n−2 blocks of dimension 2 per pole after an injective row-coefficient extension with invertible leading matrix and a simple eigenbasis is supplied. Generic state coefficients satisfy the required resonance condition. The unrestricted generic row diagonalization remains to be formalized. The scalar case n=m=1 is proved unconditionally: one regular block of dimension 2.
 
 At every positive depth q with qm<n≤(q+1)m, the GL kernel has a proved reduced basis with degrees αᵢ+βⱼ+q, given the two actual auxiliary degree profiles. The polynomial right inverse and every generic rank and leading-coefficient condition are proved. The missing higher-depth profiles remain explicit inputs.
 
@@ -29,7 +31,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
+The verified inventory contains 509 Lean modules and 2,286 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
 
 For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 
