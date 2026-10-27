@@ -6,7 +6,7 @@ Partial Lean formalization by Shifan Yu, concerning general and special linear s
 
 The library determines actual reduced polynomial kernel-basis degrees for GL and SL when m ≥ n (SL: n > 0), every GL list with m < n < 3m, and every SL degree multiplicity with m < n ≤ 2m. The GL polynomial kernel vanishes whenever n is a positive multiple of m. These results hold over every field.
 
-At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered over every field. Characteristic-zero results also cover (10k,3k), (13k,4k), (16k,5k), (17k,5k), and (18k,5k). The last family has 6k² degrees equal to 34 and 6k² Kronecker blocks of dimension 69. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
+At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered over every field. Characteristic-zero results also cover (10k,3k), (13k,4k), (16k,5k), (17k,5k), (18k,5k), and (19k,6k). The last family has 5k² degrees equal to 47 and 5k² Kronecker blocks of dimension 95. **The complete generic GL/SL classification is not formalized.** See [proof coverage](docs/FORMALIZATION_STATUS.md) for formulas, assumptions, and remaining work.
 
 At arbitrary depth, the family (n,m)=((2q+1)k,2k), q≥0 and k>0, is classified over every field: the whole GL pencil consists of k² Kronecker blocks of dimension 4q²+8q+3.
 
@@ -18,11 +18,9 @@ Every one-output pencil (n,m)=(N,1), N≥1, is now classified over every field. 
 
 Every proved generic pure Kronecker decomposition persists on a nonempty principal parameter locus over an infinite base field.
 
-The generic square GL pencil is fully classified over every base field, after an explicitly injective coefficient extension. For n=m≥2, it has n distinct poles, each with one Jordan block of dimension 4 and n−2 blocks of dimension 2. The proof constructs the row diagonalization, verifies the resonances, and supplies a constant congruence with its inverse. For n=m=1, there is one regular block of dimension 2.
+The generic GL and SL pencils at every positive divisible size n=qm, q≥1, are fully classified over every base field, after an algebraically closed coefficient extension. Put D=mq(q+1)/2. For m≥2, the GL pencil has D distinct poles, each with one Jordan block of dimension 4 and m−2 blocks of dimension 2. The SL pencil has one Kronecker block of dimension 2D−1 and m−1 Jordan blocks of dimension 2 at each pole. Both proofs construct mutually inverse constant matrices giving the full canonical congruence.
 
-The generic square SL pencil is also fully classified over every base field. For n=m≥2, over the same coefficient extension it has one Kronecker block of degree n−1 and n−1 Jordan blocks of dimension 2 at each of n distinct poles. For n=m=1, it is one degree-zero Kronecker block. The final statements construct the full constant congruence and have no remaining eigenbasis or resonance assumptions.
-
-Every divisible GL size n=qm, q≥1 and m≥2, is fully classified over every base field, after an algebraically closed coefficient extension. There are mq(q+1)/2 distinct poles, each with one Jordan block of dimension 4 and m−2 blocks of dimension 2. The proof constructs a constant congruence of the full Kirillov pencil and its inverse. The leading matrix is invertible, and the determinant equals det(O_q)^(2m).
+The unique SL minimal degree is D−1 over the original generic coefficient field, for every m>0. Its leading matrix has nullity one. For m≥2, its nullity at a finite pole is 2m−1 and is one elsewhere.
 
 At every positive depth q with qm<n≤(q+1)m, the GL kernel has a proved reduced basis with degrees αᵢ+βⱼ+q, given the two actual auxiliary degree profiles. The polynomial right inverse and every generic rank and leading-coefficient condition are proved. The missing higher-depth profiles remain explicit inputs.
 
@@ -39,7 +37,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The verified inventory contains 623 Lean modules and 2,682 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
+The verified inventory contains 658 Lean modules and 2,799 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
 
 For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 
