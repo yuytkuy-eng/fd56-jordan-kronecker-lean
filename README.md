@@ -14,7 +14,7 @@ All the nondivisible GL ranges above now have actual constant congruences of the
 
 The same canonical conclusion holds for SL when m>n>0, when m<n<2m, and for every (n,m)=(2q+1,2), q≥0. The odd-state family has two minimal degrees q(q+2) and two Kronecker blocks of dimension 2q(q+2)+1, over every field. The case (5,2) is the corollary [8,8], with two 17-dimensional blocks. The actual SL matrix uses traceless coordinates, with a proved equivalence to the full SL equations.
 
-Every one-output SL pencil (n,m)=(N,1), N≥1, is now classified over every field: its sole minimal degree is N(N+1)/2−1, and the full pencil is one Kronecker block of dimension N(N+1)−1.
+Every one-output pencil (n,m)=(N,1), N≥1, is now classified over every field. The SL pencil is one Kronecker block of dimension N(N+1)−1, with minimal degree N(N+1)/2−1. After a coefficient-field extension, the GL pencil has N(N+1)/2 distinct poles and one Jordan block of dimension 2 at each pole, with a proved constant congruence and its inverse.
 
 Every proved generic pure Kronecker decomposition persists on a nonempty principal parameter locus over an infinite base field.
 
@@ -22,7 +22,7 @@ The generic square GL pencil is fully classified over every base field, after an
 
 The generic square SL pencil is also fully classified over every base field. For n=m≥2, over the same coefficient extension it has one Kronecker block of degree n−1 and n−1 Jordan blocks of dimension 2 at each of n distinct poles. For n=m=1, it is one degree-zero Kronecker block. The final statements construct the full constant congruence and have no remaining eigenbasis or resonance assumptions.
 
-For every divisible size n=qm, q≥1 and m>0, the generic GL determinant equals det(O_q)^(2m). The observability determinant has degree mq(q+1)/2 and is separable over every base field. The GL leading matrix is invertible, and each observability root has multiplicity 2m in the GL determinant. Individual regular Jordan block sizes remain to be determined in the nonsquare cases.
+For every divisible size n=qm, q≥1 and m>0, the generic GL determinant equals det(O_q)^(2m). The observability determinant has degree mq(q+1)/2 and is separable over every base field. The GL leading matrix is invertible, and each pole has determinant multiplicity 2m. For m≥2, the matrix nullity at every finite pole in every field extension is 2m−2. The full regular canonical decomposition remains to be proved when n>m≥2.
 
 At every positive depth q with qm<n≤(q+1)m, the GL kernel has a proved reduced basis with degrees αᵢ+βⱼ+q, given the two actual auxiliary degree profiles. The polynomial right inverse and every generic rank and leading-coefficient condition are proved. The missing higher-depth profiles remain explicit inputs.
 
@@ -39,7 +39,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The verified inventory contains 571 Lean modules and 2,547 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
+The verified inventory contains 591 Lean modules and 2,589 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
 
 For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 
