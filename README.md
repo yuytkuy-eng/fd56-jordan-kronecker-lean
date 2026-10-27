@@ -22,6 +22,8 @@ The generic GL and SL pencils at every positive divisible size n=qm, q≥1, are 
 
 The unique SL minimal degree is D−1 over the original generic coefficient field, for every m>0. Its leading matrix has nullity one. For m≥2, its nullity at a finite pole is 2m−1 and is one elsewhere.
 
+Over an algebraically closed infinite field, these divisible GL/SL block formulas for m≥2 hold at every point of a nonempty principal locus in the original space of ordered affine pairs. The two matrix-pair endpoints are linearly independent there. Descent to a Grassmannian of projective lines remains open.
+
 At every positive depth q with qm<n≤(q+1)m, the GL kernel has a proved reduced basis with degrees αᵢ+βⱼ+q, given the two actual auxiliary degree profiles. The polynomial right inverse and every generic rank and leading-coefficient condition are proved. The missing higher-depth profiles remain explicit inputs.
 
 For every depth q, the maximal minors of the universal observability matrix (P, PM, ..., PM^(q−1)) have only unit common divisors when m ≥ 2 and n < qm. The same theorem holds for the generic affine pair over every base field. Cofactors determine the corank-one third-depth family and the exact bounded auxiliary relation dimensions in every corank-one depth. Other higher-depth degree lists remain open.
@@ -37,7 +39,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The verified inventory contains 658 Lean modules and 2,799 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
+The verified inventory contains 671 Lean modules and 2,820 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
 
 For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 
