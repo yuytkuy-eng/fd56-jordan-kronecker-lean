@@ -196,6 +196,7 @@ import FD56.Hilbert.GenericSLScalarHankel
 import FD56.Hilbert.GenericTall
 import FD56.Hilbert.GenericTerminalDegreeBudget
 import FD56.Hilbert.GenericTerminalObservability
+import FD56.Hilbert.GenericTwoColumnPluckerSpecialization
 import FD56.Hilbert.GLBalancedFormula
 import FD56.Hilbert.GLMatrix
 import FD56.Hilbert.GLRows
@@ -674,7 +675,13 @@ import FD56.LinearAlgebra.SimpleDeterminantRoot
 import FD56.LinearAlgebra.SplittingMatrixDiagonalization
 import FD56.LinearAlgebra.StackedHankel
 import FD56.LinearAlgebra.StateVariableDescent
+import FD56.LinearAlgebra.SubalgebraGeneratorBound
 import FD56.LinearAlgebra.SymplecticMatrixNormalization
+import FD56.LinearAlgebra.TwoColumnPluckerDominance
+import FD56.LinearAlgebra.TwoColumnPluckerNormalization
+import FD56.LinearAlgebra.TwoColumnPluckerTranscendence
+import FD56.LinearAlgebra.TwoColumnUniversalFrame
+import FD56.LinearAlgebra.TwoColumnUniversalSpecialization
 import FD56.LinearAlgebra.UniformKernelCoefficients
 import FD56.LinearAlgebra.UniformKernelFunctionals
 import FD56.LinearAlgebra.UniformKroneckerBasis
