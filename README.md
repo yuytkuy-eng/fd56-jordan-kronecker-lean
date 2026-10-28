@@ -18,6 +18,8 @@ Exact SL block sizes are known when m>n>0, when m<n<2m, and for every (n,m)=(2q+
 
 In characteristic zero, every SL family n=mq+1 or n=mq+m−1, with m≥2 and q≥0, is completely classified. Each has m equal minimal degrees: (mq²+(m+2)q)/2 in the first family and (mq²+(3m−2)q+2m−4)/2 in the second. The whole pencil consists of m Kronecker blocks of dimension twice that degree plus one, in every trace chart. This includes every nondivisible three-output SL pencil.
 
+The characteristic-zero SL case (n,m)=(10,4) has minimal degrees [13,13,13,14,14], with three Kronecker blocks of dimension 27 and two of dimension 29.
+
 For the repeated families (10k,3k) and (14k,3k), the exact individual SL degrees for k>1 remain unspecified.
 
 Every one-output pencil (n,m)=(N,1), N≥1, is now classified over every field. The SL pencil is one Kronecker block of dimension N(N+1)−1, with minimal degree N(N+1)/2−1. After a coefficient-field extension, the GL pencil has N(N+1)/2 distinct poles and one Jordan block of dimension 2 at each pole, with a proved constant congruence and its inverse.
@@ -45,7 +47,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The verified inventory contains 732 Lean modules and 3,021 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
+The verified inventory contains 751 Lean modules and 3,051 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
 
 For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 
