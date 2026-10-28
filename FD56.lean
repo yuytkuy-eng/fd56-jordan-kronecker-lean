@@ -19,12 +19,14 @@ import FD56.Hilbert.Basis
 import FD56.Hilbert.BetaCoefficients
 import FD56.Hilbert.BetaKernel
 import FD56.Hilbert.Bidiagonal
+import FD56.Hilbert.BidiagonalScalarObstruction
 import FD56.Hilbert.BlockSum
 import FD56.Hilbert.Coefficients
 import FD56.Hilbert.CofactorKernelDegrees
 import FD56.Hilbert.CofactorMinimalDegree
 import FD56.Hilbert.ColumnSurjectivity
 import FD56.Hilbert.ConstantEquivalence
+import FD56.Hilbert.ConstantKroneckerScalarObstruction
 import FD56.Hilbert.ConvolutionDegrees
 import FD56.Hilbert.CorankOneKirillov
 import FD56.Hilbert.CorankOneObservabilityAllDepths
@@ -143,6 +145,7 @@ import FD56.Hilbert.FourteenThreeKronecker
 import FD56.Hilbert.FourteenThreeSLClassification
 import FD56.Hilbert.FourteenThreeSLStructure
 import FD56.Hilbert.GeneralGLDimension
+import FD56.Hilbert.GeneralSLScalarCritical
 import FD56.Hilbert.GenericAbove
 import FD56.Hilbert.GenericActualDepthTwoStack
 import FD56.Hilbert.GenericAllDepthGL
@@ -185,7 +188,10 @@ import FD56.Hilbert.GenericObservableSLHilbert
 import FD56.Hilbert.GenericOneColumnSL
 import FD56.Hilbert.GenericPencil
 import FD56.Hilbert.GenericPrescribedMatrix
+import FD56.Hilbert.GenericRingWitness
 import FD56.Hilbert.GenericSLFromKroneckerGL
+import FD56.Hilbert.GenericSLScalarEnvelope
+import FD56.Hilbert.GenericSLScalarHankel
 import FD56.Hilbert.GenericTall
 import FD56.Hilbert.GenericTerminalDegreeBudget
 import FD56.Hilbert.GenericTerminalObservability
@@ -211,6 +217,7 @@ import FD56.Hilbert.KroneckerDimension
 import FD56.Hilbert.KroneckerDimensionBound
 import FD56.Hilbert.KroneckerEndpoints
 import FD56.Hilbert.KroneckerScalarForcing
+import FD56.Hilbert.KroneckerScalarObstruction
 import FD56.Hilbert.KroneckerSLHilbert
 import FD56.Hilbert.KroneckerSpecialization
 import FD56.Hilbert.KroneckerSum
@@ -438,6 +445,7 @@ import FD56.Hilbert.ThreeOutputTwoGenericFrame
 import FD56.Hilbert.ThreeOutputTwoScalarLifts
 import FD56.Hilbert.ThreeOutputTwoSL
 import FD56.Hilbert.ThreeOutputTwoSLClosure
+import FD56.Hilbert.TwelveFiveSLTests
 import FD56.Hilbert.TwoDegreeClosure
 import FD56.Hilbert.TwoDegreeCriterion
 import FD56.Hilbert.TwoOutputOddGL
@@ -490,6 +498,7 @@ import FD56.Hilbert.WeightedCoefficients
 import FD56.Hilbert.WeightedKernelGrowth
 import FD56.Hilbert.WeightedRowLifting
 import FD56.Hilbert.WeightedSurjectivity
+import FD56.LinearAlgebra.AffineEndpointCompression
 import FD56.LinearAlgebra.AffineKernelCoefficientGap
 import FD56.LinearAlgebra.AffineKernelDualLift
 import FD56.LinearAlgebra.AffineKernelDualRank
@@ -497,6 +506,7 @@ import FD56.LinearAlgebra.AffineKernelFrameRank
 import FD56.LinearAlgebra.AffineProduct
 import FD56.LinearAlgebra.AffineRatioSeparable
 import FD56.LinearAlgebra.AffineShear
+import FD56.LinearAlgebra.AlgebraicDominance
 import FD56.LinearAlgebra.AlternatingCongruence
 import FD56.LinearAlgebra.AlternatingCrossDeterminant
 import FD56.LinearAlgebra.AlternatingPencilOperator
