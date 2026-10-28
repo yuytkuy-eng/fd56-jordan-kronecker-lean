@@ -128,6 +128,11 @@ import FD56.Hilbert.FamilySLRealization
 import FD56.Hilbert.FamilySLWitness
 import FD56.Hilbert.FamilySLWitnessKernel
 import FD56.Hilbert.FiniteMatrixEvaluation
+import FD56.Hilbert.FiveOutputTangentBinding
+import FD56.Hilbert.FiveOutputTangentData
+import FD56.Hilbert.FiveOutputTangentRank
+import FD56.Hilbert.FiveOutputTangentVanishing
+import FD56.Hilbert.FiveOutputTangentWitness
 import FD56.Hilbert.FiveTwoSLClassification
 import FD56.Hilbert.FiveTwoSLNullity
 import FD56.Hilbert.FourOutputCoprimeChart
@@ -196,6 +201,9 @@ import FD56.Hilbert.GenericSLScalarHankel
 import FD56.Hilbert.GenericTall
 import FD56.Hilbert.GenericTerminalDegreeBudget
 import FD56.Hilbert.GenericTerminalObservability
+import FD56.Hilbert.GenericTwelveFiveSLTangentClassification
+import FD56.Hilbert.GenericTwelveFiveTangentVanishing
+import FD56.Hilbert.GenericTwoColumnFullSpecialization
 import FD56.Hilbert.GenericTwoColumnPluckerSpecialization
 import FD56.Hilbert.GLBalancedFormula
 import FD56.Hilbert.GLMatrix
@@ -448,6 +456,9 @@ import FD56.Hilbert.ThreeOutputTwoScalarLifts
 import FD56.Hilbert.ThreeOutputTwoSL
 import FD56.Hilbert.ThreeOutputTwoSLClosure
 import FD56.Hilbert.TwelveFiveSLTests
+import FD56.Hilbert.TwoColumnGradientAlternation
+import FD56.Hilbert.TwoColumnInteriorGradientBounds
+import FD56.Hilbert.TwoColumnInteriorGradients
 import FD56.Hilbert.TwoDegreeClosure
 import FD56.Hilbert.TwoDegreeCriterion
 import FD56.Hilbert.TwoOutputOddGL
@@ -547,6 +558,8 @@ import FD56.LinearAlgebra.ExactKernelBasis
 import FD56.LinearAlgebra.FiniteFieldGenerators
 import FD56.LinearAlgebra.FiniteGCDCovariance
 import FD56.LinearAlgebra.FiniteShiftMatrix
+import FD56.LinearAlgebra.FiveOutputPluckerTangent
+import FD56.LinearAlgebra.FiveOutputTangentTransfer
 import FD56.LinearAlgebra.FractionFieldDerivation
 import FD56.LinearAlgebra.FullKrylovBound
 import FD56.LinearAlgebra.FullKrylovGeneratorBound
@@ -588,6 +601,7 @@ import FD56.LinearAlgebra.KrylovSpan
 import FD56.LinearAlgebra.LastRowBlockMinor
 import FD56.LinearAlgebra.MatrixDeterminantDerivation
 import FD56.LinearAlgebra.MatrixDeterminantDifferential
+import FD56.LinearAlgebra.MatrixFactorRelations
 import FD56.LinearAlgebra.MatrixGeneratorObstructions
 import FD56.LinearAlgebra.MatrixPrimaryRestriction
 import FD56.LinearAlgebra.MaximalMinorColumnOperations
@@ -601,6 +615,8 @@ import FD56.LinearAlgebra.MixedKroneckerBasis
 import FD56.LinearAlgebra.MixedKroneckerCongruence
 import FD56.LinearAlgebra.MonomialLift
 import FD56.LinearAlgebra.MultivariateCommonDivisors
+import FD56.LinearAlgebra.NatDotCertificate
+import FD56.LinearAlgebra.NatSelectedInverseCertificate
 import FD56.LinearAlgebra.NilpotentFourGram
 import FD56.LinearAlgebra.NilpotentFourNormalForm
 import FD56.LinearAlgebra.NonconstantCoordinate
@@ -611,11 +627,13 @@ import FD56.LinearAlgebra.PluckerActionRowModule
 import FD56.LinearAlgebra.PluckerChartCramer
 import FD56.LinearAlgebra.PluckerChartDerivationCoordinates
 import FD56.LinearAlgebra.PluckerChartReconstruction
+import FD56.LinearAlgebra.PluckerChartRecovery
 import FD56.LinearAlgebra.PluckerChartSystem
 import FD56.LinearAlgebra.PluckerConstantOutputDerivation
 import FD56.LinearAlgebra.PluckerDegreeBalance
 import FD56.LinearAlgebra.PluckerDifferential
 import FD56.LinearAlgebra.PluckerDifferentialImage
+import FD56.LinearAlgebra.PluckerLinearizedRelations
 import FD56.LinearAlgebra.PluckerOutputAction
 import FD56.LinearAlgebra.PluckerOutputActionTransport
 import FD56.LinearAlgebra.PolynomialBezout
@@ -662,10 +680,13 @@ import FD56.LinearAlgebra.RectangularCongruenceDeterminant
 import FD56.LinearAlgebra.RectangularMinorDivisors
 import FD56.LinearAlgebra.ReducedBasis
 import FD56.LinearAlgebra.ReducedFactorDegrees
+import FD56.LinearAlgebra.ReducedFactorKernelTest
 import FD56.LinearAlgebra.RegularPencilPrimaryData
 import FD56.LinearAlgebra.RegularPoleCorrection
 import FD56.LinearAlgebra.RowNormalization
+import FD56.LinearAlgebra.SelectedFrameTranspose
 import FD56.LinearAlgebra.SelectedMinorFactorization
+import FD56.LinearAlgebra.SelectedPolynomialCoefficients
 import FD56.LinearAlgebra.SelfAdjointFitting
 import FD56.LinearAlgebra.SelfAdjointPrimaryDecomposition
 import FD56.LinearAlgebra.SeparableDeterminant
@@ -679,6 +700,7 @@ import FD56.LinearAlgebra.SubalgebraGeneratorBound
 import FD56.LinearAlgebra.SymplecticMatrixNormalization
 import FD56.LinearAlgebra.TwoColumnPluckerDominance
 import FD56.LinearAlgebra.TwoColumnPluckerNormalization
+import FD56.LinearAlgebra.TwoColumnPluckerTangent
 import FD56.LinearAlgebra.TwoColumnPluckerTranscendence
 import FD56.LinearAlgebra.TwoColumnUniversalFrame
 import FD56.LinearAlgebra.TwoColumnUniversalSpecialization
