@@ -161,6 +161,7 @@ import FD56.Hilbert.GenericFourOutputSLClassification
 import FD56.Hilbert.GenericGLClassification
 import FD56.Hilbert.GenericHankelScalar
 import FD56.Hilbert.GenericInteriorDegreeBalance
+import FD56.Hilbert.GenericInteriorDifferentialImage
 import FD56.Hilbert.GenericInteriorDifferentialRank
 import FD56.Hilbert.GenericInteriorScalarFrame
 import FD56.Hilbert.GenericKernelBound
@@ -532,6 +533,7 @@ import FD56.LinearAlgebra.CoordinateGraphChart
 import FD56.LinearAlgebra.CorankOneKernelGenerator
 import FD56.LinearAlgebra.CyclicPolynomialLeading
 import FD56.LinearAlgebra.DerivationAlgebraicIndependence
+import FD56.LinearAlgebra.DerivationIndependentSubfamily
 import FD56.LinearAlgebra.DisjointMonomialDivisors
 import FD56.LinearAlgebra.DisjointVariableDivisors
 import FD56.LinearAlgebra.DualBasis
@@ -612,6 +614,7 @@ import FD56.LinearAlgebra.PluckerChartSystem
 import FD56.LinearAlgebra.PluckerConstantOutputDerivation
 import FD56.LinearAlgebra.PluckerDegreeBalance
 import FD56.LinearAlgebra.PluckerDifferential
+import FD56.LinearAlgebra.PluckerDifferentialImage
 import FD56.LinearAlgebra.PluckerOutputAction
 import FD56.LinearAlgebra.PluckerOutputActionTransport
 import FD56.LinearAlgebra.PolynomialBezout
@@ -619,6 +622,7 @@ import FD56.LinearAlgebra.PolynomialCoefficientDerivation
 import FD56.LinearAlgebra.PolynomialCommonDivisors
 import FD56.LinearAlgebra.PolynomialCongruenceKernel
 import FD56.LinearAlgebra.PolynomialCongruenceSpecialization
+import FD56.LinearAlgebra.PolynomialDerivationCoordinates
 import FD56.LinearAlgebra.PolynomialDerivationImage
 import FD56.LinearAlgebra.PolynomialDeterminantDerivative
 import FD56.LinearAlgebra.PolynomialDivisorLocalization
