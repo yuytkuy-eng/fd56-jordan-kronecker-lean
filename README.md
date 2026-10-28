@@ -10,19 +10,19 @@ At depth three, all sizes (n,m)=((4a−1)k,ak), a≥2 and k≥1, are covered ove
 
 At arbitrary depth, the family (n,m)=((2q+1)k,2k), q≥0 and k>0, is classified over every field: the whole GL pencil consists of k² Kronecker blocks of dimension 4q²+8q+3.
 
-At depth four, the characteristic-zero family (14k,3k), k>0, has 2k² GL minimal degrees equal to 59 and a full decomposition into 2k² Kronecker blocks of dimension 119.
+At depth four, characteristic-zero results cover two families for k>0. The family (13k,3k) has k² GL degrees equal to 51 and k² equal to 52, giving k² Kronecker blocks each of dimensions 103 and 105. The family (14k,3k) has 2k² degrees equal to 59 and 2k² blocks of dimension 119.
 
 For every positive nondivisible size n=qm+r, 0<r<m, both generic GL and SL pencils consist entirely of Kronecker blocks, over every field. GL has r(m−r) blocks and SL has r(m−r)+1. Their total minimal degrees are (n(n+m)−r(m−r))/2 and one less, respectively. The proofs construct full constant congruences and their inverses over the generic coefficient field. These totals do not determine the individual block sizes.
 
 Exact SL block sizes are known when m>n>0, when m<n<2m, and for every (n,m)=(2q+1,2), q≥0. The odd-state family has two minimal degrees q(q+2) and two Kronecker blocks of dimension 2q(q+2)+1, over every field. The case (5,2) is the corollary [8,8], with two 17-dimensional blocks. The actual SL matrix uses traceless coordinates, with a proved equivalence to the full SL equations.
 
-Every nondivisible three-output SL pencil is completely classified in characteristic zero. For n=3q+1, its three minimal degrees equal q(3q+5)/2; for n=3q+2, they equal (3q²+7q+2)/2, with q≥0. Each case has three Kronecker blocks of dimension twice that degree plus one, in every trace chart. This includes three 43-dimensional blocks for (10,3) and three 79-dimensional blocks for (14,3).
+In characteristic zero, every SL family n=mq+1 or n=mq+m−1, with m≥2 and q≥0, is completely classified. Each has m equal minimal degrees: (mq²+(m+2)q)/2 in the first family and (mq²+(3m−2)q+2m−4)/2 in the second. The whole pencil consists of m Kronecker blocks of dimension twice that degree plus one, in every trace chart. This includes every nondivisible three-output SL pencil.
 
 For the repeated families (10k,3k) and (14k,3k), the exact individual SL degrees for k>1 remain unspecified.
 
 Every one-output pencil (n,m)=(N,1), N≥1, is now classified over every field. The SL pencil is one Kronecker block of dimension N(N+1)−1, with minimal degree N(N+1)/2−1. After a coefficient-field extension, the GL pencil has N(N+1)/2 distinct poles and one Jordan block of dimension 2 at each pole, with a proved constant congruence and its inverse.
 
-Every proved generic pure Kronecker decomposition persists on a nonempty principal parameter locus over an infinite base field.
+Every proved generic pure Kronecker decomposition persists on a nonempty principal parameter locus over an infinite base field. The general nondivisible GL and SL decompositions for n>m hold simultaneously on one such locus, with fixed degree lists and independent ordered coadjoint endpoints throughout it.
 
 The generic GL and SL pencils at every positive divisible size n=qm, q≥1, are fully classified over every base field, after an algebraically closed coefficient extension. Put D=mq(q+1)/2. For m≥2, the GL pencil has D distinct poles, each with one Jordan block of dimension 4 and m−2 blocks of dimension 2. The SL pencil has one Kronecker block of dimension 2D−1 and m−1 Jordan blocks of dimension 2 at each pole. Both proofs construct mutually inverse constant matrices giving the full canonical congruence.
 
@@ -45,7 +45,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The verified inventory contains 708 Lean modules and 2,934 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
+The verified inventory contains 732 Lean modules and 3,021 exported theorems. The toolchain and dependency files pin Lean and mathlib. The check builds every module and audits every theorem for axiom dependencies, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Checks run in batches of at most 100 theorems, with both each batch and the complete inventory validated. Missing output or a failed process fails the audit. It rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files go in `.verification/` and are not committed. GitHub Actions runs the same check.
 
 For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 
