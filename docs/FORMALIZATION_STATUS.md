@@ -1,6 +1,6 @@
 # Proof coverage
 
-The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. The proved nondivisible GL ranges, SL when m>n>0 or m<n<2m, every SL pair (n,m)=(2q+1,2), and all one-output SL pencils also have constant-congruence decompositions into standard Kronecker blocks. All positive divisible GL and SL sizes have full canonical decompositions after a coefficient-field extension, over every base field. The complete generic Jordan–Kronecker classification remains unfinished.
+The library is a partial formalization. Its degree results describe actual reduced polynomial kernel bases. The proved nondivisible GL ranges, SL when m>n>0 or m<n<2m, every SL pair (n,m)=(2q+1,2), all one-output SL pencils, and the characteristic-zero SL pairs (10,3) and (14,3) also have constant-congruence decompositions into standard Kronecker blocks. All positive divisible GL and SL sizes have full canonical decompositions after a coefficient-field extension, over every base field. The complete generic Jordan–Kronecker classification remains unfinished.
 
 Here **generic** means the universal affine pair over the rational function field of its independent coefficients. The final degree theorems below hold over every base field unless a characteristic-zero assumption is stated. Every proved pure Kronecker decomposition holds on a nonempty principal parameter locus over an infinite base field. The positive divisible GL/SL families with m≥2 also have a nonempty principal locus of independent ordered affine pairs over an algebraically closed infinite field. No nonempty rational locus is asserted over finite fields. Lean statements give the exact size and positivity assumptions.
 
@@ -26,6 +26,7 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | n = 17k, m = 5k, k > 0; characteristic zero | GL: 2k² degrees equal to 30 and 4k² equal to 31. Alpha has 2k copies of 15; beta has k copies of 12 and 2k copies of 13. | [`generic_seventeen_five_repeated_gl_minimal_degrees`](../FD56/Hilbert/DepthThreeSeventeenFiveFamily.lean) |
 | n = 18k, m = 5k, k > 0; characteristic zero | GL: 6k² degrees equal to 34. Alpha has 3k copies of 10; beta has 2k copies of 21. | [`generic_eighteen_five_repeated_gl_minimal_degrees`](../FD56/Hilbert/DepthThreeEighteenFiveFamily.lean) |
 | n = 19k, m = 6k, k > 0; characteristic zero | GL: 5k² degrees equal to 47. Alpha has k copies of 36; beta has 5k copies of 8. | [DepthThreeNineteenSixFamily](../FD56/Hilbert/DepthThreeNineteenSixFamily.lean) |
+| n = 14k, m = 3k, k > 0; characteristic zero | GL: 2k² degrees equal to 59. Alpha has 2k copies of 15; beta has k copies of 40. | [FourteenThreeKronecker](../FD56/Hilbert/FourteenThreeKronecker.lean) |
 | m < n, 2n ≤ 3m | Complete SL degree list, including every uniform and nonuniform case in this range. | [`generic_middle_sl_minimal_degrees_of_twice_le`](../FD56/Hilbert/MiddleSLClassification.lean) |
 | 3m < 2n, n < 2m | Complete SL Hilbert function and every minimal-degree multiplicity, over every field. | [`generic_mixed_one_slHilbert_closed`](../FD56/Hilbert/MixedOneSLHilbert.lean), [`generic_mixed_one_sl_minimal_multiplicities`](../FD56/Hilbert/MixedOneSLClassification.lean) |
 | n = 2m − 3, m ≥ 4; characteristic zero | SL: B(3(m−2)(m−1)+2, 3m−8). | [`generic_third_near_double_sl_minimal_degrees_all`](../FD56/Hilbert/MixedOneThreeSLClassification.lean) |
@@ -35,6 +36,8 @@ Write B(D,R) for the balanced list of R nonnegative integers with sum D. Multipl
 | n = 2q+1, m = 2, q≥0 | SL: two degrees q(q+2), over every field. | [TwoOutputOddSL](../FD56/Hilbert/TwoOutputOddSL.lean) |
 | n = N≥1, m = 1 | SL: one degree N(N+1)/2−1, over every field. | [OneOutputSL](../FD56/Hilbert/OneOutputSL.lean) |
 | (n,m) = (5,2) | The q=2 SL corollary: [8,8], with bounded Hilbert function 2 max(d−7,0), over every field. | [FiveTwoSLClassification](../FD56/Hilbert/FiveTwoSLClassification.lean) |
+| (n,m) = (10,3); characteristic zero | SL: [21,21,21], with Hilbert function 3 max(d+1−21,0). | [TenThreeSLClassification](../FD56/Hilbert/TenThreeSLClassification.lean) |
+| (n,m) = (14,3); characteristic zero | SL: [39,39,39], with Hilbert function 3 max(d+1−39,0). | [FourteenThreeSLClassification](../FD56/Hilbert/FourteenThreeSLClassification.lean) |
 | n = 1 | The full SL radical has m degree-zero generators for every polynomial pair. | [`scalar_slHilbert_profile`](../FD56/Hilbert/ScalarSL.lean) |
 
 `HasMinimalKernelDegrees` contains an actual polynomial kernel basis with independent leading columns. [`hasMinimalKernelDegrees_iff_hilbert`](../FD56/Hilbert/MinimalProfile.lean) identifies its degree list with all bounded-kernel dimensions.
@@ -124,12 +127,17 @@ The proof constructs the congruence. [AffineKernelCoefficientGap](../FD56/Linear
 | (n,m)=(17k,5k) | 2k² Kronecker blocks of dimension 61 and 4k² of dimension 63 | Characteristic zero; k>0 |
 | (n,m)=(18k,5k) | 6k² Kronecker blocks of dimension 69 | Characteristic zero; k>0 |
 | (n,m)=(19k,6k) | 5k² Kronecker blocks of dimension 95 | Characteristic zero; k>0 |
+| (n,m)=(14k,3k) | 2k² Kronecker blocks of dimension 119 | Characteristic zero; k>0 |
 
-[SixteenFiveKronecker](../FD56/Hilbert/SixteenFiveKronecker.lean), [SeventeenFiveKronecker](../FD56/Hilbert/SeventeenFiveKronecker.lean), [EighteenFiveKronecker](../FD56/Hilbert/EighteenFiveKronecker.lean), and [NineteenSixKronecker](../FD56/Hilbert/NineteenSixKronecker.lean) supply the final four families in the table. These congruences cover the full ambient space, so these GL pencils have no remaining regular summand.
+[SixteenFiveKronecker](../FD56/Hilbert/SixteenFiveKronecker.lean), [SeventeenFiveKronecker](../FD56/Hilbert/SeventeenFiveKronecker.lean), [EighteenFiveKronecker](../FD56/Hilbert/EighteenFiveKronecker.lean), [NineteenSixKronecker](../FD56/Hilbert/NineteenSixKronecker.lean), and [FourteenThreeKronecker](../FD56/Hilbert/FourteenThreeKronecker.lean) supply the final five families in the table. These congruences cover the full ambient space, so these GL pencils have no remaining regular summand.
 
 [SLTraceChart](../FD56/Stabilizer/SLTraceChart.lean) constructs constant coordinates for traceless matrices by omitting one diagonal coordinate and recovering it from the trace equation. [SLKirillovPencil](../FD56/Stabilizer/SLKirillovPencil.lean) defines the actual square SL matrix as the restriction EᵀH_GL E. It proves alternation and an exact linear equivalence between its bounded polynomial kernel and the full SL equation kernel. This restriction preserves the scalar correction in the SL equations.
 
 [MixedSLKronecker](../FD56/Hilbert/MixedSLKronecker.lean) proves the canonical decomposition for every m>n>0, with one block of dimension 2e+1 for each entry e of B(n²−1,n(m−n)+1). [MiddleSLKronecker](../FD56/Hilbert/MiddleSLKronecker.lean) gives the same conclusion for every actual SL degree list in m<n<2m, including the nonbalanced cases above. Both results hold over every field. [EventualHilbertBudget](../FD56/Hilbert/EventualHilbertBudget.lean) derives the exact middle-range budget from HSL(d)=HGL(d)+d+2 for sufficiently large d: the SL list has one more entry and total degree one less than the GL list. These SL decompositions also cover the entire ambient space. The boundaries n=m and n=2m are not covered by these pure-Kronecker results.
+
+[GenericSLFromKroneckerGL](../FD56/Hilbert/GenericSLFromKroneckerGL.lean) proves that a pure generic GL decomposition and its actual minimal-degree list give a pure SL decomposition over every field, for positive n,m. The SL block count is larger by one and its total minimal degree is smaller by one. [KroneckerSLHilbert](../FD56/Hilbert/KroneckerSLHilbert.lean) proves HSL(d)=HGL(d)+d+2 whenever every GL minimal degree is at most d+1. For (10k,3k), the SL pencil has 2k²+1 blocks and total degree 64k²−1; for (14k,3k), it has 2k²+1 blocks and total degree 118k²−1, in characteristic zero. These structural statements do not determine the individual SL degrees for k>1.
+
+[TenThreeSLClassification](../FD56/Hilbert/TenThreeSLClassification.lean) and [FourteenThreeSLClassification](../FD56/Hilbert/FourteenThreeSLClassification.lean) determine the exact base cases in characteristic zero: three Kronecker blocks of dimensions 43 and 79, respectively, in every trace chart. Explicit scalar lifts give three kernel columns of degree at most 21 or 39 that are independent at zero. [MinimalDegreeFrameBound](../FD56/Hilbert/MinimalDegreeFrameBound.lean) bounds every minimal index by that degree; the exact total degree forces [21,21,21] or [39,39,39]. The final theorems have no frame, rank, or basis hypothesis.
 
 ## Regular blocks and general-depth reductions
 
@@ -231,6 +239,8 @@ For every m≥2 and n=4m−1, [DepthThreeCorankOne](../FD56/Hilbert/DepthThreeCo
 
 In characteristic zero, [DepthThreeNineteenSixSyzygyData](../FD56/Hilbert/DepthThreeNineteenSixSyzygyData.lean) verifies five polynomial relations of degree 8 for an explicit nineteen-state, six-row affine pair, with independent leading columns, signed maximal minors, and a Bézout identity. [DepthThreeNineteenSixWitness](../FD56/Hilbert/DepthThreeNineteenSixWitness.lean) excludes bounded auxiliary relations at degree 7. [DepthThreeNineteenSixFamily](../FD56/Hilbert/DepthThreeNineteenSixFamily.lean) transfers this certificate to every nonempty block repetition: beta has 5k copies of 8 and the GL list has 5k² copies of 47 in characteristic zero. Alpha has k copies of 36 over every field. [NineteenSixKronecker](../FD56/Hilbert/NineteenSixKronecker.lean) supplies the full congruence to 5k² blocks of dimension 95.
 
+[DepthFourFourteenThreeData](../FD56/Hilbert/DepthFourFourteenThreeData.lean) gives an explicit fourteen-state, three-row affine pair, two degree-15 polynomial kernel columns, and a scaled polynomial left inverse. [DepthFourFourteenThreeWitness](../FD56/Hilbert/DepthFourFourteenThreeWitness.lean) proves these are the actual reduced kernel basis of the fourth observability stack in characteristic zero. [FourteenThreeKronecker](../FD56/Hilbert/FourteenThreeKronecker.lean) repeats the certificate and combines it with k copies of 40 from the general corank-one beta result: for (14k,3k), the GL list consists of 2k² copies of 59 and the full pencil consists of 2k² blocks of dimension 119.
+
 ## Observability minors
 
 [CorankOneObservabilityAlpha](../FD56/Hilbert/CorankOneObservabilityAlpha.lean) proves the actual first auxiliary list [m(1+2+⋯+q)] whenever n=qm+1, at every depth and over every field. It uses primitive maximal-minor generators, the degree bounds of each row, and independent leading rows. For m=2, combining this with the second auxiliary result gives [q(q+1)] and [(q+1)²]. [TwoOutputOddGL](../FD56/Hilbert/TwoOutputOddGL.lean) then classifies every odd state size with two output rows, including n=1.
@@ -251,11 +261,10 @@ In characteristic zero, [DepthThreeNineteenSixSyzygyData](../FD56/Hilbert/DepthT
 
 ## Remaining work
 
-1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the proved families. The (10k,3k), (13k,4k), (16k,5k), (17k,5k), (18k,5k), and (19k,6k) beta and GL statements remain open in positive characteristic.
-2. The SL Hilbert formula for nondivisible n>2m outside the odd-state two-output family. All positive divisible sizes and the middle range m<n≤2m are covered over every field.
-3. The SL canonical decompositions for nondivisible n>2m outside the proved odd-state two-output family. All positive divisible GL and SL sizes are complete over every base field after the stated coefficient extensions.
-4. Descent of the proved principal loci in ordered affine-pair space to projective lines or a Grassmannian. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
+1. The second generic auxiliary list at block depth three and above; the first auxiliary list beyond the ranges proved above; and the resulting GL degree formula when n ≥ 3m outside the proved families. The (10k,3k), (13k,4k), (16k,5k), (17k,5k), (18k,5k), and (19k,6k) beta and GL statements remain open in positive characteristic, as do the (14k,3k) alpha and GL results.
+2. The exact SL Hilbert functions and individual block sizes for nondivisible n>2m outside the odd-state two-output family and the characteristic-zero pairs (10,3) and (14,3). Pure GL decompositions now imply pure SL structure with exact block count and total degree, but those two totals do not determine the missing lists.
+3. Descent of the proved principal loci in ordered affine-pair space to projective lines or a Grassmannian. The manuscript's Hirzebruch-surface argument and its use of the Coskun–Huizenga theorem are not formalized.
 
 The arithmetic modules contain candidate formulas outside the proved cases. `glFormula` and `slFormula` are intended for positive n,m with 0 < n % m < m; their total Lean values elsewhere carry no classification assertion.
 
-All 2,820 exported theorems in 671 modules have passed the dependency audit, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Passing the build certifies these Lean statements, not the full manuscript or its novelty.
+All 2,902 exported theorems in 691 modules have passed the dependency audit, allowing only `propext`, `Classical.choice`, and `Quot.sound`. Passing the build certifies these Lean statements, not the full manuscript or its novelty.
