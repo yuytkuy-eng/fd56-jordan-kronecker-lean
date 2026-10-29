@@ -3,6 +3,7 @@ Copyright 2026 Shifan Yu
 SPDX-License-Identifier: Apache-2.0
 -/
 import FD56.Arithmetic.DegreeEndomorphismBudget
+import FD56.Arithmetic.FiveOutputTangentResidues
 import FD56.Arithmetic.HilbertArithmetic
 import FD56.Arithmetic.RectangularArithmetic
 import FD56.Arithmetic.SpectrumArithmetic
@@ -161,6 +162,8 @@ import FD56.Hilbert.GenericDepthTwoBeta
 import FD56.Hilbert.GenericDepthTwoBetaTransfer
 import FD56.Hilbert.GenericDepthTwoGL
 import FD56.Hilbert.GenericDepthTwoRank
+import FD56.Hilbert.GenericFiveOutputSLDivisibleTangent
+import FD56.Hilbert.GenericFiveOutputSLTangentCriterion
 import FD56.Hilbert.GenericFourOutputCoprimeChart
 import FD56.Hilbert.GenericFourOutputSLClassification
 import FD56.Hilbert.GenericGLClassification
@@ -379,6 +382,7 @@ import FD56.Hilbert.RankTwoTraceSupportDegree
 import FD56.Hilbert.RectangularBlocks
 import FD56.Hilbert.RectangularLift
 import FD56.Hilbert.ReducedFactorDualDegrees
+import FD56.Hilbert.ReducedFactorHilbertTests
 import FD56.Hilbert.RegularJordanBlock
 import FD56.Hilbert.RegularPoleBlocks
 import FD56.Hilbert.RegularPoleSeparation
@@ -395,6 +399,9 @@ import FD56.Hilbert.ScalarSL
 import FD56.Hilbert.SeparableCrossPencil
 import FD56.Hilbert.SeparableIsotropicBlock
 import FD56.Hilbert.SeparableObservabilitySLDegrees
+import FD56.Hilbert.SevenSevenTangentData
+import FD56.Hilbert.SevenSevenTangentRank
+import FD56.Hilbert.SevenSevenTangentWitness
 import FD56.Hilbert.SeventeenFiveKronecker
 import FD56.Hilbert.SimpleRegularPoles
 import FD56.Hilbert.SingleBlockIsotropy
@@ -563,6 +570,7 @@ import FD56.LinearAlgebra.FiveOutputTangentTransfer
 import FD56.LinearAlgebra.FractionFieldDerivation
 import FD56.LinearAlgebra.FullKrylovBound
 import FD56.LinearAlgebra.FullKrylovGeneratorBound
+import FD56.LinearAlgebra.FullSelectedPolynomialCoefficients
 import FD56.LinearAlgebra.GenericAffineDivisors
 import FD56.LinearAlgebra.GenericCyclicCoprime
 import FD56.LinearAlgebra.GenericCyclicLeading
@@ -663,6 +671,7 @@ import FD56.LinearAlgebra.PolynomialPrimaryBlockAssembly
 import FD56.LinearAlgebra.PolynomialRowAvoidance
 import FD56.LinearAlgebra.PolynomialRowProjection
 import FD56.LinearAlgebra.PolynomialRowProjectionExtension
+import FD56.LinearAlgebra.PowerSubstitutionKernel
 import FD56.LinearAlgebra.PredictableDegree
 import FD56.LinearAlgebra.PrimaryBlockAssembly
 import FD56.LinearAlgebra.PrimaryPencilCoordinates
