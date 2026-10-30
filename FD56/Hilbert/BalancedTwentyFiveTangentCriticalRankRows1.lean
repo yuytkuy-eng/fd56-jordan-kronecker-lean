@@ -1,0 +1,73 @@
+/-
+Copyright 2026 Shifan Yu
+SPDX-License-Identifier: Apache-2.0
+-/
+import FD56.Hilbert.BalancedTwentyFiveTangentData
+
+/-! A bounded block of kernel-checked selected inverse identities. -/
+
+namespace FD56
+open Matrix
+set_option Elab.async false
+set_option maxRecDepth 4000
+set_option maxHeartbeats 8000000
+
+private theorem inverse_row10 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 10) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (10:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row11 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 11) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (11:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row12 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 12) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (12:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row13 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 13) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (13:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row14 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 14) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (14:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row15 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 15) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (15:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row16 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 16) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (16:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row17 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 17) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (17:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row18 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 18) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (18:Fin 74)=j then 1 else 0 := by decide +kernel
+
+private theorem inverse_row19 : ∀ j : Fin 74,
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows 19) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if (19:Fin 74)=j then 1 else 0 := by decide +kernel
+
+attribute [local irreducible] balancedTwentyFiveTangentCriticalInverseRows balancedTwentyFiveTangentCriticalSelectedColumns
+
+theorem balancedTwentyFiveTangentCritical_inverse_residue_rows_1 (i j : Fin 74)
+    (hlo : 10 ≤ i.val) (hhi : i.val < 20) :
+    natListDot (balancedTwentyFiveTangentCriticalInverseRows i) (balancedTwentyFiveTangentCriticalSelectedColumns j)%101=
+      if i=j then 1 else 0 := by
+  fin_cases i <;> norm_num at hlo hhi
+  · exact inverse_row10 j
+  · exact inverse_row11 j
+  · exact inverse_row12 j
+  · exact inverse_row13 j
+  · exact inverse_row14 j
+  · exact inverse_row15 j
+  · exact inverse_row16 j
+  · exact inverse_row17 j
+  · exact inverse_row18 j
+  · exact inverse_row19 j
+
+end FD56
