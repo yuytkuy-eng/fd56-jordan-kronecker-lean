@@ -12,6 +12,8 @@ For every positive nondivisible size, the [actual SL scalar image](FD56/Hilbert/
 
 For every positive interior depth, the [actual derivative image of selected observability minors](FD56/Hilbert/GenericInteriorDifferentialImage.lean) equals the selected Plücker differential image of the terminal matrix with its column degree bounds. In characteristic zero, faithful specialization of the universal balanced two-column minor coefficient algebra holds for [remainder-two families](FD56/Hilbert/GenericTwoColumnPluckerSpecialization.lean) and [corank-two families through signed complementary minors](FD56/Hilbert/GenericCorankTwoPluckerSpecialization.lean). This transfers tangent coefficient certificates to the actual generic minors and determines the proved five-output SL lists from their total degree.
 
+In characteristic zero, a [normalized splice step](FD56/Hilbert/NormalizedFiveOutputSplice.lean) preserves prescribed constant terms of a two-column frame, raises both column degree bounds by seven, and proves H_new(d+4)≤H_old(d) for every d≥0 over a parameter fraction field. Here H is the bounded polynomial kernel dimension of the Plücker tangent matrix.
+
 Here generic means the universal affine pair over the rational function field of its independent coefficients. The GL proof compares the [differential rank of selected observability minors](FD56/Hilbert/GenericInteriorDifferentialRank.lean) with a [degree-dependent Plücker rank bound](FD56/LinearAlgebra/PluckerDegreeBalance.lean). This forces both [actual auxiliary degree lists to be balanced](FD56/Hilbert/GenericInteriorDegreeBalance.lean); [GenericAllDepthGL](FD56/Hilbert/GenericAllDepthGL.lean) reconstructs the reduced kernel basis and full constant congruence. For four-output SL, an [explicit balanced Plücker certificate](FD56/Hilbert/MonomialPluckerChart.lean) now transfers to the actual generic family through [coprime chart specialization](FD56/Hilbert/PluckerChartSpecialization.lean) and [complementary minimal degrees](FD56/Hilbert/FourOutputSLDualDegrees.lean).
 
 ## Check the proofs
@@ -23,7 +25,7 @@ lake exe cache get
 python scripts/check.py
 ```
 
-The library contains 880 Lean modules and 3,462 exported theorems. The checker builds every module and audits every exported theorem, allowing only `propext`, `Classical.choice`, and `Quot.sound`. It validates each batch and the complete inventory, rejects missing output or failed processes, and rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files stay in `.verification/`. GitHub Actions runs the same check.
+The library contains 893 Lean modules and 3,499 exported theorems. The checker builds every module and audits every exported theorem, allowing only `propext`, `Classical.choice`, and `Quot.sound`. It validates each batch and the complete inventory, rejects missing output or failed processes, and rejects placeholder proofs, custom axioms, and `native_decide`. Temporary audit files stay in `.verification/`. GitHub Actions runs the same check.
 
 The toolchain and dependency files pin Lean and mathlib. For a build without the audit, run `lake build`. To use the library, write `import FD56`.
 

@@ -13,6 +13,7 @@ import FD56.Hilbert.AdjacentCriterion
 import FD56.Hilbert.AdjacentDegrees
 import FD56.Hilbert.Adjugate
 import FD56.Hilbert.AffineCrossNormalization
+import FD56.Hilbert.AllPolynomialCoefficients
 import FD56.Hilbert.BalancedDegreeProfile
 import FD56.Hilbert.BalancedDegrees
 import FD56.Hilbert.BalancedMonomialPlucker
@@ -135,6 +136,7 @@ import FD56.Hilbert.FiveOutputCorankTwoTangentRelations
 import FD56.Hilbert.FiveOutputTangentBinding
 import FD56.Hilbert.FiveOutputTangentData
 import FD56.Hilbert.FiveOutputTangentRank
+import FD56.Hilbert.FiveOutputTangentSplice
 import FD56.Hilbert.FiveOutputTangentVanishing
 import FD56.Hilbert.FiveOutputTangentWitness
 import FD56.Hilbert.FiveTwoSLClassification
@@ -333,6 +335,11 @@ import FD56.Hilbert.MonomialPluckerKernel
 import FD56.Hilbert.NilpotentRankTwoFixedDimension
 import FD56.Hilbert.NilpotentRankTwoJordan
 import FD56.Hilbert.NineteenSixKronecker
+import FD56.Hilbert.NormalizedFiveOutputSplice
+import FD56.Hilbert.NormalizedSevenTailBinding
+import FD56.Hilbert.NormalizedSevenTailData
+import FD56.Hilbert.NormalizedSevenTailRank
+import FD56.Hilbert.NormalizedSevenTailWitness
 import FD56.Hilbert.ObservabilityBackwardRows
 import FD56.Hilbert.ObservabilityBetaBlockDimension
 import FD56.Hilbert.ObservabilityBetaBlocks
@@ -372,7 +379,9 @@ import FD56.Hilbert.PluckerChartBalance
 import FD56.Hilbert.PluckerChartSpecialization
 import FD56.Hilbert.PluckerConstantMinimalDegrees
 import FD56.Hilbert.PluckerTerminalOutputAction
+import FD56.Hilbert.PolynomialDeformationKernelBound
 import FD56.Hilbert.PolynomialHyperplaneChart
+import FD56.Hilbert.PolynomialKernelResidueDimension
 import FD56.Hilbert.PolynomialPrimaryJordan
 import FD56.Hilbert.PolynomialRegularRankTwoJordan
 import FD56.Hilbert.PoweredSevenSevenTangent
@@ -547,6 +556,7 @@ import FD56.LinearAlgebra.AlternatingSchurSplit
 import FD56.LinearAlgebra.AugmentedDeterminantDifferential
 import FD56.LinearAlgebra.BidiagonalPencil
 import FD56.LinearAlgebra.BilinearPrimaryRestriction
+import FD56.LinearAlgebra.BivariateDiagonalRescaling
 import FD56.LinearAlgebra.BlockHankel
 import FD56.LinearAlgebra.BlockHankelShift
 import FD56.LinearAlgebra.ClearDenominators
@@ -671,6 +681,7 @@ import FD56.LinearAlgebra.PolynomialInverseCertificates
 import FD56.LinearAlgebra.PolynomialKernel
 import FD56.LinearAlgebra.PolynomialKernelCompletion
 import FD56.LinearAlgebra.PolynomialKernelFrameGeneration
+import FD56.LinearAlgebra.PolynomialKernelInitialCoefficients
 import FD56.LinearAlgebra.PolynomialKernelSplitting
 import FD56.LinearAlgebra.PolynomialLeading
 import FD56.LinearAlgebra.PolynomialMatrix
@@ -681,6 +692,8 @@ import FD56.LinearAlgebra.PolynomialPrimaryBlockAssembly
 import FD56.LinearAlgebra.PolynomialRowAvoidance
 import FD56.LinearAlgebra.PolynomialRowProjection
 import FD56.LinearAlgebra.PolynomialRowProjectionExtension
+import FD56.LinearAlgebra.PolynomialTailKernelResidue
+import FD56.LinearAlgebra.PolynomialTailSplice
 import FD56.LinearAlgebra.PowerSubstitutionKernel
 import FD56.LinearAlgebra.PredictableDegree
 import FD56.LinearAlgebra.PrimaryBlockAssembly
